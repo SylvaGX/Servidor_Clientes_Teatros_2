@@ -7,6 +7,8 @@ create table Theater(
 	name nvarchar(50) NOT NULL,
 	address nvarchar(50) NOT NULL,
 	localization nvarchar(50) NOT NULL,
+	lat float not null,
+	longi float not null,
 	contact nvarchar(9) NOT NULL,
 	Check(contact like '[9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
 );
