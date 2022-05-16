@@ -8,7 +8,7 @@
              Title="Register" Height="156" Width="482">
     <Grid>
         <Label Content="Registar" HorizontalAlignment="Center" VerticalAlignment="Top" Width="98" Height="35" FontSize="16" FontWeight="Bold" FontFamily="Arial" HorizontalContentAlignment="Center"/>
-        <TextBox HorizontalAlignment="Left" Margin="26,40,0,0" TextWrapping="Wrap" Text="Username&#xD;&#xA;" VerticalAlignment="Top" Width="435" Height="26" TextChanged="TextBox_TextChanged"/>
+        <TextBox HorizontalAlignment="Left" Margin="26,40,0,0" TextWrapping="Wrap" Text="Username&#xD;&#xA;" VerticalAlignment="Top" Width="435" Height="26" />
         <TextBox HorizontalAlignment="Left" Margin="26,71,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="435" Height="23"/>
         <Button Content="Register" Margin="320,99,94,10"/>
         <Button Content="Back" Margin="393,99,21,10" Click="Button_Click"/>

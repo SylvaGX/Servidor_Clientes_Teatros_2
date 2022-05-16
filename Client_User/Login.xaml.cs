@@ -23,5 +23,15 @@ namespace Client_User
         {
             InitializeComponent();
         }
+
+        private void Login_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Connect_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
