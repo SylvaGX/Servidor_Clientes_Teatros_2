@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_User"
         mc:Ignorable="d"
-             Title="login" Height="193" Width="482">
+             Title="login" Height="200" Width="500" ResizeMode="NoResize">
     <Grid>
         <Label Content="Login" HorizontalAlignment="Center" VerticalAlignment="Top" Width="98" Height="35" FontSize="16" FontWeight="Bold" FontFamily="Arial" HorizontalContentAlignment="Center"/>
-        <TextBox HorizontalAlignment="Left" Margin="26,40,0,0" TextWrapping="Wrap" Text="Username&#xD;&#xA;" VerticalAlignment="Top" Width="435" Height="23"/>
-        <TextBox HorizontalAlignment="Left" Margin="26,68,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="435" Height="23"/>
-        <TextBox HorizontalAlignment="Left" Margin="26,96,0,0" TextWrapping="Wrap" Text="IP Address" VerticalAlignment="Top" Width="435" Height="23"/>
+        <TextBox Name="Email" HorizontalAlignment="Left" Margin="26,40,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="435" Height="23"/>
+        <TextBox Name="Password" HorizontalAlignment="Left" Margin="26,68,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="435" Height="23"/>
+        <TextBox Name="IP" HorizontalAlignment="Left" Margin="26,96,0,0" TextWrapping="Wrap" Text="IP Address" VerticalAlignment="Top" Width="435" Height="23"/>
         <Button Content="Connect" Margin="320,133,94,10" Click="Connect_Click"/>
-        <Button Content="Register" Margin="393,133,21,10" Click="Login_Click"/>
+        <Button Content="Register" Margin="393,133,21,10" Click="Register_Click"/>
       
     </Grid>
 </Window>

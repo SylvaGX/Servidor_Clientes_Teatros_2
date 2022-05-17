@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_User"
         mc:Ignorable="d"
-             Title="Register" Height="156" Width="482">
+             Title="Register" Height="170" Width="500" ResizeMode="NoResize">
     <Grid>
         <Label Content="Registar" HorizontalAlignment="Center" VerticalAlignment="Top" Width="98" Height="35" FontSize="16" FontWeight="Bold" FontFamily="Arial" HorizontalContentAlignment="Center"/>
         <TextBox HorizontalAlignment="Left" Margin="26,40,0,0" TextWrapping="Wrap" Text="Username&#xD;&#xA;" VerticalAlignment="Top" Width="435" Height="26" />
