@@ -14,6 +14,7 @@ service Login {
 	if the key is empty cannot connect with the server
 	if the id is -1 the email or password fields are wrong
 	*/
+
 	rpc CheckLogin(UserLogin) returns (UserConnected){}
 }
 

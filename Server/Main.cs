@@ -16,7 +16,7 @@ namespace Server
             
             Grpc.Core.Server server = new Grpc.Core.Server
             {
-                Services = { GRPCProto.Login.BindService(new LoginImpl(context)) },
+                Services = { Login.BindService(new LoginImpl(context)) },
                 Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
             };
             server.Start();
