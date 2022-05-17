@@ -17,6 +17,7 @@ namespace Server.Data
         {
         }
 
+        public virtual DbSet<Localization> Localizations { get; set; } = null!;
         public virtual DbSet<Purchase> Purchases { get; set; } = null!;
         public virtual DbSet<Session> Sessions { get; set; } = null!;
         public virtual DbSet<Show> Shows { get; set; } = null!;
@@ -42,13 +43,13 @@ namespace Server.Data
                     .WithMany(p => p.Purchases)
                     .HasForeignKey(d => d.IdShow)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Purchase__id_sho__30F848ED");
+                    .HasConstraintName("FK__Purchase__id_sho__34C8D9D1");
 
                 entity.HasOne(d => d.IdUsersNavigation)
                     .WithMany(p => p.Purchases)
                     .HasForeignKey(d => d.IdUsers)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Purchase__id_use__31EC6D26");
+                    .HasConstraintName("FK__Purchase__id_use__35BCFE0A");
             });
 
             modelBuilder.Entity<Session>(entity =>
@@ -57,7 +58,7 @@ namespace Server.Data
                     .WithMany(p => p.Sessions)
                     .HasForeignKey(d => d.IdShow)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Session__id_show__2A4B4B5E");
+                    .HasConstraintName("FK__Session__id_show__2D27B809");
             });
 
             modelBuilder.Entity<Show>(entity =>
@@ -66,7 +67,25 @@ namespace Server.Data
                     .WithMany(p => p.Shows)
                     .HasForeignKey(d => d.IdTheater)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Show__id_theater__276EDEB3");
+                    .HasConstraintName("FK__Show__id_theater__2A4B4B5E");
+            });
+
+            modelBuilder.Entity<Theater>(entity =>
+            {
+                entity.HasOne(d => d.IdLocalizationNavigation)
+                    .WithMany(p => p.Theaters)
+                    .HasForeignKey(d => d.IdLocalization)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Theater__id_loca__267ABA7A");
+            });
+
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasOne(d => d.IdLocalizationNavigation)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.IdLocalization)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Users__id_locali__300424B4");
             });
 
             OnModelCreatingPartial(modelBuilder);

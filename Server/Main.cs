@@ -11,7 +11,7 @@ namespace Server
         static void Main(string[] args)
         {
             const int Port = 45300;
-
+            
             var context = new ServerContext();
             
             Grpc.Core.Server server = new Grpc.Core.Server

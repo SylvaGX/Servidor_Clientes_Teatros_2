@@ -29,9 +29,14 @@ namespace Server.Models
         [Column("mail")]
         [StringLength(50)]
         public string Mail { get; set; } = null!;
+        [Column("id_localization")]
+        public int IdLocalization { get; set; }
         [Column("fundos", TypeName = "money")]
         public decimal Fundos { get; set; }
 
+        [ForeignKey("IdLocalization")]
+        [InverseProperty("Users")]
+        public virtual Localization IdLocalizationNavigation { get; set; } = null!;
         [InverseProperty("IdUsersNavigation")]
         public virtual ICollection<Purchase> Purchases { get; set; }
     }

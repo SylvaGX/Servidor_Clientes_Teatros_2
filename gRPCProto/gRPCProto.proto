@@ -11,11 +11,18 @@ package gRPCProto;
 service Login {
 	/*
 	Returns a connected User with a random Key
-	if the key is empty cannot connect with the server
 	if the id is -1 the email or password fields are wrong
 	*/
 
 	rpc CheckLogin(UserLogin) returns (UserConnected){}
+}
+
+service Register {
+
+	/**/
+	rpc RegisterUser(UserRegister) returns (UserConnected) {}
+	rpc RegisterManager(ManagerRegister) returns (UserConnected) {}
+	rpc RegisterAdmin(AdminRegister) returns (UserConnected) {}
 }
 
 message UserLogin {
@@ -26,5 +33,28 @@ message UserLogin {
 message UserConnected {
 	int32 id = 1;
 	string type = 2;
-	string key = 3;
+}
+
+message UserRegister {
+	int32 id = 1;
+	string name = 2;
+	string email = 3;
+	string password = 4;
+	int32 idLocalization = 5;
+}
+
+message ManagerRegister {
+	int32 id = 1;
+	string name = 2;
+	string email = 3;
+	string password = 4;
+	int32 idLocalization = 5;
+}
+
+message AdminRegister {
+	int32 id = 1;
+	string name = 2;
+	string email = 3;
+	string password = 4;
+	int32 idLocalization = 5;
 }

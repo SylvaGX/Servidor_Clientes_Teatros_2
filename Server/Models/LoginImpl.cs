@@ -8,7 +8,7 @@ namespace GRPCProto
     internal class LoginImpl : Login.LoginBase
     {
         private ServerContext DBcontext;
-
+        
         public LoginImpl(ServerContext context)
         {
             this.DBcontext = context;
@@ -21,11 +21,11 @@ namespace GRPCProto
 
             if (user != null)
             {
-                UserConnected user1 = new UserConnected { Id = user.Id, Key = "1", Type = user.Type};
+                UserConnected user1 = new UserConnected { Id = user.Id, Type = user.Type};
                 return Task.FromResult(user1);
             }
 
-            return Task.FromResult(new UserConnected { Id = -1, Key = "", Type = ""});
+            return Task.FromResult(new UserConnected { Id = -1, Type = ""});
         }
     }
 }

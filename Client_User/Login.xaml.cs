@@ -39,7 +39,7 @@ namespace Client_User
             string email = Email.Text;
             string password = Password.Text;
             string IPAddress = IP.Text;
-            string IPformat = "([1-9]|([1-9][0-9])|([1][0-9][0-9])|([2][0-5][0-5]))\\.([1-9]|([1-9][0-9])|([1][0-9][0-9])|([2][0-5][0-5]))\\.([1-9]|([1-9][0-9])|([1][0-9][0-9])|([2][0-5][0-5]))\\.([1-9]|([1-9][0-9])|([1][0-9][0-9])|([2][0-5][0-5]))";
+            string IPformat = "([1-9]|([1-9][0-9])|([1][0-9][0-9])|([2][0-5][0-5]))\\.([0-9]|([1-9][0-9])|([1][0-9][0-9])|([2][0-5][0-5]))\\.([0-9]|([1-9][0-9])|([1][0-9][0-9])|([2][0-5][0-5]))\\.([1-9]|([1-9][0-9])|([1][0-9][0-9])|([2][0-5][0-5]))";
             if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password) && !String.IsNullOrEmpty(IPAddress) && Regex.IsMatch(IPAddress, IPformat))
             {
                 var channel = new Channel(IPAddress+":45300", ChannelCredentials.Insecure);

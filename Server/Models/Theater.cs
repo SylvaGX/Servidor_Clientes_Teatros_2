@@ -23,17 +23,15 @@ namespace Server.Models
         [Column("address")]
         [StringLength(50)]
         public string Address { get; set; } = null!;
-        [Column("localization")]
-        [StringLength(50)]
-        public string Localization { get; set; } = null!;
-        [Column("lat")]
-        public double Lat { get; set; }
-        [Column("longi")]
-        public double Longi { get; set; }
+        [Column("id_localization")]
+        public int IdLocalization { get; set; }
         [Column("contact")]
         [StringLength(9)]
         public string Contact { get; set; } = null!;
 
+        [ForeignKey("IdLocalization")]
+        [InverseProperty("Theaters")]
+        public virtual Localization IdLocalizationNavigation { get; set; } = null!;
         [InverseProperty("IdTheaterNavigation")]
         public virtual ICollection<Show> Shows { get; set; }
     }

@@ -37,7 +37,7 @@ namespace Client_User.Models
             catch (RpcException e)
             {
                 //logs error
-                Console.WriteLine(e);
+                Console.Error.WriteLine(e.Message);
                 throw;
             }
         }
