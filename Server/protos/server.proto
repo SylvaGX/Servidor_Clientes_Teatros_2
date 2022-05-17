@@ -1,0 +1,29 @@
+﻿syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.utad.server";
+option java_outer_classname = "ServerProto";
+option objc_class_prefix = "SRT";
+
+package Server;
+
+// Interface exported by the server.
+service Login {
+	/*
+	Returns a connected User with a random Key
+	if the key is empty cannot connect with the server
+	if the id is -1 the email or password fields are wrong
+	*/
+	rpc CheckLogin(UserLogin) returns (UserConnected){}
+}
+
+message UserLogin {
+	string email = 1;
+	string password = 2;
+}
+
+message UserConnected {
+	int32 id = 1;
+	string type = 2;
+	string key = 3;
+}
