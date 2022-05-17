@@ -2,13 +2,18 @@ use master
 create database Servidor_Teatro
 use Servidor_Teatro
 	
+create table Localization(
+	id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	localization nvarchar(50) NOT NULL,
+	lat float not null,
+	longi float not null,
+);
+
 create table Theater(
 	id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	name nvarchar(50) NOT NULL,
 	address nvarchar(50) NOT NULL,
-	localization nvarchar(50) NOT NULL,
-	lat float not null,
-	longi float not null,
+	id_localization int FOREIGN KEY REFERENCES Localization(id) NOT NULL,
 	contact nvarchar(9) NOT NULL,
 	Check(contact like '[9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]')
 );
@@ -39,6 +44,7 @@ create table Users(
 	pass nvarchar(50) NOT NULL,
 	type varchar(1) NOT NULL,
 	mail nvarchar(50) Not NULL,
+	id_localization int FOREIGN KEY REFERENCES Localization(id) not null,
 	fundos money default 0 NOT NULL,
 	CHECK(type like '[1-3]')
 );
@@ -51,8 +57,10 @@ create table Purchase(
 	date_purchase date default getdate() not null,
 );
 
+
 Select * from Teatros;
 Select * from Sessoes;
 Select * from Espetaculos;
 Select * from Users;
 Select * from Comprar;
+Select * from Localization;
