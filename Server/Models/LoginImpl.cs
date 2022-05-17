@@ -3,7 +3,7 @@
 using Grpc.Core;
 using Server.Data;
 
-namespace Server
+namespace GRPCProto
 {
     internal class LoginImpl : Login.LoginBase
     {

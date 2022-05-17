@@ -5,7 +5,7 @@ option java_package = "io.grpc.utad.server";
 option java_outer_classname = "ServerProto";
 option objc_class_prefix = "SRT";
 
-package Server;
+package gRPCProto;
 
 // Interface exported by the server.
 service Login {
