@@ -6,6 +6,7 @@ option java_outer_classname = "ServerProto";
 option objc_class_prefix = "SRT";
 
 package gRPCProto;
+import "google/protobuf/timestamp.proto";
 
 // Interface exported by the server.
 service Login {
@@ -19,10 +20,20 @@ service Login {
 
 service Register {
 
-	/**/
+	/*
+	Functions to register the vary users
+	*/
 	rpc RegisterUser(UserRegister) returns (UserConnected) {}
 	rpc RegisterManager(ManagerRegister) returns (UserConnected) {}
 	rpc RegisterAdmin(AdminRegister) returns (UserConnected) {}
+}
+
+service UserService {
+
+	/*
+	Return a user info
+	*/
+	rpc GetUser(UserConnected) returns (UserInfo) {}
 }
 
 message UserLogin {
@@ -57,4 +68,62 @@ message AdminRegister {
 	string email = 3;
 	string password = 4;
 	int32 idLocalization = 5;
+}
+
+message UserInfo {
+	int32 id = 1;
+	string name = 2;
+	string email = 3;
+	string password = 4;
+	double fundos = 5;
+	LocalizationInfo localization = 6;
+	repeated PurchaseInfo purchases = 7;
+}
+
+message TheaterInfo {
+	int32 id = 1;
+	string name = 2;
+	string address = 3;
+	string contact = 4;
+	LocalizationInfo localization = 5;
+	repeated ShowInfo shows = 7;
+}
+
+message ShowInfo {
+	int32 id = 1;
+	string name = 2;
+	string sinopse = 3;
+	int64 startDate = 4;
+	int64 endDate = 5;
+	double price = 6;
+	TheaterInfo theater = 7;
+	repeated PurchaseInfo purchases = 8;
+	repeated SessionInfo sessions = 9;
+}
+
+message SessionInfo {
+	int32 id = 1;
+	int64 sessionDate = 2;
+	int64 startHour = 3;
+	int64 endHour = 4;
+	int32 AvaiablePlaces = 5;
+	int32 TotalPlaces = 6;
+	ShowInfo show = 7;
+}
+
+message PurchaseInfo {
+	int32 id = 1;
+	string reference = 2;
+	int64 datePurchase = 3;
+	ShowInfo show = 4;
+	UserInfo user = 5;
+}
+
+message LocalizationInfo {
+	int32 id = 1;
+	string name = 2;
+	double lat = 3;
+	double longi = 4;
+	repeated TheaterInfo theaters = 5;
+	repeated UserInfo users = 6;
 }
