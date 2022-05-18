@@ -20,7 +20,7 @@ namespace Server.Models
         public int Id { get; set; }
         [Column("localization")]
         [StringLength(50)]
-        public string Localization1 { get; set; } = null!;
+        public string name { get; set; } = null!;
         [Column("lat")]
         public double Lat { get; set; }
         [Column("longi")]

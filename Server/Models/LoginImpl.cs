@@ -2,8 +2,9 @@
 
 using Grpc.Core;
 using Server.Data;
+using gRPCProto;
 
-namespace GRPCProto
+namespace Server.Models
 {
     internal class LoginImpl : Login.LoginBase
     {
@@ -21,8 +22,8 @@ namespace GRPCProto
 
             if (user != null)
             {
-                UserConnected user1 = new UserConnected { Id = user.Id, Type = user.Type};
-                return Task.FromResult(user1);
+                UserConnected userConnected = new UserConnected { Id = user.Id, Type = user.Type};
+                return Task.FromResult(userConnected);
             }
 
             return Task.FromResult(new UserConnected { Id = -1, Type = ""});

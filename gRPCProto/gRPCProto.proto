@@ -74,7 +74,6 @@ message UserInfo {
 	int32 id = 1;
 	string name = 2;
 	string email = 3;
-	string password = 4;
 	double fundos = 5;
 	LocalizationInfo localization = 6;
 	repeated PurchaseInfo purchases = 7;

@@ -1,8 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Grpc.Core;
-using GRPCProto;
+using gRPCProto;
 using Server.Data;
+using Server.Models;
 
 namespace Server
 {
@@ -17,7 +18,7 @@ namespace Server
             Grpc.Core.Server server = new Grpc.Core.Server
             {
                 Services = { Login.BindService(new LoginImpl(context)) },
-                Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
+                Ports = { new ServerPort("10.144.10.2", Port, ServerCredentials.Insecure) }
             };
             server.Start();
 
