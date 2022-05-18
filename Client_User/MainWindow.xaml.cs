@@ -33,7 +33,7 @@ namespace Client_User
 
             if(IPAdd != null) { 
                 var channel = new Channel(IPAdd + ":45300", ChannelCredentials.Insecure);
-                Email.Text = IPAdd;
+                
                 var client = new UserServiceClient(new UserService.UserServiceClient(channel));
                 UserInfo userInfo = client.GetUser(userConnected).Result;
                 Email.Text = userInfo.Email.ToString();
@@ -50,5 +50,9 @@ namespace Client_User
 
         }
 
+        private void Sair_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

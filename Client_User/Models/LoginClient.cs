@@ -38,7 +38,7 @@ namespace Client_User.Models
             {
                 //logs error
                 Console.Error.WriteLine(e.Message);
-                throw;
+                return await Task.FromResult(new UserConnected() { Id = -1 });
             }
         }
     }
