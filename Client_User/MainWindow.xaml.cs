@@ -34,10 +34,12 @@ namespace Client_User
             if(IPAdd != null) { 
                 var channel = new Channel(IPAdd + ":45300", ChannelCredentials.Insecure);
                 Email.Text = IPAdd;
-                UserServiceClient client = new UserServiceClient(new UserService.UserServiceClient(channel));
+                var client = new UserServiceClient(new UserService.UserServiceClient(channel));
                 UserInfo userInfo = client.GetUser(userConnected).Result;
                 Email.Text = userInfo.Email.ToString();
                 Fundos.Text = userInfo.Fundos.ToString();
+
+                channel.ShutdownAsync().Wait();
             }
             else
             {
