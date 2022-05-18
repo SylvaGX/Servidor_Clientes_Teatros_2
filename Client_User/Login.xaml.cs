@@ -1,6 +1,6 @@
 ﻿using Client_User.Models;
 using Grpc.Core;
-using GRPCProto;
+using gRPCProto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,11 +39,11 @@ namespace Client_User
             string email = Email.Text;
             string password = Password.Text;
             string IPAddress = IP.Text;
-            string IPformat = "([1-9]|([1-9][0-9])|([1][0-9][0-9])|([2][0-5][0-5]))\\.([0-9]|([1-9][0-9])|([1][0-9][0-9])|([2][0-5][0-5]))\\.([0-9]|([1-9][0-9])|([1][0-9][0-9])|([2][0-5][0-5]))\\.([1-9]|([1-9][0-9])|([1][0-9][0-9])|([2][0-5][0-5]))";
+            string IPformat = "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$";
             if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password) && !String.IsNullOrEmpty(IPAddress) && Regex.IsMatch(IPAddress, IPformat))
             {
                 var channel = new Channel(IPAddress+":45300", ChannelCredentials.Insecure);
-                var client = new LoginClient(new GRPCProto.Login.LoginClient(channel));
+                var client = new LoginClient(new gRPCProto.Login.LoginClient(channel));
                 UserLogin userLogin = new()
                 {
                     Email = email,
@@ -52,9 +52,14 @@ namespace Client_User
 
                 // Send and receive some notes.
                 UserConnected userConnected = client.CheckLogin(userLogin).Result;
-                Password.Text  = userConnected.Type;
-
+                
+                
                 channel.ShutdownAsync().Wait();
+                
+                MainWindow.IPAdd = IPAddress;
+                MainWindow mainWindow = new MainWindow(userConnected);
+                mainWindow.Show();
+                this.Close();
             }
             else {
                 //view para dar erro

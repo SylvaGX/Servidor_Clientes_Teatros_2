@@ -1,8 +1,8 @@
 using Grpc.Core;
-using GRPCProto;
+using gRPCProto;
 using System;
 
-namespace GRPCProto
+namespace gRPCProto
 {
     public static class gRPCProtoUtil
     {
@@ -10,5 +10,10 @@ namespace GRPCProto
         {
             return userConnected != null && (userConnected.Id != -1);
         }
+        public static bool Exists(this UserInfo userInfo)
+        {
+            return userInfo != null && (userInfo.Id != -1);
+        }
+
     }
 }

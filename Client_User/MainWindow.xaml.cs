@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Client_User.Models;
+using Grpc.Core;
+using gRPCProto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,30 @@ namespace Client_User
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public static string IPAdd { get; set; }
+        public UserConnected userConnected { get; }
+    
+        public MainWindow(UserConnected userConnected)
         {
             InitializeComponent();
+            this.userConnected = userConnected;
+
+            if(IPAdd != null) { 
+                var channel = new Channel(IPAdd + ":45300", ChannelCredentials.Insecure);
+                Email.Text = IPAdd;
+                UserServiceClient client = new UserServiceClient(new UserService.UserServiceClient(channel));
+                UserInfo userInfo = client.GetUser(userConnected).Result;
+                Email.Text = userInfo.Email.ToString();
+                Fundos.Text = userInfo.Fundos.ToString();
+            }
+            else
+            {
+                Login login = new Login();
+                login.Show();
+                this.Close();
+            }
+
         }
+
     }
 }
