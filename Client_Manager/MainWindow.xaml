@@ -7,6 +7,26 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Label Content="Menu Principal" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Margin="0,10,0,0"/>
+        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="23,90,405,32">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="400,90,31,32">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Adicionar Teatros" HorizontalAlignment="Left" Margin="23,57,0,0" VerticalAlignment="Top" Height="28" Width="106"/>
+        <Button Content="Adicionar Espetaculo" HorizontalAlignment="Left" Margin="522,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
+        <Button Content="Remover Teatros" HorizontalAlignment="Left" Margin="134,57,0,0" VerticalAlignment="Top" Height="28" Width="106"/>
+        <Button Content="Remover Espetaculo" HorizontalAlignment="Left" Margin="648,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
+        <Label Content="Connected:" HorizontalAlignment="Left" Margin="253,57,0,0" VerticalAlignment="Top" FontSize="14"/>
 
     </Grid>
 </Window>
