@@ -5,9 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_User"
         mc:Ignorable="d"
-        Title="Lista de Sessões" Height="450" Width="800">
+        Title="Lista de Sessões" Height="443" Width="500" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"   Background="Transparent">
     <Grid>
-        <ListBox x:Name="ListaSessoes" SelectionMode="Multiple" Margin="0,50,0,0">
+        <Border Grid.RowSpan="5" Grid.ColumnSpan="3" CornerRadius="15">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#ff8080" Offset="0.0"/>
+                    <GradientStop Color="#4d4dff" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Label Content="Lista de Sessões" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" FontFamily="Arial" Foreground="#FFF3E5E5"/>
+
+        <ListBox x:Name="ListaSessoes" SelectionMode="Multiple" Foreground="#4D4D4D" BorderBrush="White" Margin="10,83,10,10" Background="{x:Null}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
@@ -50,8 +60,8 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Button x:Name="Sair" Content="Cancelar" HorizontalAlignment="Right" Height="25" Width="60" Margin="0,15,20,0" VerticalAlignment="Top" Click="Sair_Click"/>
-        <Button x:Name="Submeter" Content="Adicionar" HorizontalAlignment="Left" Height="25" Width="65" Margin="20,15,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="Sair" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Cancelar" HorizontalAlignment="Right" Height="25" Width="150" Margin="0,53,95,0" VerticalAlignment="Top" Click="Sair_Click"/>
+        <Button x:Name="Submeter" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Adicionar" HorizontalAlignment="Left" Height="25" Width="150" Margin="100,53,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

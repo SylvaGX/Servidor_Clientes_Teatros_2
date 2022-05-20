@@ -5,12 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_User"
         mc:Ignorable="d"
-        Title="Listas de Teatros" Height="347" Width="595">
+        Title="Listas de Teatros"  Height="443" Width="500" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"   Background="Transparent">
     <Grid>
-        <Label Content="Lista de Teatros" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" FontFamily="Arial"/>
-        <Label Content="Pesquisa:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,49,0,0"  FontSize="14"/>
-        <TextBox x:Name="Pesquisa" HorizontalAlignment="Left" Margin="106,54,0,0" TextWrapping="Wrap" Text="Pesquisa..." VerticalAlignment="Top" Width="287" Height="24"/>
-        <ListBox x:Name="ListTeatros" HorizontalContentAlignment="Stretch" Margin="10,83,10,10">
+        <Border Grid.RowSpan="5" Grid.ColumnSpan="3" CornerRadius="15">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#ff8080" Offset="0.0"/>
+                    <GradientStop Color="#4d4dff" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Label Content="Lista de Teatros" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" FontFamily="Arial" Foreground="#FFF3E5E5"/>
+        <Label Content="Pesquisa:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,51,0,0"  FontSize="14" Foreground="#FFFDEAEA" FontFamily="Calibri" FontWeight="Bold"/>
+        <TextBox x:Name="Pesquisa"  Foreground="#4D4D4D" BorderBrush="Transparent" FontFamily="Calibri" FontSize="16" HorizontalAlignment="Left" Margin="70,54,0,0" TextWrapping="Wrap" Text="Pesquisa..." VerticalAlignment="Top" Width="248" Height="24">
+            <TextBox.Background>
+                <SolidColorBrush Color="White" Opacity="0.2"/>
+            </TextBox.Background>
+        </TextBox>
+        <ListBox x:Name="ListTeatros" Foreground="#4D4D4D" BorderBrush="White" HorizontalContentAlignment="Stretch" Margin="10,83,10,10" Background="{x:Null}" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
@@ -29,8 +41,9 @@
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            
         </ListBox>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Content="Pesquisar" Margin="0,54,115,0" Width="65" Height="24"/>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Content="Voltar" Margin="0,54,58,0" Width="45" Height="24" Click="Sair_Click"/>
+        <Button HorizontalAlignment="Right" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" VerticalAlignment="Top" Content="Pesquisar" Margin="0,54,89,0" Width="83" Height="24"></Button>
+        <Button HorizontalAlignment="Right" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" VerticalAlignment="Top" Content="Voltar" Margin="0,54,10,0" Width="74" Height="24" Click="Sair_Click"/>
     </Grid>
 </Window>
