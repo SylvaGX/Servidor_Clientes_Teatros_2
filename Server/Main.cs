@@ -17,7 +17,15 @@ namespace Server
             
             Grpc.Core.Server server = new Grpc.Core.Server
             {
-                Services = { Login.BindService(new LoginImpl(context)) },
+                Services = { 
+                    Login.BindService(new LoginImpl(context)),
+                    UserService.BindService(new UserServiceImpl(context)),
+                    Register.BindService(new RegisterImpl(context)),
+                    LocalizationService.BindService(new LocalizationServiceImpl(context)),
+                    TheaterService.BindService(new TheaterServiceImpl(context)),
+                    ShowService.BindService(new ShowServiceImpl(context)),
+                    SessionService.BindService(new SessionServiceImpl(context)),
+                },
                 Ports = { new ServerPort("10.144.10.2", Port, ServerCredentials.Insecure) }
             };
             server.Start();

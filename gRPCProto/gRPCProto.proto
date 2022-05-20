@@ -36,6 +36,38 @@ service UserService {
 	rpc GetUser(UserConnected) returns (UserInfo) {}
 }
 
+service LocalizationService {
+
+	/*
+	Returns all localizations
+	*/
+	rpc GetLocalizations(UserConnected) returns (stream LocalizationInfo) {}
+}
+
+service TheaterService {
+
+	/*
+	Returns all theaters
+	*/
+	rpc GetTheaters(UserConnected) returns (stream TheaterInfo) {}
+}
+
+service ShowService {
+
+	/*
+	Returns all shows
+	*/
+	rpc GetShows(UserConnected) returns (stream ShowInfo) {}
+}
+
+service SessionService {
+
+	/*
+	Returns all sessions
+	*/
+	rpc GetSessions(ShowInfo) returns (stream SessionInfo) {}
+}
+
 message UserLogin {
 	string email = 1;
 	string password = 2;
@@ -47,27 +79,24 @@ message UserConnected {
 }
 
 message UserRegister {
-	int32 id = 1;
-	string name = 2;
-	string email = 3;
-	string password = 4;
-	int32 idLocalization = 5;
+	string name = 1;
+	string email = 2;
+	string password = 3;
+	int32 idLocalization = 4;
 }
 
 message ManagerRegister {
-	int32 id = 1;
-	string name = 2;
-	string email = 3;
-	string password = 4;
-	int32 idLocalization = 5;
+	string name = 1;
+	string email = 2;
+	string password = 3;
+	int32 idLocalization = 4;
 }
 
 message AdminRegister {
-	int32 id = 1;
-	string name = 2;
-	string email = 3;
-	string password = 4;
-	int32 idLocalization = 5;
+	string name = 1;
+	string email = 2;
+	string password = 3;
+	int32 idLocalization = 4;
 }
 
 message UserInfo {

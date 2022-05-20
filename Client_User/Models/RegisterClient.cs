@@ -8,21 +8,21 @@ using System.Threading.Tasks;
 
 namespace Client_User.Models
 {
-    public class UserServiceClient
+    public class RegisterClient
     {
-        readonly UserService.UserServiceClient _client;
+        readonly gRPCProto.Register.RegisterClient _client;
 
-        public UserServiceClient(UserService.UserServiceClient client)
+        public RegisterClient(gRPCProto.Register.RegisterClient client)
         {
             _client = client;
         }
 
-        public async Task<UserInfo> GetUser(UserConnected userConnected)
+        public async Task<UserConnected> RegisterUser(UserRegister userRegister)
         {
             try
             {
                 //log inicio funcao 
-                UserInfo user = _client.GetUser(userConnected);
+                UserConnected user = _client.RegisterUser(userRegister);
                 if (user.Exists())
                 {
                     //log a dizer que funcionou
@@ -37,8 +37,8 @@ namespace Client_User.Models
             catch (RpcException e)
             {
                 //logs error
-                Console.Error.WriteLine(e);
-                return await Task.FromResult(new UserInfo() { Id = -1 });
+                Console.Error.WriteLine(e.Message);
+                return await Task.FromResult(new UserConnected() { Id = -1 });
             }
         }
     }

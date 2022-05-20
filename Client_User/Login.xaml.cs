@@ -52,14 +52,16 @@ namespace Client_User
 
                 // Send and receive some notes.
                 UserConnected userConnected = client.CheckLogin(userLogin).Result;
-                
+
+                if (userConnected.Exists())
+                {
+                    MainWindow.IPAdd = IPAddress;
+                    MainWindow mainWindow = new MainWindow(userConnected);
+                    mainWindow.Show();
+                    this.Close();
+                }
                 
                 channel.ShutdownAsync().Wait();
-                
-                MainWindow.IPAdd = IPAddress;
-                MainWindow mainWindow = new MainWindow(userConnected);
-                mainWindow.Show();
-                this.Close();
             }
             else {
                 //view para dar erro

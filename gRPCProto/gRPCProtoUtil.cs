@@ -14,6 +14,14 @@ namespace gRPCProto
         {
             return userInfo != null && (userInfo.Id != -1);
         }
+        public static bool Exists(this UserRegister userInfo)
+        {
+            return userInfo != null && (!string.IsNullOrEmpty(userInfo.Email));
+        }
+        public static bool Exists(this ShowInfo showInfo)
+        {
+            return showInfo != null && (showInfo.Id != -1);
+        }
 
     }
 }

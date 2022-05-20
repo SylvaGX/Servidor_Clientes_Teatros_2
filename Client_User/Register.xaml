@@ -3,15 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Client_User"
         mc:Ignorable="d"
-             Title="Register" Height="170" Width="500" ResizeMode="NoResize">
+             Title="Registar" Height="250" Width="500" ResizeMode="NoResize">
     <Grid>
         <Label Content="Registar" HorizontalAlignment="Center" VerticalAlignment="Top" Width="98" Height="35" FontSize="16" FontWeight="Bold" FontFamily="Arial" HorizontalContentAlignment="Center"/>
-        <TextBox HorizontalAlignment="Left" Margin="26,40,0,0" TextWrapping="Wrap" Text="Username&#xD;&#xA;" VerticalAlignment="Top" Width="435" Height="26" />
-        <TextBox HorizontalAlignment="Left" Margin="26,71,0,0" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Width="435" Height="23"/>
-        <Button Content="Register" Margin="320,99,94,10"/>
-        <Button Content="Back" Margin="393,99,21,10" Click="Button_Click"/>
+        <Label x:Name="IPAdress" HorizontalAlignment="Left" Margin="26,40,0,0" Content="IP: 10.144.10.2" VerticalAlignment="Top" Width="90" Height="23" />
+        <TextBox x:Name="Username" HorizontalAlignment="Left" Margin="26,68,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top" Width="453" Height="23" />
+        <TextBox x:Name="Email" HorizontalAlignment="Left" Margin="26,96,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="453" Height="23"/>
+        <PasswordBox x:Name="Password" HorizontalAlignment="Left" Password="Password" Margin="26,124,0,0" VerticalAlignment="Top" Width="453" Height="23"/>
+        <Label Content="Localização: " HorizontalAlignment="Left" Margin="26,150,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="idLocalization" HorizontalAlignment="Left" Margin="107,152,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Register" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="80" Height="25" Margin="0,0,94,18" Click="Register_Click"/>
+        <Button Content="Back" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="60" Height="25" Margin="0,0,21,18" Click="Sair_Click"/>
 
     </Grid>
 </Window>

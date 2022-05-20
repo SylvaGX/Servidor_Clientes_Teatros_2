@@ -12,9 +12,9 @@ namespace Client_User.Models
     {
         readonly gRPCProto.Login.LoginClient _client;
 
-        public LoginClient(gRPCProto.Login.LoginClient login)
+        public LoginClient(gRPCProto.Login.LoginClient client)
         {
-            _client = login;
+            _client = client;
         }
 
         public async Task<UserConnected> CheckLogin(UserLogin userLogin)

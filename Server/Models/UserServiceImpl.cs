@@ -16,7 +16,6 @@ namespace Server.Models
             this.DBcontext = context;
         }
 
-
         public override Task<UserInfo> GetUser(UserConnected request, ServerCallContext context)
         {
             var user = DBcontext.Users.Include(user => user.IdLocalizationNavigation).FirstOrDefault(user => user.Id.Equals(request.Id));
@@ -38,6 +37,8 @@ namespace Server.Models
                     },
                 };
 
+                userInfo.Purchases.Clear();
+                
                 return Task.FromResult(userInfo);
             }
 

@@ -23,7 +23,8 @@ namespace Client_User
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static string IPAdd { get; set; }
+        public static string IPAdd { get; set; } = "";
+        public static List<SessionInfo> carrinho { get; set; } = new List<SessionInfo>();
         public UserConnected userConnected { get; }
     
         public MainWindow(UserConnected userConnected)
@@ -33,8 +34,8 @@ namespace Client_User
 
             if(IPAdd != null) { 
                 var channel = new Channel(IPAdd + ":45300", ChannelCredentials.Insecure);
-                
                 var client = new UserServiceClient(new UserService.UserServiceClient(channel));
+
                 UserInfo userInfo = client.GetUser(userConnected).Result;
                 Email.Text = userInfo.Email.ToString();
                 Fundos.Text = userInfo.Fundos.ToString();
@@ -43,16 +44,23 @@ namespace Client_User
             }
             else
             {
-                Login login = new Login();
+                Login login = new();
                 login.Show();
-                this.Close();
+                Close();
             }
 
         }
 
         private void Sair_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Application.Current.Shutdown();
+        }
+
+        private void ListTeatros_Click(object sender, RoutedEventArgs e)
+        {
+            TeatrosLista teatrosLista = new(userConnected);
+            teatrosLista.Show();
+            Close();
         }
     }
 }
