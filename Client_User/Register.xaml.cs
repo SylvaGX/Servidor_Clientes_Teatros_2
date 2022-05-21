@@ -94,5 +94,28 @@ namespace Client_User
                 channel.ShutdownAsync().Wait();
             }
         }
+        bool hasBeenClicked = false;
+        bool hasBeenClicked1 = false;
+
+
+        private void TextBox_Focus(object sender, RoutedEventArgs e)
+        {
+            if (!hasBeenClicked)
+            {
+                TextBox box = sender as TextBox;
+                box.Text = String.Empty;
+                hasBeenClicked = true;
+            }
+        }
+
+        private void TextBox_Focus1(object sender, RoutedEventArgs e)
+        {
+            if (!hasBeenClicked1)
+            {
+                TextBox box = sender as TextBox;
+                box.Text = String.Empty;
+                hasBeenClicked1 = true;
+            }
+        }
     }
 }

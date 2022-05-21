@@ -69,14 +69,34 @@ namespace Client_User
         }
 
         bool hasBeenClicked = false;
+        bool hasBeenClicked1 = false;
+        bool hasBeenClicked2 = false;
 
         private void TextBox_Focus(object sender, RoutedEventArgs e)
         {
             if (!hasBeenClicked)
+            { 
+                TextBox box = sender as TextBox;
+                box.Text = String.Empty;
+                hasBeenClicked = true;        
+            }
+        }
+        private void TextBox_Focus1(object sender, RoutedEventArgs e)
+        {
+            if (!hasBeenClicked1)
             {
                 TextBox box = sender as TextBox;
                 box.Text = String.Empty;
-                hasBeenClicked = true;
+                hasBeenClicked1 = true;
+            }
+        }
+        private void TextBox_Focus2(object sender, RoutedEventArgs e)
+        {
+            if (!hasBeenClicked2)
+            {
+                TextBox box = sender as TextBox;
+                box.Text = String.Empty;
+                hasBeenClicked2 = true;
             }
         }
     }
