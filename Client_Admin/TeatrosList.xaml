@@ -1,0 +1,23 @@
+﻿<Window x:Class="Client_Admin.TeatrosList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client_Admin"
+        mc:Ignorable="d"
+        Title="TeatrosList" MinHeight="500" MinWidth="600"  WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"   Background="Transparent">
+    <Grid>
+        <Border Grid.RowSpan="5" Grid.ColumnSpan="3" >
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#1F1E1C" Offset="0.8"/>
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+        <Label Content="Lista de Teatros" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" FontFamily="Arial" Foreground="White"/>
+        <Button Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Voltar" HorizontalAlignment="Center" Height="25" Width="150" Margin="0,46,0,0" VerticalAlignment="Top" />
+        <ItemsControl  BorderThickness="0,1,0,0" Foreground="White" BorderBrush="#99FFFFFF" Background="{x:Null}" Margin="0,84,0,0">
+        </ItemsControl>
+
+    </Grid>
+</Window>

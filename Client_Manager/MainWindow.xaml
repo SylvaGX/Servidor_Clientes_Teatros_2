@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_Manager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="553" Width="1051"  ResizeMode="NoResize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"   Background="Transparent">
+        Title="MainWindow" Height="553" Width="1034" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"   Background="Transparent">
     <Grid>
         <Border Grid.RowSpan="5" Grid.ColumnSpan="3" CornerRadius="15">
             <Border.Background>
@@ -17,32 +17,18 @@
             <Button Content="Adicionar Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="121" Margin="671,57,0,0"/>
         </Border>
         <Label Content="Menu Manager" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Margin="0,10,0,0" Foreground="#FFFDFAFA"/>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="23,90,723,32" Background="{x:Null}" Foreground="White" BorderBrush="White">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="333,90,390,32" BorderBrush="White" Foreground="White" SelectionChanged="ListView_SelectionChanged" Background="{x:Null}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-         <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="666,90,24,32" BorderBrush="White" Foreground="White" SelectionChanged="ListView_SelectionChanged" Background="{x:Null}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Button Content="Adicionar Teatros"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="23,57,0,0" VerticalAlignment="Top" Height="28" Width="106"/>
+        <ItemsControl  BorderThickness="1,1,1,1" Foreground="White" BorderBrush="#99FFFFFF" Background="{x:Null}" Margin="333,90,377,10">
+        </ItemsControl>
+        <ItemsControl  BorderThickness="1,1,1,1" Foreground="White" BorderBrush="#99FFFFFF" Background="{x:Null}" Margin="10,90,715,10">
+        </ItemsControl>
+        <ItemsControl  BorderThickness="1,1,1,1" Foreground="White" BorderBrush="#99FFFFFF" Background="{x:Null}" Margin="672,90,28,10">
+        </ItemsControl>
+
+        <Button Content="Adicionar Teatros"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" Height="28" Width="106"/>
         <Button Content="Adicionar Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="333,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
-        <Button Content="Remover Teatros"   Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="134,57,0,0" VerticalAlignment="Top" Height="28" Width="106"/>
+        <Button Content="Remover Teatros"   Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="121,57,0,0" VerticalAlignment="Top" Height="28" Width="106"/>
         <Button Content="Remover Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="465,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
-       
+
         <Button Content="Remover Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="801,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
 
     </Grid>
