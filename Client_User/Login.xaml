@@ -19,7 +19,7 @@
             <ColumnDefinition Width="6*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <Border Grid.RowSpan="5" Grid.ColumnSpan="3" CornerRadius="15">
+        <Border Grid.RowSpan="5" Grid.ColumnSpan="3" >
             <Border.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#ff8080" Offset="0.0"/>

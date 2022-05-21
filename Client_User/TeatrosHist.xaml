@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_User"
         mc:Ignorable="d"
-        Title="TeatrosHist" Height="443" Width="500" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"   Background="Transparent">
+        Title="TeatrosHist" MinHeight="500" MinWidth="600"  WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"   Background="Transparent">
     <Grid>
-        <Border Grid.RowSpan="5" Grid.ColumnSpan="3" CornerRadius="15">
+        <Border Grid.RowSpan="5" Grid.ColumnSpan="3" >
             <Border.Background>
                 <LinearGradientBrush>
                     <GradientStop Color="#ff8080" Offset="0.0"/>
@@ -15,11 +15,10 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Label Content="Histórico" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" FontFamily="Arial" Foreground="#FFF3E5E5"/>
-        <Button Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Cancelar" HorizontalAlignment="Right" Height="25" Width="150" Margin="0,53,95,0" VerticalAlignment="Top" />
-        <Button Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Adicionar" HorizontalAlignment="Left" Height="25" Width="150" Margin="100,53,0,0" VerticalAlignment="Top"/>
-        <ListBox x:Name="ListaSessoes" SelectionMode="Multiple" Foreground="#4D4D4D" BorderBrush="White" Margin="10,83,10,10" Background="{x:Null}">
-            
+        <Label Content="Histórico Compras" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" FontFamily="Arial" Foreground="#FFF3E5E5"/>
+        <Button Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Cancelar" HorizontalAlignment="Right" Height="25" Width="150" Margin="0,53,137,0" VerticalAlignment="Top" />
+        <Button Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Adicionar" HorizontalAlignment="Left" Height="25" Width="150" Margin="142,53,0,0" VerticalAlignment="Top"/>
+        <ListBox x:Name="ListaSessoes" SelectionMode="Multiple" Foreground="White" BorderBrush="White" Margin="10,83,10,10" Background="{x:Null}" SelectionChanged="ListaSessoes_SelectionChanged">
         </ListBox>
 
     </Grid>

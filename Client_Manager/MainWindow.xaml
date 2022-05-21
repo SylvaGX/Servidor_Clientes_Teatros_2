@@ -5,28 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_Manager"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="553" Width="1051"  ResizeMode="NoResize" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"   Background="Transparent">
     <Grid>
-        <Label Content="Menu Principal" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Margin="0,10,0,0"/>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="23,90,405,32">
+        <Border Grid.RowSpan="5" Grid.ColumnSpan="3" CornerRadius="15">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#333333" Offset="0.0"/>
+
+                </LinearGradientBrush>
+            </Border.Background>
+            <Button Content="Adicionar Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="121" Margin="671,57,0,0"/>
+        </Border>
+        <Label Content="Menu Manager" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Margin="0,10,0,0" Foreground="#FFFDFAFA"/>
+        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="23,90,723,32" Background="{x:Null}" Foreground="White" BorderBrush="White">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="400,90,31,32">
+        <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="333,90,390,32" BorderBrush="White" Foreground="White" SelectionChanged="ListView_SelectionChanged" Background="{x:Null}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Adicionar Teatros" HorizontalAlignment="Left" Margin="23,57,0,0" VerticalAlignment="Top" Height="28" Width="106"/>
-        <Button Content="Adicionar Espetaculo" HorizontalAlignment="Left" Margin="522,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
-        <Button Content="Remover Teatros" HorizontalAlignment="Left" Margin="134,57,0,0" VerticalAlignment="Top" Height="28" Width="106"/>
-        <Button Content="Remover Espetaculo" HorizontalAlignment="Left" Margin="648,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
-        <Label Content="Connected:" HorizontalAlignment="Left" Margin="253,57,0,0" VerticalAlignment="Top" FontSize="14"/>
+         <ListView d:ItemsSource="{d:SampleData ItemCount=5}" Margin="666,90,24,32" BorderBrush="White" Foreground="White" SelectionChanged="ListView_SelectionChanged" Background="{x:Null}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Adicionar Teatros"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="23,57,0,0" VerticalAlignment="Top" Height="28" Width="106"/>
+        <Button Content="Adicionar Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="333,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
+        <Button Content="Remover Teatros"   Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="134,57,0,0" VerticalAlignment="Top" Height="28" Width="106"/>
+        <Button Content="Remover Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="465,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
+       
+        <Button Content="Remover Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="801,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
 
     </Grid>
 </Window>
