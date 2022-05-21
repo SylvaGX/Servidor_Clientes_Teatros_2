@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="img\shopping_cart.png" />
+    <None Remove="img\teatro.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Grpc" Version="2.46.1" />
     <PackageReference Include="Grpc.Tools" Version="2.46.1">
       <PrivateAssets>all</PrivateAssets>
@@ -17,6 +22,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\gRPCProto\gRPCProto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\shopping_cart.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\teatro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

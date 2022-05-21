@@ -38,7 +38,7 @@ namespace Client_User
 
                 UserInfo userInfo = client.GetUser(userConnected).Result;
                 Email.Text = userInfo.Email.ToString();
-                Fundos.Text = userInfo.Fundos.ToString();
+                Fundos.Text = Convert.ToDecimal(userInfo.Fundos).ToString("0.00") + " €";
 
                 channel.ShutdownAsync().Wait();
             }
@@ -61,6 +61,11 @@ namespace Client_User
             TeatrosLista teatrosLista = new(userConnected);
             teatrosLista.Show();
             Close();
+        }
+
+        private void Carrinho_Click(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

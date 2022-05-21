@@ -46,7 +46,8 @@ namespace Client_User
                         AvaiablePlaces = session.AvaiablePlaces,
                         TotalPlaces = session.TotalPlaces,
                         PercentagePlaces = decimal.Divide(session.AvaiablePlaces, session.TotalPlaces) * 100,
-                        color_ULOffset = 2 - decimal.Divide(session.AvaiablePlaces, session.TotalPlaces) / 100,
+                        OffsetRed = Math.Max(2 - decimal.Divide(session.AvaiablePlaces, session.TotalPlaces), 1),
+                        OffsetOrange = Math.Max(1.5m - decimal.Divide(session.AvaiablePlaces, session.TotalPlaces), 0.5m),
                     });
                 }
                 ListaSessoes.ItemsSource = sessionsForms;
@@ -59,6 +60,28 @@ namespace Client_User
         {
             Close();
         }
+
+        private void Submeter_Click(object sender, RoutedEventArgs e)
+        {
+            if(ListaSessoes.SelectedItems.Count > 0)
+            {
+                SessionInfo? session = null;
+                foreach(SessionInfoForm sessionForm in ListaSessoes.SelectedItems)
+                {
+                    session = sessions.FirstOrDefault(s => s.Id.Equals(sessionForm.Id));
+                    if(session != null)
+                    {
+                        MainWindow.carrinho.Add(session);
+                    }
+                }
+
+                Close();
+            }
+            else
+            {
+                //Mandar um msg a dizer que nao tem nenhuma sessão selecionada
+            }
+        }
     }
     public class SessionInfoForm
     {
@@ -69,6 +92,7 @@ namespace Client_User
         public int AvaiablePlaces { get; set; }
         public int TotalPlaces { get; set; }
         public decimal PercentagePlaces { get; set; }
-        public decimal color_ULOffset { get; set; }
+        public decimal OffsetRed { get; set; } = 0.0m;
+        public decimal OffsetOrange { get; set; } = 0.0m;
     }
 }
