@@ -22,8 +22,7 @@
         <Border Grid.RowSpan="5" Grid.ColumnSpan="3">
             <Border.Background>
                 <LinearGradientBrush>
-                    <GradientStop Color="#ff8080" Offset="0.0"/>
-                    <GradientStop Color="#4d4dff" Offset="0.8"/>
+                    <GradientStop Color="#1F1E1C" Offset="0.8"/>
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
@@ -41,7 +40,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="Lista de Sessões"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="280" FontSize="18" FontWeight="Bold" Margin="0,215,0,0">
+        <Button Content="Histórico de Compras"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="280" FontSize="18" FontWeight="Bold">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="25">
@@ -49,7 +48,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="Histórico de Compras"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="280" FontSize="18" FontWeight="Bold" Margin="0,260,0,0">
+        <Button Name="Sair"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Sair" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="214" Margin="0,331,0,0" FontSize="18" FontWeight="Bold" Click="Sair_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="25">
@@ -57,7 +56,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Name="Sair"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Sair" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="214" Margin="0,350,0,0" FontSize="18" FontWeight="Bold" Click="Sair_Click">
+        <Button Content="Adicionar fundos"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="40" Width="170" Margin="162,278,0,0" FontSize="18" FontWeight="Bold">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="25">
@@ -65,15 +64,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="Adicionar fundos"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="170" Margin="0,305,110,0" FontSize="18" FontWeight="Bold">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="25">
-                    </Setter>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <TextBox Margin="175,305,0,0"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" TextWrapping="Wrap"  Height="40" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" FontSize="22">
+        <TextBox Margin="338,278,0,0"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" TextWrapping="Wrap"  Height="40" Width="105" HorizontalAlignment="Left" VerticalAlignment="Top" TextAlignment="Center" FontSize="22">
             <TextBox.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="25">
@@ -81,6 +72,6 @@
                 </Style>
             </TextBox.Resources>
         </TextBox>
-        <Label Content="€" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="305,301,0,0" FontSize="26"  FontWeight="Normal" Foreground="#FFF1E6E6" Height="44"/>
+        <Label Content="€" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="448,276,0,0" FontSize="26"  FontWeight="Normal" Foreground="#FFF1E6E6" Height="44"/>
     </Grid>
 </Window>
