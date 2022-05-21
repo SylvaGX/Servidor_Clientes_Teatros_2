@@ -51,7 +51,7 @@ create table Users(
 
 create table Purchase(
 	id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	id_show int FOREIGN KEY REFERENCES Show(id) NOT NULL,
+	id_session int FOREIGN KEY REFERENCES Session(id) NOT NULL,
 	id_users int FOREIGN KEY REFERENCES Users(id) NOT NULL,
 	reference nvarchar(20) NOT NULL,
 	date_purchase date default getdate() not null,
@@ -62,5 +62,5 @@ Select * from Teatros;
 Select * from Sessoes;
 Select * from Espetaculos;
 Select * from Users;
-Select * from Comprar;
+Select * from Purchase;
 Select * from Localization;
