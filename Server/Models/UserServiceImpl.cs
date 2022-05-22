@@ -44,5 +44,25 @@ namespace Server.Models
 
             return Task.FromResult(new UserInfo() { Id = -1 });
         }
+
+        public override async Task<Confirmation> AddMoney(UserAddMoney request, ServerCallContext context)
+        {
+
+            var user = DBcontext.Users.FirstOrDefault(u => u.Id.Equals(request.User.Id));
+
+            Confirmation confirmation = new Confirmation() { Id = 0 };
+
+            if(user != null)
+            {
+                user.Fundos += Convert.ToDecimal(request.MoneyToAdd);
+
+                DBcontext.SaveChanges();
+
+                confirmation.Id = 1;
+            }
+
+
+            return await Task.FromResult(confirmation);
+        }
     }
 }

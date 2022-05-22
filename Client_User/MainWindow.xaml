@@ -30,7 +30,7 @@
         <TextBlock x:Name="Email" Background="Transparent" Foreground="White" HorizontalAlignment="Center" Margin="0,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="32" FontSize="18" TextAlignment="Center"/>
         <TextBlock x:Name="Fundos" Background="Transparent" Foreground="White"  HorizontalAlignment="Center" Margin="0,133,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="154" Height="32" FontSize="18" TextAlignment="Center"/>
         <Button x:Name="Carrinho" Style="{StaticResource ImageButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Top" Click="Carrinho_Click" Width="35" Height="35" Margin="0,35,30,0">
-            <Image Source="/img/shopping_cart.png"/>
+            <Image Source="/img/shopping_cart2.png"/>
         </Button>
         <Button Content="Comprar Bilhetes" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Center" Margin="0,170,0,0" VerticalAlignment="Top" Height="40" Width="280" FontSize="18" FontWeight="Bold" Click="ListTeatros_Click">
             <Button.Resources>
@@ -56,7 +56,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button Content="Adicionar Fundos"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="170" Margin="0,301,110,0" FontSize="18" FontWeight="Bold">
+        <Button x:Name="AddMoney" Content="Adicionar Fundos"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Center" VerticalAlignment="Top" Height="40" Width="170" Margin="0,301,110,0" FontSize="18" FontWeight="Bold" Click="AddMoney_Click">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="25">
@@ -64,7 +64,7 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <TextBox Margin="175,301,0,0"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" TextWrapping="Wrap"  Height="40" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" FontSize="22">
+        <TextBox x:Name="AmountMoney" Margin="175,301,0,0" CaretBrush="White" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" TextWrapping="Wrap"  Height="40" Width="105" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" FontSize="22">
             <TextBox.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="25">

@@ -34,6 +34,11 @@ service UserService {
 	Return a user info
 	*/
 	rpc GetUser(UserConnected) returns (UserInfo) {}
+
+	/*
+	Add money to the account of the user
+	*/
+	rpc AddMoney(UserAddMoney) returns (Confirmation) {}
 }
 
 service LocalizationService {
@@ -204,4 +209,9 @@ message SessionInfoCompra {
     int32 NumberPlaces = 2;
 	int32 UserId = 3; 
 	double Price = 4;
+}
+
+message UserAddMoney {
+	UserConnected user = 1;
+	double moneyToAdd = 2;
 }

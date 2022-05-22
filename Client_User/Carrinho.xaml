@@ -52,7 +52,7 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="5" Text="{Binding EndHour, StringFormat={}{0:HH:mm:ss}}"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="6" Text="{Binding NumberPlaces}"/>
                         <Button x:Name="DeleteItem" Grid.Column="7" Style="{StaticResource ImageButtonStyle}" Tag="{Binding IdNumberPlaces}" Click="DeleteItem_Click" Width="25" Height="25">
-                            <Image Source="/img/bin.png"/>
+                            <Image Source="/img/bin2.png"/>
                         </Button>
                     </Grid>
                 </DataTemplate>

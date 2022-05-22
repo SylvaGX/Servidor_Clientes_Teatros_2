@@ -9,8 +9,11 @@
 
   <ItemGroup>
     <None Remove="img\bin.png" />
+    <None Remove="img\bin2.png" />
     <None Remove="img\shopping_cart.png" />
+    <None Remove="img\shopping_cart2.png" />
     <None Remove="img\teatro.png" />
+    <None Remove="img\teatro2.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,10 +35,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="img\bin2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="img\shopping_cart.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="img\shopping_cart2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="img\teatro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\teatro2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

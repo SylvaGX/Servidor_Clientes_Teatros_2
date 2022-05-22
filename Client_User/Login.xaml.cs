@@ -37,7 +37,7 @@ namespace Client_User
         private void Connect_Click(object sender, RoutedEventArgs e)
         {
             string email = Email.Text;
-            string password = Password.Text;
+            string password = Password.Password;
             string IPAddress = IP.Text;
             string IPformat = "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$";
             if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password) && !String.IsNullOrEmpty(IPAddress) && Regex.IsMatch(IPAddress, IPformat))
@@ -86,9 +86,9 @@ namespace Client_User
         {
             if (!hasBeenClicked1)
             {
-                TextBox? box = sender as TextBox;
+                PasswordBox? box = sender as PasswordBox;
                 if(box != null)
-                    box.Text = string.Empty;
+                    box.Password = string.Empty;
                 hasBeenClicked1 = true;
             }
         }

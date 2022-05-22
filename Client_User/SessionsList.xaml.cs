@@ -108,12 +108,12 @@ namespace Client_User
             Close();
         }
 
-        private static readonly Regex regex = new Regex("[^0-9]+");
+        private static readonly Regex regex = new Regex("^0$|(^[1-9][0-9]*$)");
 
         private new void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             TextBox? textBox = sender as TextBox;
-            if (!regex.IsMatch(e.Text) && textBox != null)
+            if (textBox != null && regex.IsMatch(textBox.Text + e.Text))
             {
                 SessionInfoForm? sessionInfoForm = sessionsForms.FirstOrDefault(s => s.Id.Equals(Convert.ToInt32(textBox.Tag)));
 

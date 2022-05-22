@@ -41,6 +41,40 @@ namespace Client_User.Models
                 return await Task.FromResult(new UserInfo() { Id = -1 });
             }
         }
+
+        public async Task<Confirmation> AddMoney(UserAddMoney userAddMoney)
+        {
+            try
+            {
+                //log inicio funcao 
+                Confirmation confirmation = _client.AddMoney(userAddMoney);
+
+                if (confirmation.Exists())
+                {
+                    if (confirmation.Id == 1)
+                    {
+
+                        //log a dizer que funcionou
+                    }
+                    else
+                    {
+                        // Erro ao tranferir o dinheiro
+                    }
+                }
+                else
+                {
+                    //log erro
+                }
+
+                return await Task.FromResult(confirmation);
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new Confirmation() { Id = -1 });
+            }
+        }
     }
 
 }

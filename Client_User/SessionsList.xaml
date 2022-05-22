@@ -96,7 +96,7 @@
                                 </MultiBinding>
                             </TextBlock.Text>
                         </TextBlock>
-                        <TextBox Grid.Column="5" Text="{Binding NumberPlaces, Mode=TwoWay}" Tag="{Binding Id}" Foreground="White" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" BorderBrush="#99616161" PreviewTextInput="PreviewTextInput">
+                        <TextBox Grid.Column="5" Text="{Binding NumberPlaces, Mode=TwoWay}" Tag="{Binding Id}" CaretBrush="White" Foreground="White" BorderThickness="0,0,0,1" HorizontalContentAlignment="Center" BorderBrush="#99616161" PreviewTextInput="PreviewTextInput">
                             <TextBox.Background>
                                 <SolidColorBrush Color="Transparent"/>
                             </TextBox.Background>

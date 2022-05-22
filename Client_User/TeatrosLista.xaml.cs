@@ -105,6 +105,11 @@ namespace Client_User
                 hasBeenClicked = true;
             }
         }
+
+        private void PesquisaBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // Fazer a ação de pesquisa para filtrar os dados
+        }
     }
 
     public class ShowInfoForm

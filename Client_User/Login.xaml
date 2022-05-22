@@ -34,18 +34,18 @@
                 </LinearGradientBrush>
             </Border.Background>
         </Border>
-        <Image Source="/img/teatro.png" Grid.Column="1" Margin="128,8,122,38" Grid.Row="1"/>
+        <Image Source="/img/teatro2.png" Grid.Column="1" Margin="128,8,122,38" Grid.Row="1"/>
         <Label Content="Log In Into the Portal" HorizontalAlignment="Center" VerticalAlignment="Top" Width="334" Height="68" FontSize="22" FontWeight="Bold" FontFamily="Arial" HorizontalContentAlignment="Center" Grid.Column="1" Foreground="#FFF5F7F5" Grid.Row="1" Margin="0,102,0,0" Grid.RowSpan="2"/>
         <TextBox Name="Email" Foreground="white" BorderBrush="Transparent" FontFamily="Calibri" FontSize="18" Width="300" Height="30" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" Margin="0,39,0,0" GotFocus="TextBox_Focus" Text="Email">
             <TextBox.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBox.Background>
         </TextBox>
-        <TextBox Name="Password" Text="Password" Foreground="white" BorderBrush="Transparent" FontFamily="Calibri" FontSize="18" Width="300" Height="30" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Column="1" GotFocus="TextBox_Focus1" Grid.Row="2" Margin="0,74,0,0">
-            <TextBox.Background>
+        <PasswordBox Name="Password" Foreground="white" Password="Password" BorderBrush="Transparent" FontFamily="Calibri" FontSize="18" Width="300" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="1" GotFocus="TextBox_Focus1" Grid.Row="2" Margin="0,74,0,0">
+            <PasswordBox.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
-            </TextBox.Background>
-        </TextBox>
+            </PasswordBox.Background>
+        </PasswordBox>
         <TextBox Name="IP" Text="IP Address" GotFocus="TextBox_Focus2" HorizontalAlignment="Center"  Foreground="White" BorderBrush="Transparent" FontFamily="Calibri" FontSize="18" Width="300" Height="30" TextWrapping="Wrap" VerticalAlignment="Top"  Grid.Row="2" Margin="0,109,0,0" Grid.Column="1">
             <TextBox.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>

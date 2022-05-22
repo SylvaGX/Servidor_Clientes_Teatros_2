@@ -42,7 +42,7 @@
             </ListBox.ItemTemplate>
             
         </ListBox>
-        <Button HorizontalAlignment="Right" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" VerticalAlignment="Top" Content="Pesquisar" Margin="0,54,89,0" Width="83" Height="24"></Button>
+        <Button x:Name="PesquisaBtn" HorizontalAlignment="Right" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" VerticalAlignment="Top" Content="Pesquisar" Margin="0,54,89,0" Width="83" Height="24" Click="PesquisaBtn_Click"/>
         <Button HorizontalAlignment="Right" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" VerticalAlignment="Top" Content="Voltar" Margin="0,54,10,0" Width="74" Height="24" Click="Sair_Click"/>
     </Grid>
 </Window>
