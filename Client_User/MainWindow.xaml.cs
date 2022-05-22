@@ -23,8 +23,6 @@ namespace Client_User
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static string IPAdd { get; set; } = "";
-        public static List<SessionInfo> carrinho { get; set; } = new List<SessionInfo>();
         public UserConnected userConnected { get; }
     
         public MainWindow(UserConnected userConnected)
@@ -32,8 +30,8 @@ namespace Client_User
             InitializeComponent();
             this.userConnected = userConnected;
 
-            if(IPAdd != null) { 
-                var channel = new Channel(IPAdd + ":45300", ChannelCredentials.Insecure);
+            if(App.IPAdd != null) { 
+                var channel = new Channel(App.IPAdd + ":45300", ChannelCredentials.Insecure);
                 var client = new UserServiceClient(new UserService.UserServiceClient(channel));
 
                 UserInfo userInfo = client.GetUser(userConnected).Result;
@@ -65,7 +63,20 @@ namespace Client_User
 
         private void Carrinho_Click(object sender, RoutedEventArgs e)
         {
-            
+            Carrinho car = new Carrinho(userConnected);
+
+            car.Show();
+
+            Close();
+        }
+
+        private void HistoricoCompras_Click(object sender, RoutedEventArgs e)
+        {
+            TeatrosHist teatrosHist = new TeatrosHist(userConnected);
+
+            teatrosHist.Show();
+
+            Close();
         }
     }
 }

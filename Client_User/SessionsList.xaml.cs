@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,7 +29,7 @@ namespace Client_User
         {
             InitializeComponent();
 
-            var channel = new Channel(MainWindow.IPAdd + ":45300", ChannelCredentials.Insecure);
+            var channel = new Channel(App.IPAdd + ":45300", ChannelCredentials.Insecure);
             var client = new SessionServiceClient(new SessionService.SessionServiceClient(channel));
 
             sessions = client.GetSessions(show).Result;
@@ -40,6 +41,9 @@ namespace Client_User
                     sessionsForms.Add(new SessionInfoForm()
                     {
                         Id = session.Id,
+                        NameShow = show.Name,
+                        TheaterName = show.Theater.Name,
+                        TheaterAdress = show.Theater.Address,
                         SessionDate = new DateTime(session.SessionDate),
                         StartHour = new DateTime(session.StartHour),
                         EndHour = new DateTime(session.EndHour),
@@ -48,6 +52,7 @@ namespace Client_User
                         PercentagePlaces = decimal.Divide(session.AvaiablePlaces, session.TotalPlaces) * 100,
                         OffsetRed = Math.Max(2 - decimal.Divide(session.AvaiablePlaces, session.TotalPlaces), 1),
                         OffsetOrange = Math.Max(1.5m - decimal.Divide(session.AvaiablePlaces, session.TotalPlaces), 0.5m),
+                        Price = Convert.ToDecimal(show.Price),
                     });
                 }
                 ListaSessoes.ItemsSource = sessionsForms;
@@ -63,29 +68,85 @@ namespace Client_User
 
         private void Submeter_Click(object sender, RoutedEventArgs e)
         {
-            if(ListaSessoes.SelectedItems.Count > 0)
+            var channel = new Channel(App.IPAdd + ":45300", ChannelCredentials.Insecure);
+            var client = new CarServiceClient(new CartService.CartServiceClient(channel));
+
+            Confirmation confirmation;
+
+            foreach (SessionInfoForm sessionForm in sessionsForms)
             {
-                SessionInfo? session = null;
-                foreach(SessionInfoForm sessionForm in ListaSessoes.SelectedItems)
+                if(sessionForm.NumberPlaces > 0)
                 {
-                    session = sessions.FirstOrDefault(s => s.Id.Equals(sessionForm.Id));
-                    if(session != null)
+                    confirmation = client.ReservePlaces(new SessionInfoReserve()
                     {
-                        MainWindow.carrinho.Add(session);
+                        Id = sessionForm.Id,
+                        NumberPlaces = sessionForm.NumberPlaces,
+                    }).Result;
+
+                    sessionForm.IdNumberPlaces = sessionForm.Id.ToString() + "," + sessionForm.NumberPlaces.ToString();
+
+                    if (confirmation.Exists())
+                    {
+                        if (confirmation.Id == 1)
+                        {
+                            App.carrinho.Add(sessionForm);
+                        }
+                        else
+                        {
+                            // Guardar numa var para imprimir que já nao tem espaço para os logares reservados
+                        }
+                    }
+                    else
+                    {
+                        // Erro ao encontrar a sessao na BD
                     }
                 }
+            }
 
-                Close();
+            channel.ShutdownAsync().Wait();
+
+            Close();
+        }
+
+        private static readonly Regex regex = new Regex("[^0-9]+");
+
+        private new void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextBox? textBox = sender as TextBox;
+            if (!regex.IsMatch(e.Text) && textBox != null)
+            {
+                SessionInfoForm? sessionInfoForm = sessionsForms.FirstOrDefault(s => s.Id.Equals(Convert.ToInt32(textBox.Tag)));
+
+                if (sessionInfoForm != null && !string.IsNullOrEmpty(textBox.Text + e.Text))
+                {
+                    int v = Convert.ToInt32(textBox.Text + e.Text);
+
+                    if (v <= (sessionInfoForm.TotalPlaces - sessionInfoForm.AvaiablePlaces))
+                    {
+                        e.Handled = false;
+                    }
+                    else
+                    {
+                        e.Handled= true;
+                    }
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
             else
             {
-                //Mandar um msg a dizer que nao tem nenhuma sessão selecionada
+                e.Handled = true;
             }
         }
     }
     public class SessionInfoForm
     {
         public int Id { get; set; }
+        public string NameShow { get; set; } = "";
+        public string TheaterName { get; set; } = "";
+        public string TheaterAdress { get; set; } = "";
         public DateTime SessionDate { get; set; }
         public DateTime StartHour { get; set; }
         public DateTime EndHour { get; set; }
@@ -94,5 +155,9 @@ namespace Client_User
         public decimal PercentagePlaces { get; set; }
         public decimal OffsetRed { get; set; } = 0.0m;
         public decimal OffsetOrange { get; set; } = 0.0m;
+        public decimal Price { get; set; } = 0.0m;
+        public int NumberPlaces { get; set; } = 0;
+        public string IdNumberPlaces { get; set; } = "";
+        
     }
 }

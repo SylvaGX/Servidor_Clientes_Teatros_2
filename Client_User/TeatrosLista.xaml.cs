@@ -34,7 +34,7 @@ namespace Client_User
 
             this.userConnected = userConnected;
 
-            var channel = new Channel(MainWindow.IPAdd + ":45300", ChannelCredentials.Insecure);
+            var channel = new Channel(App.IPAdd + ":45300", ChannelCredentials.Insecure);
             var client = new ShowServiceClient(new ShowService.ShowServiceClient(channel));
 
             shows = client.GetShows(userConnected).Result;
@@ -99,8 +99,9 @@ namespace Client_User
         {
             if (!hasBeenClicked)
             {
-                TextBox box = sender as TextBox;
-                box.Text = String.Empty;
+                TextBox? box = sender as TextBox;
+                if (box != null)
+                    box.Text = String.Empty;
                 hasBeenClicked = true;
             }
         }

@@ -39,11 +39,11 @@ namespace Server.Data
             {
                 entity.Property(e => e.DatePurchase).HasDefaultValueSql("(getdate())");
 
-                entity.HasOne(d => d.IdShowNavigation)
+                entity.HasOne(d => d.IdSessionNavigation)
                     .WithMany(p => p.Purchases)
-                    .HasForeignKey(d => d.IdShow)
+                    .HasForeignKey(d => d.IdSession)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Purchase__id_sho__34C8D9D1");
+                    .HasConstraintName("FK__Purchase__id_ses__34C8D9D1");
 
                 entity.HasOne(d => d.IdUsersNavigation)
                     .WithMany(p => p.Purchases)

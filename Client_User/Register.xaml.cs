@@ -84,7 +84,7 @@ namespace Client_User
 
                 if (userConnected.Exists())
                 {
-                    MainWindow.IPAdd = "10.144.10.2";
+                    App.IPAdd = "10.144.10.2";
                     MainWindow mainWindow = new MainWindow(userConnected);
                     mainWindow.Show();
                     Close();
@@ -102,8 +102,9 @@ namespace Client_User
         {
             if (!hasBeenClicked)
             {
-                TextBox box = sender as TextBox;
-                box.Text = String.Empty;
+                TextBox? box = sender as TextBox;
+                if (box != null)
+                    box.Text = string.Empty;
                 hasBeenClicked = true;
             }
         }
@@ -112,8 +113,9 @@ namespace Client_User
         {
             if (!hasBeenClicked1)
             {
-                TextBox box = sender as TextBox;
-                box.Text = String.Empty;
+                TextBox? box = sender as TextBox;
+                if(box != null)
+                    box.Text = string.Empty;
                 hasBeenClicked1 = true;
             }
         }

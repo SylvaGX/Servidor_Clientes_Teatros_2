@@ -21,7 +21,7 @@
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBox.Background>
         </TextBox>
-        <ListBox x:Name="ListTeatros" Foreground="White" BorderBrush="White" HorizontalContentAlignment="Stretch" Margin="10,83,10,10" Background="{x:Null}" >
+        <ListBox x:Name="ListTeatros" BorderThickness="0,1,0,0" Foreground="White" BorderBrush="#99616161" HorizontalContentAlignment="Stretch" Margin="0,83,0,0" Background="{x:Null}" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">

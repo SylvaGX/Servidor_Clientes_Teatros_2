@@ -12,8 +12,8 @@ namespace Server.Models
         [Key]
         [Column("id")]
         public int Id { get; set; }
-        [Column("id_show")]
-        public int IdShow { get; set; }
+        [Column("id_session")]
+        public int IdSession { get; set; }
         [Column("id_users")]
         public int IdUsers { get; set; }
         [Column("reference")]
@@ -21,10 +21,12 @@ namespace Server.Models
         public string Reference { get; set; } = null!;
         [Column("date_purchase", TypeName = "date")]
         public DateTime DatePurchase { get; set; }
+        [Column("compra_lugares")]
+        public int CompraLugares { get; set; }
 
-        [ForeignKey("IdShow")]
+        [ForeignKey("IdSession")]
         [InverseProperty("Purchases")]
-        public virtual Show IdShowNavigation { get; set; } = null!;
+        public virtual Session IdSessionNavigation { get; set; } = null!;
         [ForeignKey("IdUsers")]
         [InverseProperty("Purchases")]
         public virtual User IdUsersNavigation { get; set; } = null!;

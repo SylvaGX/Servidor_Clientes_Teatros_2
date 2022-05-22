@@ -8,8 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="img\bin.png" />
     <None Remove="img\shopping_cart.png" />
     <None Remove="img\teatro.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\bin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

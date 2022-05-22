@@ -31,7 +31,7 @@ namespace Server.Models
                     Localization = new LocalizationInfo()
                     {
                         Id = user.IdLocalizationNavigation.Id,
-                        Name = user.IdLocalizationNavigation.name,
+                        Name = user.IdLocalizationNavigation.Loc,
                         Lat = user.IdLocalizationNavigation.Lat,
                         Longi = user.IdLocalizationNavigation.Longi,
                     },

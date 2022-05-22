@@ -22,6 +22,14 @@ namespace gRPCProto
         {
             return showInfo != null && (showInfo.Id != -1);
         }
+        public static bool Exists(this Confirmation reserveConfirmation)
+        {
+            return reserveConfirmation != null && (reserveConfirmation.Id != -1);
+        }
+        public static bool Exists(this RefCompra refCompra)
+        {
+            return refCompra != null && (refCompra.Id != -1);
+        }
 
     }
 }

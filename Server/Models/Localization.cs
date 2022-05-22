@@ -18,9 +18,9 @@ namespace Server.Models
         [Key]
         [Column("id")]
         public int Id { get; set; }
-        [Column("localization")]
+        [Column("loc")]
         [StringLength(50)]
-        public string name { get; set; } = null!;
+        public string Loc { get; set; } = null!;
         [Column("lat")]
         public double Lat { get; set; }
         [Column("longi")]

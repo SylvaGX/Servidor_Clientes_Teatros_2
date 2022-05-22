@@ -25,7 +25,7 @@ namespace Server.Models
                 l = new LocalizationInfo()
                 {
                     Id = localization.Id,
-                    Name = localization.name,
+                    Name = localization.Loc,
                     Lat = localization.Lat,
                     Longi = localization.Longi,
                 };

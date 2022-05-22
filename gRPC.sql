@@ -4,7 +4,7 @@ use Servidor_Teatro
 	
 create table Localization(
 	id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
-	localization nvarchar(50) NOT NULL,
+	loc nvarchar(50) NOT NULL,
 	lat float not null,
 	longi float not null,
 );
@@ -58,6 +58,23 @@ create table Purchase(
 	compra_lugares int NOT NULL
 );
 
+insert into Localization (loc, lat, longi)
+values ('Porto', 5, 5);
+
+insert into Users (name, mail, pass, type, fundos, id_localization)
+values ('Tiago', 'ola@email.com', '1234', '1', 5, 1);
+
+insert into Theater (name, address, contact, id_localization)
+values ('Rivoli', 'Rua da Capela', '934920498', 1);
+
+insert into Show(name, sinopse, startDate, endDate, price, id_theater)
+values ('Harry Potter', 'Kali Linux', '2022-05-23', '2022-05-29', 5, 1);
+
+insert into Show(name, sinopse, startDate, endDate, price, id_theater)
+values ('Madagascar', 'OSX', '2022-06-5', '2022-06-16', 8, 1);
+
+insert into Session(sessionDate, startHour, endHour, avaiable_places, total_places, id_show)
+values ('2022-05-23', '11:00:00', '12:00:00', 30, 60, 1);
 
 Select * from Theater;
 Select * from Session;

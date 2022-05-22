@@ -25,6 +25,8 @@ namespace Server
                     TheaterService.BindService(new TheaterServiceImpl(context)),
                     ShowService.BindService(new ShowServiceImpl(context)),
                     SessionService.BindService(new SessionServiceImpl(context)),
+                    CartService.BindService(new CartServiceImpl(context)),
+                    CompraService.BindService(new CompraServiceImpl(context)),
                 },
                 Ports = { new ServerPort("10.144.10.2", Port, ServerCredentials.Insecure) }
             };

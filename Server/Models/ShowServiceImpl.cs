@@ -42,7 +42,7 @@ namespace Server.Models
                         Localization = new LocalizationInfo()
                         {
                             Id = show.IdTheaterNavigation.IdLocalizationNavigation.Id,
-                            Name = show.IdTheaterNavigation.IdLocalizationNavigation.name,
+                            Name = show.IdTheaterNavigation.IdLocalizationNavigation.Loc,
                             Lat = show.IdTheaterNavigation.IdLocalizationNavigation.Lat,
                             Longi = show.IdTheaterNavigation.IdLocalizationNavigation.Longi,
                         },

@@ -9,6 +9,11 @@ namespace Server.Models
     [Table("Session")]
     public partial class Session
     {
+        public Session()
+        {
+            Purchases = new HashSet<Purchase>();
+        }
+
         [Key]
         [Column("id")]
         public int Id { get; set; }
@@ -28,5 +33,7 @@ namespace Server.Models
         [ForeignKey("IdShow")]
         [InverseProperty("Sessions")]
         public virtual Show IdShowNavigation { get; set; } = null!;
+        [InverseProperty("IdSessionNavigation")]
+        public virtual ICollection<Purchase> Purchases { get; set; }
     }
 }

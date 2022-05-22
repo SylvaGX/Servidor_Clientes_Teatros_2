@@ -68,6 +68,30 @@ service SessionService {
 	rpc GetSessions(ShowInfo) returns (stream SessionInfo) {}
 }
 
+service CartService {
+	/*
+	Checks if a shows have space in it and if they have it reserve places of the respectively show by incresing the AvailablePlaces
+	*/
+	rpc ReservePlaces(SessionInfoReserve) returns (Confirmation) {}
+
+	/*
+	Cancel a reserve of a session
+	*/
+	rpc CancelReservationPlaces(SessionInfoReserve) returns (Confirmation) {}
+}
+
+service CompraService {
+	/*
+	Buys the sessions in the shopping cart
+	*/
+	rpc BuySessions(stream SessionInfoCompra) returns (RefCompra) {}
+
+	/*
+	Returns the history of purchases of a user 
+	*/
+	rpc HistoryUser(UserConnected) returns (stream PurchaseInfo) {}
+}
+
 message UserLogin {
 	string email = 1;
 	string password = 2;
@@ -125,8 +149,7 @@ message ShowInfo {
 	int64 endDate = 5;
 	double price = 6;
 	TheaterInfo theater = 7;
-	repeated PurchaseInfo purchases = 8;
-	repeated SessionInfo sessions = 9;
+	repeated SessionInfo sessions = 8;
 }
 
 message SessionInfo {
@@ -137,14 +160,16 @@ message SessionInfo {
 	int32 AvaiablePlaces = 5;
 	int32 TotalPlaces = 6;
 	ShowInfo show = 7;
+	repeated PurchaseInfo purchases = 8;
 }
 
 message PurchaseInfo {
 	int32 id = 1;
 	string reference = 2;
 	int64 datePurchase = 3;
-	ShowInfo show = 4;
-	UserInfo user = 5;
+	int32 CompraLugares = 4;
+	SessionInfo session = 5;
+	UserInfo user = 6;
 }
 
 message LocalizationInfo {
@@ -154,4 +179,29 @@ message LocalizationInfo {
 	double longi = 4;
 	repeated TheaterInfo theaters = 5;
 	repeated UserInfo users = 6;
+}
+
+message Confirmation {
+	// if 0 error
+	// if 1 success
+	int32 id = 1; 
+}
+
+message RefCompra {
+	// if 0 error
+	// if 1 success
+	int32 id = 1; 
+	string reference = 2; 
+}
+
+message SessionInfoReserve {
+	int32 Id = 1;
+    int32 NumberPlaces = 2;
+}
+
+message SessionInfoCompra {
+	int32 Id = 1;
+    int32 NumberPlaces = 2;
+	int32 UserId = 3; 
+	double Price = 4;
 }

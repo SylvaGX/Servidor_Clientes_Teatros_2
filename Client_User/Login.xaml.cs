@@ -55,7 +55,7 @@ namespace Client_User
 
                 if (userConnected.Exists())
                 {
-                    MainWindow.IPAdd = IPAddress;
+                    App.IPAdd = IPAddress;
                     MainWindow mainWindow = new MainWindow(userConnected);
                     mainWindow.Show();
                     this.Close();
@@ -76,17 +76,19 @@ namespace Client_User
         {
             if (!hasBeenClicked)
             { 
-                TextBox box = sender as TextBox;
-                box.Text = String.Empty;
-                hasBeenClicked = true;        
+                TextBox? box = sender as TextBox;
+                if (box != null)
+                    box.Text = string.Empty;
+                hasBeenClicked = true;
             }
         }
         private void TextBox_Focus1(object sender, RoutedEventArgs e)
         {
             if (!hasBeenClicked1)
             {
-                TextBox box = sender as TextBox;
-                box.Text = String.Empty;
+                TextBox? box = sender as TextBox;
+                if(box != null)
+                    box.Text = string.Empty;
                 hasBeenClicked1 = true;
             }
         }
@@ -94,8 +96,9 @@ namespace Client_User
         {
             if (!hasBeenClicked2)
             {
-                TextBox box = sender as TextBox;
-                box.Text = String.Empty;
+                TextBox? box = sender as TextBox;
+                if(box != null)
+                    box.Text = string.Empty;
                 hasBeenClicked2 = true;
             }
         }

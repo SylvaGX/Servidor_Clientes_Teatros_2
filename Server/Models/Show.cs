@@ -11,7 +11,6 @@ namespace Server.Models
     {
         public Show()
         {
-            Purchases = new HashSet<Purchase>();
             Sessions = new HashSet<Session>();
         }
 
@@ -36,8 +35,6 @@ namespace Server.Models
         [ForeignKey("IdTheater")]
         [InverseProperty("Shows")]
         public virtual Theater IdTheaterNavigation { get; set; } = null!;
-        [InverseProperty("IdShowNavigation")]
-        public virtual ICollection<Purchase> Purchases { get; set; }
         [InverseProperty("IdShowNavigation")]
         public virtual ICollection<Session> Sessions { get; set; }
     }
