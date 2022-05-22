@@ -54,7 +54,7 @@ create table Purchase(
 	id_session int FOREIGN KEY REFERENCES Session(id) NOT NULL,
 	id_users int FOREIGN KEY REFERENCES Users(id) NOT NULL,
 	reference nvarchar(20) NOT NULL,
-	date_purchase date default getdate() not null,
+	date_purchase datetime default getdate() not null,
 	compra_lugares int NOT NULL
 );
 
