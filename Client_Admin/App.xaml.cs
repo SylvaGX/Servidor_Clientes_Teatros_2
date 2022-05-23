@@ -13,5 +13,6 @@ namespace Client_Admin
     /// </summary>
     public partial class App : Application
     {
+        public static string IPAdd { get; set; } = "10.144.10.2:45300";
     }
 }

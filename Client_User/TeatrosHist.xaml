@@ -23,7 +23,7 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="115" />
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="100" />
@@ -32,7 +32,7 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock HorizontalAlignment="Center" Text="{Binding ShowName}" />
                         <TextBlock HorizontalAlignment="Center" Grid.Column="1" Text="{Binding TheaterName}" />
-                        <TextBlock HorizontalAlignment="Center" Grid.Column="2" Text="{Binding SessionSessionDate, StringFormat={}{0:dd/MM/yyyy}}" />
+                        <TextBlock HorizontalAlignment="Center" Grid.Column="2" Text="{Binding SessionSessionDate, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}" />
                         <TextBlock HorizontalAlignment="Center" Grid.Column="3" Text="{Binding SessionStartHour}"/>
                         <TextBlock HorizontalAlignment="Center" Grid.Column="4" Text="{Binding SessionEndHour}"/>
                         <TextBlock HorizontalAlignment="Center" Grid.Column="5" Text="{Binding NumberPlaces}" />

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -65,34 +66,48 @@ namespace Client_User
             string username = Username.Text;
             string email = Email.Text;
             string password = Password.Password;
-            int idLoc = int.Parse(((ComboBoxItem)idLocalization.SelectedItem).Uid);
-            if(!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password) && idLoc > 0)
+            string format = @"^[\w!#$%&'*+\-/=?\^_`{|}~]+(\.[\w!#$%&'*+\-/=?\^_`{|}~]+)*" + "@" + @"((([\-\w]+\.)+[a-zA-Z]{2,4})|(([0-9]{1,3}\.){3}[0-9]{1,3}))$"; ;
+            var emailValidate = Regex.IsMatch(email, format);
+            if (emailValidate)
             {
-                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                var client = new RegisterClient(new gRPCProto.Register.RegisterClient(channel));
-                
-                UserRegister userRegister = new()
+                int idLoc = int.Parse(((ComboBoxItem)idLocalization.SelectedItem).Uid);
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password) && idLoc > 0)
                 {
-                    Name = username,
-                    Email = email,
-                    Password = password,
-                    IdLocalization = idLoc,
-                };
+                    var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                    var client = new RegisterClient(new gRPCProto.Register.RegisterClient(channel));
 
-                // Send and receive some notes.
-                UserConnected userConnected = client.RegisterUser(userRegister).Result;
+                    UserRegister userRegister = new()
+                    {
+                        Name = username,
+                        Email = email,
+                        Password = password,
+                        IdLocalization = idLoc,
+                    };
 
-                if (userConnected.Exists())
-                {
-                    MainWindow mainWindow = new MainWindow(userConnected);
-                    mainWindow.Show();
-                    Close();
+                    // Send and receive some notes.
+                    UserConnected userConnected = client.RegisterUser(userRegister).Result;
+
+                    if (userConnected.Exists())
+                    {
+                        MainWindow mainWindow = new MainWindow(userConnected);
+                        mainWindow.Show();
+                        Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Registo Inválido, o email já existe", "Registo", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+
+
+                    channel.ShutdownAsync().Wait();
                 }
-
-
-                channel.ShutdownAsync().Wait();
+            }
+            else
+            {
+                    MessageBox.Show("Registo Inválido, o formato de email que inseriu é inválido.", "Registo", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+        
         bool hasBeenClicked = false;
         bool hasBeenClicked1 = false;
 
