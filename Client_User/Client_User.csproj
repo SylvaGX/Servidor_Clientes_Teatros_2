@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\gRPCProto\gRPCProto.csproj" />
+    <ProjectReference Include="..\ServicesClients\ServicesClients.csproj" />
   </ItemGroup>
 
   <ItemGroup>

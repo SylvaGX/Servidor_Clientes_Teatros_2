@@ -22,8 +22,15 @@ namespace Server.Models
 
             if (user != null)
             {
-                UserConnected userConnected = new UserConnected { Id = user.Id, Type = user.Type};
-                return Task.FromResult(userConnected);
+                if (user.Type.Equals(request.Type))
+                {
+                    UserConnected userConnected = new UserConnected { Id = user.Id, Type = user.Type };
+                    return Task.FromResult(userConnected);
+                }
+                else
+                {
+                    return Task.FromResult(new UserConnected { Id = -2, Type = "" });
+                }
             }
 
             return Task.FromResult(new UserConnected { Id = -1, Type = ""});

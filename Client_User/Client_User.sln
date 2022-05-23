@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Client_User", "Client_User.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "gRPCProto", "..\gRPCProto\gRPCProto.csproj", "{6FC78582-AE3E-4B62-8ABF-22D0D0B3F5E6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServicesClients", "..\ServicesClients\ServicesClients.csproj", "{56B765E9-D3E9-47D2-911E-A3DB2FC4B244}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6FC78582-AE3E-4B62-8ABF-22D0D0B3F5E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6FC78582-AE3E-4B62-8ABF-22D0D0B3F5E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6FC78582-AE3E-4B62-8ABF-22D0D0B3F5E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56B765E9-D3E9-47D2-911E-A3DB2FC4B244}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56B765E9-D3E9-47D2-911E-A3DB2FC4B244}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56B765E9-D3E9-47D2-911E-A3DB2FC4B244}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56B765E9-D3E9-47D2-911E-A3DB2FC4B244}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

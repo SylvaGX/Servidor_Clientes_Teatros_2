@@ -31,6 +31,8 @@ namespace Server.Models
         public DateTime EndDate { get; set; }
         [Column("price", TypeName = "money")]
         public decimal Price { get; set; }
+        [Column("estado")]
+        public int Estado { get; set; }
 
         [ForeignKey("IdTheater")]
         [InverseProperty("Shows")]

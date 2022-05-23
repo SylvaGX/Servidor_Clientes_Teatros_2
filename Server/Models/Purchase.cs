@@ -19,7 +19,7 @@ namespace Server.Models
         [Column("reference")]
         [StringLength(20)]
         public string Reference { get; set; } = null!;
-        [Column("date_purchase", TypeName = "date")]
+        [Column("date_purchase", TypeName = "datetime")]
         public DateTime DatePurchase { get; set; }
         [Column("compra_lugares")]
         public int CompraLugares { get; set; }

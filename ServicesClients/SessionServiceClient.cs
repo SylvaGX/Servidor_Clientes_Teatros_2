@@ -17,6 +17,30 @@ namespace Client_User.Models
             _client = client;
         }
 
+        public async Task<IEnumerable<SessionInfo>> GetAllSessions(UserConnected userConnected)
+        {
+            try
+            {
+                List<SessionInfo> shows = new();
+                using (var call = _client.GetAllSessions(userConnected))
+                {
+                    var responseStream = call.ResponseStream;
+                    while (responseStream.MoveNext().Result)
+                    {
+                        shows.Add(call.ResponseStream.Current);
+                    }
+                }
+
+                return await Task.FromResult(shows.AsEnumerable());
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new List<SessionInfo>().AsEnumerable());
+            }
+        }
+
         public async Task<IEnumerable<SessionInfo>> GetSessions(ShowInfo show)
         {
             try

@@ -1,15 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="img\teatro2.png" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Grpc" Version="2.46.1" />
@@ -21,13 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\gRPCProto\gRPCProto.csproj" />
-    <ProjectReference Include="..\ServicesClients\ServicesClients.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="img\teatro2.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
 
 </Project>

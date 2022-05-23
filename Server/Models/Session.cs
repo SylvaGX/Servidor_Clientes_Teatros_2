@@ -29,6 +29,8 @@ namespace Server.Models
         public int AvaiablePlaces { get; set; }
         [Column("total_places")]
         public int TotalPlaces { get; set; }
+        [Column("estado")]
+        public int Estado { get; set; }
 
         [ForeignKey("IdShow")]
         [InverseProperty("Sessions")]

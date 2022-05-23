@@ -46,6 +46,7 @@ namespace Client_User
                 {
                     Email = email,
                     Password = password,
+                    Type = "1",
                 };
 
                 // Send and receive some notes.
@@ -53,10 +54,16 @@ namespace Client_User
 
                 if (userConnected.Exists())
                 {
-                    
-                    MainWindow mainWindow = new MainWindow(userConnected);
-                    mainWindow.Show();
-                    this.Close();
+                    if(userConnected.Id == -2)
+                    {
+                        MessageBox.Show("Erro ao Iniciar sessão. Utilizador ou Password Incorretos.", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    }
+                    else
+                    {
+                        MainWindow mainWindow = new MainWindow(userConnected);
+                        mainWindow.Show();
+                        this.Close();
+                    }
                 }
                 
                 channel.ShutdownAsync().Wait();
@@ -68,7 +75,7 @@ namespace Client_User
 
         bool hasBeenClicked = false;
         bool hasBeenClicked1 = false;
-        
+
         private void TextBox_Focus(object sender, RoutedEventArgs e)
         {
             if (!hasBeenClicked)

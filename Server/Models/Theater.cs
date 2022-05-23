@@ -28,6 +28,8 @@ namespace Server.Models
         [Column("contact")]
         [StringLength(9)]
         public string Contact { get; set; } = null!;
+        [Column("estado")]
+        public int Estado { get; set; }
 
         [ForeignKey("IdLocalization")]
         [InverseProperty("Theaters")]
