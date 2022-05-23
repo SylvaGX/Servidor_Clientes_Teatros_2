@@ -28,11 +28,12 @@
 
         </Border>
         <Label x:Name="menu" Content="Menu Administrador" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="36" HorizontalContentAlignment="Center" FontWeight="Bold" FontFamily="Arial" Width="370" Foreground="#FFECE4E4" Margin="158,30,0,0"/>
-        <Button Content="Lista de Teatros" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" Margin="0,215,17,0" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Click="ListTeatros_Click"/>
-        <Button Content="Lista de Espetaculos"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,268,17,0"/>
+        <Button Content="Lista de Teatros" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" Margin="0,231,17,0" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" />
+        <Button Content="Lista de Espetaculos"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,276,17,0"/>
         <Button Content="Lista de Sessões"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,321,17,0"/>
-        <Button Content="Bilhetes Comprados"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,373,17,0"/>
-        <Button Name="Sair"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Sair" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="214" Margin="0,425,33,0" FontSize="18" FontWeight="Bold" Click="Sair_Click"/>
+        <Button Content="Bilhetes Comprados"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,366,17,0"/>
+        <Button Content="Adicionar Manager"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,411,17,0" Click="Button_Click"/>
+        <Button Name="Sair"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Sair" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="214" Margin="0,456,33,0" FontSize="18" FontWeight="Bold"/>
         <ItemsControl  BorderThickness="0,1,1,0" Foreground="White" BorderBrush="#99FFFFFF" Background="{x:Null}" Margin="0,105,287,0">
         </ItemsControl>
     </Grid>

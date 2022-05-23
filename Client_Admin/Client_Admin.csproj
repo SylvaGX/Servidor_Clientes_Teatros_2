@@ -8,7 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="img\teatro2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\gRPCProto\gRPCProto.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="img\teatro2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
