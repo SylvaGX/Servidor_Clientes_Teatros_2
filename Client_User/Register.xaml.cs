@@ -26,7 +26,7 @@ namespace Client_User
         {
             InitializeComponent();
 
-            var channel = new Channel("10.144.10.2:45300", ChannelCredentials.Insecure);
+            var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
             var client = new LocalizationServiceClient(new LocalizationService.LocalizationServiceClient(channel));
             UserConnected userConnected = new()
             {
@@ -68,7 +68,7 @@ namespace Client_User
             int idLoc = int.Parse(((ComboBoxItem)idLocalization.SelectedItem).Uid);
             if(!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(password) && idLoc > 0)
             {
-                var channel = new Channel("10.144.10.2:45300", ChannelCredentials.Insecure);
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
                 var client = new RegisterClient(new gRPCProto.Register.RegisterClient(channel));
                 
                 UserRegister userRegister = new()
@@ -84,7 +84,6 @@ namespace Client_User
 
                 if (userConnected.Exists())
                 {
-                    App.IPAdd = "10.144.10.2";
                     MainWindow mainWindow = new MainWindow(userConnected);
                     mainWindow.Show();
                     Close();

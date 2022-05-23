@@ -38,11 +38,9 @@ namespace Client_User
         {
             string email = Email.Text;
             string password = Password.Password;
-            string IPAddress = IP.Text;
-            string IPformat = "^(?:[0-9]{1,3}\\.){3}[0-9]{1,3}$";
-            if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password) && !String.IsNullOrEmpty(IPAddress) && Regex.IsMatch(IPAddress, IPformat))
+            if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password))
             {
-                var channel = new Channel(IPAddress+":45300", ChannelCredentials.Insecure);
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
                 var client = new LoginClient(new gRPCProto.Login.LoginClient(channel));
                 UserLogin userLogin = new()
                 {
@@ -55,7 +53,7 @@ namespace Client_User
 
                 if (userConnected.Exists())
                 {
-                    App.IPAdd = IPAddress;
+                    
                     MainWindow mainWindow = new MainWindow(userConnected);
                     mainWindow.Show();
                     this.Close();
@@ -70,8 +68,7 @@ namespace Client_User
 
         bool hasBeenClicked = false;
         bool hasBeenClicked1 = false;
-        bool hasBeenClicked2 = false;
-
+        
         private void TextBox_Focus(object sender, RoutedEventArgs e)
         {
             if (!hasBeenClicked)
@@ -92,15 +89,6 @@ namespace Client_User
                 hasBeenClicked1 = true;
             }
         }
-        private void TextBox_Focus2(object sender, RoutedEventArgs e)
-        {
-            if (!hasBeenClicked2)
-            {
-                TextBox? box = sender as TextBox;
-                if(box != null)
-                    box.Text = string.Empty;
-                hasBeenClicked2 = true;
-            }
-        }
+      
     }
 }

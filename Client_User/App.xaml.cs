@@ -16,13 +16,13 @@ namespace Client_User
     /// </summary>
     public partial class App : Application
     {
-        public static string IPAdd { get; set; } = "";
+        public static string IPAdd { get; set; } = "10.144.10.2:45300";
         public static List<SessionInfoForm> carrinho { get; set; } = new List<SessionInfoForm>();
         private void Application_Exit(object sender, ExitEventArgs e)
         {
             if (carrinho.Count > 0)
             {
-                var channel = new Channel(IPAdd + ":45300", ChannelCredentials.Insecure);
+                var channel = new Channel(IPAdd, ChannelCredentials.Insecure);
                 var client = new CarServiceClient(new CartService.CartServiceClient(channel));
 
                 Confirmation confirmation;

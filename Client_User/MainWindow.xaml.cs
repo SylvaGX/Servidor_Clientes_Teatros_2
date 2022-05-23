@@ -31,7 +31,7 @@ namespace Client_User
             this.userConnected = userConnected;
 
             if(App.IPAdd != null) { 
-                var channel = new Channel(App.IPAdd + ":45300", ChannelCredentials.Insecure);
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
                 var client = new UserServiceClient(new UserService.UserServiceClient(channel));
 
                 UserInfo userInfo = client.GetUser(userConnected).Result;
@@ -94,7 +94,7 @@ namespace Client_User
 
             if (r)
             {
-                var channel = new Channel(App.IPAdd + ":45300", ChannelCredentials.Insecure);
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
                 var client = new UserServiceClient(new UserService.UserServiceClient(channel));
 
                 Confirmation confirmation = client.AddMoney(new UserAddMoney()

@@ -59,7 +59,7 @@ namespace Client_User
         private void Limpar_Click(object sender, RoutedEventArgs e)
         {
 
-            var channel = new Channel(App.IPAdd + ":45300", ChannelCredentials.Insecure);
+            var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
             var client = new CarServiceClient(new CartService.CartServiceClient(channel));
 
             Confirmation confirmation;
@@ -109,7 +109,7 @@ namespace Client_User
 
                             if (sessionInfoForm != null)
                             {
-                                var channel = new Channel(App.IPAdd + ":45300", ChannelCredentials.Insecure);
+                                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
                                 var client = new CarServiceClient(new CartService.CartServiceClient(channel));
 
                                 Confirmation confirmation = client.CancelReservationPlaces(new SessionInfoReserve()
@@ -150,7 +150,7 @@ namespace Client_User
         {
             if(App.carrinho.Count > 0)
             {
-                var channel = new Channel(App.IPAdd + ":45300", ChannelCredentials.Insecure);
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
                 var client = new CompraServiceClient(new CompraService.CompraServiceClient(channel));
 
                 RefCompra refCompra;

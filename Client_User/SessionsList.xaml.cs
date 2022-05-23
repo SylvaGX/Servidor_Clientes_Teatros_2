@@ -29,7 +29,7 @@ namespace Client_User
         {
             InitializeComponent();
 
-            var channel = new Channel(App.IPAdd + ":45300", ChannelCredentials.Insecure);
+            var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
             var client = new SessionServiceClient(new SessionService.SessionServiceClient(channel));
 
             sessions = client.GetSessions(show).Result;
@@ -68,7 +68,7 @@ namespace Client_User
 
         private void Submeter_Click(object sender, RoutedEventArgs e)
         {
-            var channel = new Channel(App.IPAdd + ":45300", ChannelCredentials.Insecure);
+            var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
             var client = new CarServiceClient(new CartService.CartServiceClient(channel));
 
             Confirmation confirmation;

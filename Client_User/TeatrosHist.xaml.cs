@@ -31,7 +31,7 @@ namespace Client_User
 
             this.userConnected = userConnected;
 
-            var channel = new Channel(App.IPAdd + ":45300", ChannelCredentials.Insecure);
+            var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
             var client = new CompraServiceClient(new CompraService.CompraServiceClient(channel));
 
             purchases = client.HistoryUser(userConnected).Result;
