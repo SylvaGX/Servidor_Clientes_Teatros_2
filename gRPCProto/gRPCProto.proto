@@ -47,6 +47,9 @@ service LocalizationService {
 	Returns all localizations
 	*/
 	rpc GetLocalizations(UserConnected) returns (stream LocalizationInfo) {}
+
+	//Add new localization
+	rpc AddLocalization(LocalizationInfo) returns (Confirmation) {}
 }
 
 service TheaterService {
@@ -55,6 +58,18 @@ service TheaterService {
 	Returns all theaters
 	*/
 	rpc GetTheaters(UserConnected) returns (stream TheaterInfo) {}
+
+	// Change a state of a theter
+	rpc ChangeState(TheaterInfoState) returns (Confirmation) {}
+
+	//Returns info about the thetaer ID send
+	rpc GetTheater(TheaterInfo) returns (TheaterInfo) {}
+
+	// Update the data of a theather
+	rpc UpdateTheater(TheaterInfo) returns (Confirmation) {}
+
+	//Add new Theater
+	rpc AddTheater(TheaterInfo) returns (Confirmation) {}
 }
 
 service ShowService {
@@ -63,6 +78,19 @@ service ShowService {
 	Returns all shows
 	*/
 	rpc GetShows(UserConnected) returns (stream ShowInfo) {}
+
+	
+	// Change a state of a theter
+	rpc ChangeState(ShowInfoState) returns (Confirmation) {}
+
+	//Return info about the show ID send
+	rpc GetShow (ShowInfo) returns (ShowInfo) {}
+
+	// Update the data of a theather
+	rpc UpdateShow(ShowInfo) returns (Confirmation) {}
+	
+	//Add new Show
+	rpc AddShow(ShowInfo) returns (Confirmation) {}
 }
 
 service SessionService {
@@ -76,6 +104,12 @@ service SessionService {
 	Returns all sessions of a show
 	*/
 	rpc GetSessions(ShowInfo) returns (stream SessionInfo) {}
+
+	// Update the data of a theather
+	rpc UpdateSession(SessionInfo) returns (Confirmation) {}
+
+	//Add new Session
+	rpc AddSession(SessionInfo) returns (Confirmation) {}
 }
 
 service CartService {
@@ -223,4 +257,14 @@ message SessionInfoCompra {
 message UserAddMoney {
 	UserConnected user = 1;
 	double moneyToAdd = 2;
+}
+
+message TheaterInfoState{
+	int32 id = 1;
+	int32 estado = 2;
+}
+
+message ShowInfoState{
+	int32 id = 1;
+	int32 estado = 2;
 }

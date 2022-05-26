@@ -30,6 +30,14 @@ namespace gRPCProto
         {
             return refCompra != null && (refCompra.Id != -1);
         }
+        public static bool Exists(this TheaterInfo theaterInfo)
+        {
+            return theaterInfo != null && (theaterInfo.Id != -1);
+        }
+        public static bool Exists(this LocalizationInfo localizationInfo)
+        {
+            return localizationInfo != null && (localizationInfo.Id != -1);
+        }
 
     }
 }

@@ -17,6 +17,84 @@ namespace Client_User.Models
             _client = client;
         }
 
+        public async Task<Confirmation> AddTheater(TheaterInfo theaterInfo)
+        {
+            try
+            {
+                Confirmation confirmation = _client.AddTheater(theaterInfo);
+
+                return await Task.FromResult(confirmation);
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new Confirmation()
+                {
+                    Id = -1,
+                });
+            }
+        }
+
+        public async Task<Confirmation> UpdateTheater(TheaterInfo theaterInfo)
+        {
+            try
+            {
+                Confirmation confirmation = _client.UpdateTheater(theaterInfo);
+
+                return await Task.FromResult(confirmation);
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new Confirmation()
+                {
+                    Id = -1,
+                });
+            }
+        }
+
+        public async Task<TheaterInfo> GetTheater(TheaterInfo theaterInfo)
+        {
+            try
+            {
+                TheaterInfo theater = _client.GetTheater(theaterInfo);
+
+                return await Task.FromResult(theater);
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new TheaterInfo()
+                {
+                    Id = -1,
+                });
+            }
+
+        }
+
+        public async Task<Confirmation> ChangeState(TheaterInfoState theaterInfoState)
+        {
+            try
+            {
+                List<TheaterInfo> theaters = new();
+                Confirmation confirmation = _client.ChangeState(theaterInfoState);
+
+                return await Task.FromResult(confirmation);
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new Confirmation()
+                {
+                    Id = -1,
+                });
+            }
+        }
+
         public async Task<IEnumerable<TheaterInfo>> GetTheaters(UserConnected userConnected)
         {
             try

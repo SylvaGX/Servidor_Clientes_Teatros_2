@@ -16,29 +16,31 @@
             </Border.Background>
         </Border>
         <Label Content="Menu Manager" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="20" FontWeight="Bold" Margin="0,10,0,0" Foreground="#FFFDFAFA"/>
-        <ListBox x:Name="ListTeatro" BorderThickness="1,1,1,1" Foreground="White" BorderBrush="#99FFFFFF" Background="{x:Null}" Margin="10,90,0,10" HorizontalAlignment="Left" Width="310">
+        <ListBox x:Name="ListTeatro" BorderThickness="1,1,1,1" SelectionMode="Single" Foreground="White" BorderBrush="#99FFFFFF" Background="{x:Null}" Margin="10,90,0,10" HorizontalAlignment="Left" Width="310">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="250" />
+                            <ColumnDefinition Width="150" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Id}" />
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding Id}" />
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Text="{Binding Name}"/>
-                        <CheckBox HorizontalAlignment="Center" Grid.Column="2" IsChecked="{Binding Estado}"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="2" Text="{Binding Loc}"/>
+                        <CheckBox HorizontalAlignment="Center" Grid.Column="3" Tag="{Binding Id}" IsChecked="{Binding Estado}" Click="ChangeEstadoTeatro_Click"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox x:Name="ListEspetaculos" BorderThickness="1,1,1,1" Foreground="White" BorderBrush="#99FFFFFF" Background="{x:Null}" Margin="333,90,377,10">
+        <ListBox x:Name="ListEspetaculos" BorderThickness="1,1,1,1" SelectionMode="Single" Foreground="White" BorderBrush="#99FFFFFF" Background="{x:Null}" Margin="333,90,377,10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="250" />
                             <ColumnDefinition Width="80" />
                             <ColumnDefinition Width="80" />
                             <ColumnDefinition Width="80" />
@@ -49,18 +51,18 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="2" Text="{Binding StartDate, StringFormat={}{0:dd/MM/yyyy}}"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="3" Text="{Binding EndDate, StringFormat={}{0:dd/MM/yyyy}}"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="4" Text="{Binding Price, StringFormat={}{0:C}, ConverterCulture=pt-PT}"/>
-                        <CheckBox HorizontalAlignment="Center" Grid.Column="5" IsChecked="{Binding Estado}"/>
+                        <CheckBox HorizontalAlignment="Center" Grid.Column="5" Tag="{Binding Id}" Click="ChangeEstadoEspetaculo_Click" IsChecked="{Binding Estado}"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <ListBox x:Name="ListSessoes" BorderThickness="1,1,1,1" Foreground="White" BorderBrush="#99FFFFFF" Background="{x:Null}" Margin="672,90,28,10">
+        <ListBox x:Name="ListSessoes" BorderThickness="1,1,1,1" SelectionMode="Single" Foreground="White" BorderBrush="#99FFFFFF" Background="{x:Null}" Margin="672,90,28,10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid Margin="0,2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="250" />
                             <ColumnDefinition Width="65" />
                             <ColumnDefinition Width="55" />
                             <ColumnDefinition Width="55" />
@@ -68,7 +70,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Id}" />
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Text="{Binding IdShow}"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="1" Text="{Binding nameShow}"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="2" Text="{Binding SessionDate, StringFormat={}{0:dd/MM/yyyy}}"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="3" Text="{Binding StartHour}"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="4" Text="{Binding EndHour}"/>
@@ -79,14 +81,21 @@
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Button Content="Adicionar Teatros"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" Height="28" Width="106"/>
-        <Button Content="Alterar Teatro"   Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="121,57,0,0" VerticalAlignment="Top" Height="28" Width="106"/>
+        <Button x:Name="AddTeatros" Content="Adicionar Teatros"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="10,57,0,0" VerticalAlignment="Top" Height="28" Width="106" Click="AddTeatros_Click"/>
+        <Button x:Name="ModTeatros" Content="Alterar Teatro"   Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="121,57,0,0" VerticalAlignment="Top" Height="28" Width="106" Click="ModTeatros_Click"/>
 
-        <Button Content="Adicionar Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="333,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
-        <Button Content="Alterar Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="465,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
+        <Button x:Name="AddEspetaculos" Content="Adicionar Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="333,57,0,0" VerticalAlignment="Top" Height="28" Width="121" Click="AddEspetaculos_Click"/>
+        <Button x:Name="ModEspetaculos" Content="Alterar Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="465,57,0,0" VerticalAlignment="Top" Height="28" Width="121" Click="ModEspetaculos_Click"/>
 
-        <Button Content="Adicionar Sessões"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="121" Margin="671,57,0,0"/>
-        <Button Content="Remover Espetaculo"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="801,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
-
+        <Button x:Name="AddSessoes" Content="Adicionar Sessões"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="121" Margin="671,57,0,0" Click="AddSessoes_Click"/>
+        <Button Content="Remover Sessão"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="801,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
+        <!--PopupAnimation="Slide"-->
+        <!--AllowsTransparency="True"-->
+        <!--Placement="Center"-->
+        <Grid x:Name="PopGrid" Visibility="{Binding PopUpCompra}"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+               Width="600" Height="400">
+        </Grid>
     </Grid>
 </Window>

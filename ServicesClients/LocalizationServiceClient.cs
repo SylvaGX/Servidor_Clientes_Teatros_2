@@ -17,6 +17,25 @@ namespace Client_User.Models
             _client = client;
         }
 
+        public async Task<Confirmation> AddLocalization(LocalizationInfo localizationInfo)
+        {
+            try
+            {
+                Confirmation confirmation = _client.AddLocalization(localizationInfo);
+
+                return await Task.FromResult(confirmation);
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new Confirmation()
+                {
+                    Id = -1,
+                });
+            }
+        }
+
         public async Task<IEnumerable<LocalizationInfo>> GetLocalizations(UserConnected user)
         {
             try

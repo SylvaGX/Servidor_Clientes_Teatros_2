@@ -15,6 +15,22 @@ namespace Server.Models
             this.DBcontext = context;
         }
 
+        public override async Task<Confirmation> AddLocalization(LocalizationInfo request, ServerCallContext context)
+        {
+            Localization localization = new Localization()
+            {
+                Loc = request.Name,
+                Lat = request.Lat,
+                Longi = request.Longi,
+            };
+
+            DBcontext.Add(localization);
+
+            DBcontext.SaveChanges();
+
+            return await Task.FromResult(new Confirmation() { Id = 1 });
+        }
+
         public override async Task GetLocalizations(UserConnected request, IServerStreamWriter<LocalizationInfo> responseStream, ServerCallContext context)
         {
             var localizations = DBcontext.Localizations;

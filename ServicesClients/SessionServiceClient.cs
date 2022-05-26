@@ -17,6 +17,44 @@ namespace Client_User.Models
             _client = client;
         }
 
+        public async Task<Confirmation> AddSession(SessionInfo sessionInfo)
+        {
+            try
+            {
+                Confirmation confirmation = _client.AddSession(sessionInfo);
+
+                return await Task.FromResult(confirmation);
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new Confirmation()
+                {
+                    Id = -1,
+                });
+            }
+        }
+
+        public async Task<Confirmation> UpdateSession(SessionInfo sessionInfo)
+        {
+            try
+            {
+                Confirmation confirmation = _client.UpdateSession(sessionInfo);
+
+                return await Task.FromResult(confirmation);
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new Confirmation()
+                {
+                    Id = -1,
+                });
+            }
+        }
+
         public async Task<IEnumerable<SessionInfo>> GetAllSessions(UserConnected userConnected)
         {
             try

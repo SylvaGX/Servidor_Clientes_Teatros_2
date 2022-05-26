@@ -16,6 +16,49 @@ namespace Server.Models
             this.DBcontext = context;
         }
 
+        public override async Task<Confirmation> AddSession(SessionInfo request, ServerCallContext context)
+        {
+            Session session = new Session()
+            {
+                SessionDate = new DateTime(request.SessionDate),
+                StartHour = new TimeSpan(request.StartHour),
+                EndHour = new TimeSpan(request.EndHour),
+                AvaiablePlaces = 0,
+                TotalPlaces = request.TotalPlaces,
+                IdShow = request.Show.Id,
+                Estado = 1,
+            };
+
+            DBcontext.Add(session);
+
+            DBcontext.SaveChanges();
+
+            return await Task.FromResult(new Confirmation() { Id = 1 });
+        }
+
+        public override async Task<Confirmation> UpdateSession(SessionInfo request, ServerCallContext context)
+        {
+            var session = DBcontext.Sessions.FirstOrDefault(x => x.Id == request.Id);
+
+            if (session != null)
+            {
+                session.SessionDate = new DateTime(request.SessionDate);
+                session.StartHour = new TimeSpan(request.StartHour);
+                session.EndHour = new TimeSpan(request.EndHour);
+                session.TotalPlaces = request.TotalPlaces;
+                session.IdShow = request.Show.Id;
+                session.Estado = request.Estado;
+
+                DBcontext.Update(session);
+
+                DBcontext.SaveChanges();
+
+                return await Task.FromResult(new Confirmation() { Id = 1 });
+            }
+
+            return await Task.FromResult(new Confirmation() { Id = -1 });
+        }
+
         public override async Task GetAllSessions(UserConnected request, IServerStreamWriter<SessionInfo> responseStream, ServerCallContext context)
         {
             var sessions = DBcontext.Sessions.Include(s => s.IdShowNavigation);
@@ -31,6 +74,7 @@ namespace Server.Models
                     EndHour = session.EndHour.Ticks,
                     AvaiablePlaces = session.AvaiablePlaces,
                     TotalPlaces = session.TotalPlaces,
+                    Estado = session.Estado,
                     Show = new ShowInfo()
                     {
                         Id = session.IdShowNavigation.Id,

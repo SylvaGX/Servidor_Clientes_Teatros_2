@@ -1,0 +1,176 @@
+﻿<Page x:Class="Client_Manager.ModShowsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Client_Manager"
+      mc:Ignorable="d" 
+      d:DesignHeight="400" d:DesignWidth="600"
+      Title="ModShowsPage">
+    <Border BorderThickness="1" CornerRadius="10">
+        <Border.BorderBrush>
+            <SolidColorBrush Color="#383838" Opacity="0.9"/>
+        </Border.BorderBrush>
+        <Border.Background>
+            <SolidColorBrush Color="#404040" Opacity="0.9"/>
+        </Border.Background>
+        <Grid>
+            <TextBlock Text="ID: " Foreground="White" FontSize="16" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,30,417,0"/>
+            <TextBlock x:Name="ID" HorizontalAlignment="Center" VerticalAlignment="Top" Text="" FontSize="16">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="Transparent"/>
+                </TextBlock.Background>
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="White"/>
+                </TextBlock.Foreground>
+                <TextBlock.Margin>
+                    <Thickness Left="0" Top="30" Right="380" Bottom="0"/>
+                </TextBlock.Margin>
+            </TextBlock>
+
+            <TextBlock Text="Name: " Foreground="White" FontSize="16" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,68,443,0"/>
+            <TextBox x:Name="Nome" HorizontalAlignment="Center" VerticalAlignment="Top" Text="" Width="200" FontSize="16">
+                <TextBox.Background>
+                    <SolidColorBrush Color="Transparent"/>
+                </TextBox.Background>
+                <TextBox.CaretBrush>
+                    <SolidColorBrush Color="White"/>
+                </TextBox.CaretBrush>
+                <TextBox.BorderBrush>
+                    <SolidColorBrush Color="#F2838383"/>
+                </TextBox.BorderBrush>
+                <TextBox.Foreground>
+                    <SolidColorBrush Color="White"/>
+                </TextBox.Foreground>
+                <TextBox.Margin>
+                    <Thickness Left="0" Top="70" Right="180" Bottom="0"/>
+                </TextBox.Margin>
+                <TextBox.BorderThickness>
+                    <Thickness Left="0" Top="0" Right="0" Bottom="1"/>
+                </TextBox.BorderThickness>
+            </TextBox>
+
+            <TextBlock Text="Sinopse: " Foreground="White" FontSize="16" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,110,458,0"/>
+            <TextBox x:Name="Sinopse" HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" Text="" Width="250" Height="60" FontSize="16">
+                <TextBox.Background>
+                    <SolidColorBrush Color="Transparent"/>
+                </TextBox.Background>
+                <TextBox.CaretBrush>
+                    <SolidColorBrush Color="White"/>
+                </TextBox.CaretBrush>
+                <TextBox.BorderBrush>
+                    <SolidColorBrush Color="#F2838383"/>
+                </TextBox.BorderBrush>
+                <TextBox.Foreground>
+                    <SolidColorBrush Color="White"/>
+                </TextBox.Foreground>
+                <TextBox.Margin>
+                    <Thickness Left="0" Top="110" Right="130" Bottom="0"/>
+                </TextBox.Margin>
+                <TextBox.BorderThickness>
+                    <Thickness Left="0" Top="0" Right="0" Bottom="1"/>
+                </TextBox.BorderThickness>
+            </TextBox>
+
+            <TextBlock Text="StartDate: " Foreground="White" FontSize="16" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,190,465,0"/>
+            <DatePicker x:Name="StartDate" HorizontalAlignment="Center" VerticalAlignment="Top" Text="" Width="200" FontSize="16">
+                <DatePicker.Background>
+                    <SolidColorBrush Color="Transparent"/>
+                </DatePicker.Background>
+                <DatePicker.Foreground>
+                    <SolidColorBrush Color="Black"/>
+                </DatePicker.Foreground>
+                <DatePicker.Margin>
+                    <Thickness Left="0" Top="190" Right="180" Bottom="0"/>
+                </DatePicker.Margin>
+                <DatePicker.BorderThickness>
+                    <Thickness Left="0" Top="0" Right="0" Bottom="0"/>
+                </DatePicker.BorderThickness>
+            </DatePicker>
+
+            <TextBlock Text="EndDate: " Foreground="White" FontSize="16" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,230,460,0"/>
+            <DatePicker x:Name="EndDate" HorizontalAlignment="Center" VerticalAlignment="Top" Text="" Width="200" FontSize="16">
+                <DatePicker.Background>
+                    <SolidColorBrush Color="Transparent"/>
+                </DatePicker.Background>
+                <DatePicker.Foreground>
+                    <SolidColorBrush Color="Black"/>
+                </DatePicker.Foreground>
+                <DatePicker.Margin>
+                    <Thickness Left="0" Top="230" Right="180" Bottom="0"/>
+                </DatePicker.Margin>
+                <DatePicker.BorderThickness>
+                    <Thickness Left="0" Top="0" Right="0" Bottom="0"/>
+                </DatePicker.BorderThickness>
+            </DatePicker>
+
+            <TextBlock Text="Price: " Foreground="White" FontSize="16" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,270,435,0"/>
+            <TextBox x:Name="Price" HorizontalAlignment="Center" VerticalAlignment="Top" Text="" Width="200" FontSize="16">
+                <TextBox.Background>
+                    <SolidColorBrush Color="Transparent"/>
+                </TextBox.Background>
+                <TextBox.CaretBrush>
+                    <SolidColorBrush Color="White"/>
+                </TextBox.CaretBrush>
+                <TextBox.BorderBrush>
+                    <SolidColorBrush Color="#F2838383"/>
+                </TextBox.BorderBrush>
+                <TextBox.Foreground>
+                    <SolidColorBrush Color="White"/>
+                </TextBox.Foreground>
+                <TextBox.Margin>
+                    <Thickness Left="0" Top="270" Right="180" Bottom="0"/>
+                </TextBox.Margin>
+                <TextBox.BorderThickness>
+                    <Thickness Left="0" Top="0" Right="0" Bottom="1"/>
+                </TextBox.BorderThickness>
+            </TextBox>
+
+            <TextBlock Text="Theater: " Foreground="White" FontSize="16" HorizontalAlignment="Center"  VerticalAlignment="Top" Margin="0,310,445,0"/>
+            <TextBlock x:Name="Theater" HorizontalAlignment="Center" VerticalAlignment="Top" Text="" FontSize="16">
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="White"/>
+                </TextBlock.Foreground>
+                <TextBlock.Margin>
+                    <Thickness Left="0" Top="310" Right="380" Bottom="0"/>
+                </TextBlock.Margin>
+            </TextBlock>
+
+            <Button x:Name="Submeter" Content="Submeter" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="80" Height="25" Click="Submeter_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="Transparent"/>
+                </Button.Background>
+                <Button.Foreground>
+                    <SolidColorBrush Color="White"/>
+                </Button.Foreground>
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="White"/>
+                </Button.BorderBrush>
+                <Button.BorderThickness>
+                    <Thickness Left="2" Top="2" Right="2" Bottom="2"/>
+                </Button.BorderThickness>
+                <Button.Margin>
+                    <Thickness Left="0" Top="0" Right="150" Bottom="20"/>
+                </Button.Margin>
+            </Button>
+
+            <Button x:Name="Cancelar" Content="Cancelar" HorizontalAlignment="Center" VerticalAlignment="Bottom" IsCancel="True" Width="80" Height="25" Click="Cancelar_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="Transparent"/>
+                </Button.Background>
+                <Button.Foreground>
+                    <SolidColorBrush Color="White"/>
+                </Button.Foreground>
+                <Button.BorderBrush>
+                    <SolidColorBrush Color="White"/>
+                </Button.BorderBrush>
+                <Button.BorderThickness>
+                    <Thickness Left="2" Top="2" Right="2" Bottom="2"/>
+                </Button.BorderThickness>
+                <Button.Margin>
+                    <Thickness Left="150" Top="0" Right="0" Bottom="20"/>
+                </Button.Margin>
+            </Button>
+        </Grid>
+    </Border>
+</Page>
