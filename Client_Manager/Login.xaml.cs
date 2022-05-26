@@ -92,6 +92,7 @@ namespace Client_Manager
             else
             {
                 //view para dar erro
+                MessageBox.Show("Insira valores válidos", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }

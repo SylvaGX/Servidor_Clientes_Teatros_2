@@ -59,6 +59,22 @@ namespace Server.Models
             return await Task.FromResult(new Confirmation() { Id = -1 });
         }
 
+        public override async Task<Confirmation> ChangeState(SessionInfoState request, ServerCallContext context)
+        {
+            var session = DBcontext.Sessions.Include(t => t.IdShowNavigation).FirstOrDefault(t => t.Id.Equals(request.Id));
+
+            if (session != null)
+            {
+                session.Estado = request.Estado;
+
+                DBcontext.SaveChanges();
+
+                return await Task.FromResult(new Confirmation() { Id = 1 });
+            }
+
+            return await Task.FromResult(new Confirmation() { Id = -1 });
+        }
+
         public override async Task GetAllSessions(UserConnected request, IServerStreamWriter<SessionInfo> responseStream, ServerCallContext context)
         {
             var sessions = DBcontext.Sessions.Include(s => s.IdShowNavigation);

@@ -70,6 +70,9 @@ values ('Tiago', 'ola@email.com', '1234', '1', 5, 1);
 insert into Users (name, mail, pass, type, fundos, id_localization)
 values ('Tomas', 'ola2@email.com', '1234', '2', 0, 1);
 
+insert into Users (name, mail, pass, type, fundos, id_localization)
+values ('Pimenta', 'admin@email.com', '1234', '3', 0, 1);
+
 insert into Theater (name, address, contact, id_localization, estado)
 values ('Rivoli', 'Rua da Capela', '934920498', 1, 1);
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using gRPCProto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,44 @@ namespace Client_Admin
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        UserConnected userConnected { get; }
+        public MainWindow(UserConnected userConnected)
         {
             InitializeComponent();
+
+            this.userConnected = userConnected;
+        }
+
+        private void Sair_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void ListTheaters_Click(object sender, RoutedEventArgs e)
+        {
+            TeatrosList teatrosList = new TeatrosList(userConnected);
+
+            teatrosList.Show();
+
+            Close();
+        }
+
+        private void ListShows_Click(object sender, RoutedEventArgs e)
+        {
+            EspetaculoList espetaculoList = new EspetaculoList(userConnected);
+
+            espetaculoList.Show();
+
+            Close();
+        }
+
+        private void ListSessions_Click(object sender, RoutedEventArgs e)
+        {
+            SessoesList sessoesList = new SessoesList(userConnected);
+
+            sessoesList.Show();
+
+            Close();
         }
     }
 }

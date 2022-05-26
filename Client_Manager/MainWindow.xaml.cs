@@ -119,12 +119,12 @@ namespace Client_Manager
             tickerTheaters.Start();
 
             var tickerShows = new System.Timers.Timer();
-            tickerShows.Elapsed += new ElapsedEventHandler(TickerTheaters);
+            tickerShows.Elapsed += new ElapsedEventHandler(TickerShows);
             tickerShows.Interval = 5000; // 1000 ms is one second
             tickerShows.Start();
 
             var tickerSessions = new System.Timers.Timer();
-            tickerSessions.Elapsed += new ElapsedEventHandler(TickerTheaters);
+            tickerSessions.Elapsed += new ElapsedEventHandler(TickerSessions);
             tickerSessions.Interval = 5000; // 1000 ms is one second
             tickerSessions.Start();
         }
