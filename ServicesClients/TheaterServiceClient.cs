@@ -79,7 +79,6 @@ namespace Client_User.Models
         {
             try
             {
-                List<TheaterInfo> theaters = new();
                 Confirmation confirmation = _client.ChangeState(theaterInfoState);
 
                 return await Task.FromResult(confirmation);

@@ -393,6 +393,64 @@ namespace Client_Manager
             }
         }
 
+        private void ChangeEstadoSessao_Click(object sender, RoutedEventArgs e)
+        {
+            CheckBox? checkBox = (CheckBox)sender;
+
+            if (checkBox != null)
+            {
+                string? id = checkBox.Tag.ToString();
+                bool? val = checkBox.IsChecked;
+
+                if (id != null && val != null)
+                {
+
+                    bool r1 = int.TryParse(id, out int idInt);
+
+                    if (r1)
+                    {
+                        var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                        var client = new SessionServiceClient(new SessionService.SessionServiceClient(channel));
+
+                        Confirmation confirmation = client.ChangeState(new SessionInfoState()
+                        {
+                            Id = idInt,
+                            Estado = (val.Value) ? 1 : 0,
+                        }).Result;
+
+                        if (confirmation.Exists())
+                        {
+                            e.Handled = false;
+                            MessageBox.Show("O estado da sessao foi mudado com sucesso", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+                            e.Handled = true;
+                            MessageBox.Show("Erro ao mudar o estado da sessao", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
+
+                        channel.ShutdownAsync().Wait();
+                    }
+                    else
+                    {
+                        // Erro ao converter o id
+                        e.Handled = true;
+                        MessageBox.Show("Erro ao mudar o estado da sessao", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                }
+                else
+                {
+                    e.Handled = true;
+                    MessageBox.Show("Erro ao mudar o estado da sessao", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                e.Handled = true;
+                MessageBox.Show("Erro ao mudar o estado da sessao", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
         private void AddTeatros_Click(object sender, RoutedEventArgs e)
         {
             PopUpCompra = Visibility.Visible;

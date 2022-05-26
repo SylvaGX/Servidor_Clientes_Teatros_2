@@ -54,6 +54,24 @@ namespace Client_User.Models
                 });
             }
         }
+        public async Task<Confirmation> ChangeState(SessionInfoState sessionInfoState)
+        {
+            try
+            {
+                Confirmation confirmation = _client.ChangeState(sessionInfoState);
+
+                return await Task.FromResult(confirmation);
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new Confirmation()
+                {
+                    Id = -1,
+                });
+            }
+        }
 
         public async Task<IEnumerable<SessionInfo>> GetAllSessions(UserConnected userConnected)
         {
