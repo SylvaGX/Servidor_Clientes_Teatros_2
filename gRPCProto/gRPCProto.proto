@@ -100,6 +100,10 @@ service SessionService {
 	*/
 	rpc GetAllSessions(UserConnected) returns (stream SessionInfo) {}
 
+	
+	// Change a state of a session
+	rpc ChangeState(SessionInfoState) returns (Confirmation) {}
+
 	/*
 	Returns all sessions of a show
 	*/
@@ -265,6 +269,11 @@ message TheaterInfoState{
 }
 
 message ShowInfoState{
+	int32 id = 1;
+	int32 estado = 2;
+}
+
+message SessionInfoState{
 	int32 id = 1;
 	int32 estado = 2;
 }
