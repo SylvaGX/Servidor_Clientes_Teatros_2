@@ -29,6 +29,7 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock HorizontalAlignment="Center" Text="{Binding ShowName}" />
                         <TextBlock HorizontalAlignment="Center" Grid.Column="1" Text="{Binding TheaterName}" />
@@ -38,6 +39,7 @@
                         <TextBlock HorizontalAlignment="Center" Grid.Column="5" Text="{Binding NumberPlaces}" />
                         <TextBlock HorizontalAlignment="Center" Grid.Column="6" Text="{Binding TheaterAdress}" />
                         <TextBlock HorizontalAlignment="Center" Grid.Column="7" Text="{Binding LocalizationName}" />
+                        <TextBlock HorizontalAlignment="Center" Grid.Column="8" Foreground="{Binding EstadoColor}" Text="{Binding Estado}" />
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

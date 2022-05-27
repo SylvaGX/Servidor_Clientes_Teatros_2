@@ -65,11 +65,15 @@ namespace Client_User
                         this.Close();
                     }
                 }
+                else
+                {
+                    MessageBox.Show("Utilizador ou Password Incorretos.", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
                 
                 channel.ShutdownAsync().Wait();
             }
             else {
-                MessageBox.Show("Utilizador ou Password Incorretos.", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Insira valores válidos.", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
