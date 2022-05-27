@@ -23,6 +23,8 @@ namespace Server.Models
         public DateTime DatePurchase { get; set; }
         [Column("compra_lugares")]
         public int CompraLugares { get; set; }
+        [Column("estado")]
+        public int Estado { get; set; }
 
         [ForeignKey("IdSession")]
         [InverseProperty("Purchases")]

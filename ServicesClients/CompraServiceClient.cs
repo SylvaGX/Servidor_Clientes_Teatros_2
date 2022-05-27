@@ -52,6 +52,32 @@ namespace Client_User.Models
             }
         }
 
+        public async Task<IEnumerable<PurchaseInfo>> GetPurchases(UserConnected userConnected)
+        {
+            try
+            {
+                List<PurchaseInfo> purchases = new();
+
+                using (var call = _client.GetPurchases(userConnected))
+                {
+                    var responseStream = call.ResponseStream;
+
+                    while (responseStream.MoveNext().Result)
+                    {
+                        purchases.Add(call.ResponseStream.Current);
+                    }
+                }
+
+                return await Task.FromResult(purchases);
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new List<PurchaseInfo>().AsEnumerable());
+            }
+        }
+
         public async Task<IEnumerable<PurchaseInfo>> HistoryUser(UserConnected userConnected)
         {
             try

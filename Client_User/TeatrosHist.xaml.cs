@@ -64,6 +64,8 @@ namespace Client_User
                     LocalizationName = purchase.Session.Show.Theater.Localization.Name,
                     LocalizationLat = Convert.ToDecimal(purchase.Session.Show.Theater.Localization.Lat),
                     LocalizationLongi = Convert.ToDecimal(purchase.Session.Show.Theater.Localization.Longi),
+                    Estado = (purchase.Estado == 1) ? "Pago" : (purchase.Estado == 2) ? "A espera do pagamento" : "Cancelado",
+                    EstadoColor = (purchase.Estado == 1) ? "Green" : (purchase.Estado == 2) ? "Yellow" :"Red",
                 });
             }
 
@@ -89,6 +91,8 @@ namespace Client_User
         public string Reference { get; set; } = "";
         public DateTime DatePurchase { get; set; }
         public int NumberPlaces { get; set; } = 0;
+        public string Estado { get; set; } = "";
+        public string EstadoColor { get; set; } = "";
 
         public int IdSession { get; set; }
         public DateTime SessionSessionDate { get; set; }

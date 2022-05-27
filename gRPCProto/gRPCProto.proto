@@ -138,6 +138,11 @@ service CompraService {
 	Returns the history of purchases of a user 
 	*/
 	rpc HistoryUser(UserConnected) returns (stream PurchaseInfo) {}
+
+	/*
+	Returns all purchases
+	*/
+	rpc GetPurchases(UserConnected) returns (stream PurchaseInfo) {}
 }
 
 message UserLogin {
@@ -220,8 +225,9 @@ message PurchaseInfo {
 	string reference = 2;
 	int64 datePurchase = 3;
 	int32 CompraLugares = 4;
-	SessionInfo session = 5;
-	UserInfo user = 6;
+	int32 Estado = 5;
+	SessionInfo session = 6;
+	UserInfo user = 7;
 }
 
 message LocalizationInfo {

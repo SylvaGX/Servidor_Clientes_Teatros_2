@@ -42,6 +42,7 @@ namespace Server.Models
                             IdSession = session.Id,
                             IdUsers = session.UserId,
                             CompraLugares = session.NumberPlaces,
+                            Estado = 2,
                             Reference = "123456789",
                         };
 
@@ -68,6 +69,59 @@ namespace Server.Models
             return await Task.FromResult(refCompra);
         }
 
+        public override async Task GetPurchases(UserConnected request, IServerStreamWriter<PurchaseInfo> responseStream, ServerCallContext context)
+        {
+            var purchases = DBcontext.Purchases.Include(p => p.IdSessionNavigation).Include(p => p.IdSessionNavigation.IdShowNavigation).Include(p => p.IdSessionNavigation.IdShowNavigation.IdTheaterNavigation)
+                            .Include(p => p.IdSessionNavigation.IdShowNavigation.IdTheaterNavigation.IdLocalizationNavigation);
+            PurchaseInfo p;
+
+            foreach (var purchase in purchases)
+            {
+                p = new PurchaseInfo()
+                {
+                    Id = purchase.Id,
+                    Reference = purchase.Reference,
+                    DatePurchase = purchase.DatePurchase.Ticks,
+                    CompraLugares = purchase.CompraLugares,
+                    Estado = purchase.Estado,
+                    Session = new SessionInfo()
+                    {
+                        Id = purchase.IdSessionNavigation.Id,
+                        SessionDate = purchase.IdSessionNavigation.SessionDate.Ticks,
+                        StartHour = purchase.IdSessionNavigation.StartHour.Ticks,
+                        EndHour = purchase.IdSessionNavigation.EndHour.Ticks,
+                        AvaiablePlaces = purchase.IdSessionNavigation.AvaiablePlaces,
+                        TotalPlaces = purchase.IdSessionNavigation.TotalPlaces,
+                        Show = new ShowInfo()
+                        {
+                            Id = purchase.IdSessionNavigation.IdShowNavigation.Id,
+                            Name = purchase.IdSessionNavigation.IdShowNavigation.Name,
+                            Sinopse = purchase.IdSessionNavigation.IdShowNavigation.Sinopse,
+                            StartDate = purchase.IdSessionNavigation.IdShowNavigation.StartDate.Ticks,
+                            EndDate = purchase.IdSessionNavigation.IdShowNavigation.EndDate.Ticks,
+                            Price = decimal.ToDouble(purchase.IdSessionNavigation.IdShowNavigation.Price),
+                            Theater = new TheaterInfo()
+                            {
+                                Id = purchase.IdSessionNavigation.IdShowNavigation.IdTheaterNavigation.Id,
+                                Name = purchase.IdSessionNavigation.IdShowNavigation.IdTheaterNavigation.Name,
+                                Address = purchase.IdSessionNavigation.IdShowNavigation.IdTheaterNavigation.Address,
+                                Contact = purchase.IdSessionNavigation.IdShowNavigation.IdTheaterNavigation.Contact,
+                                Localization = new LocalizationInfo()
+                                {
+                                    Id = purchase.IdSessionNavigation.IdShowNavigation.IdTheaterNavigation.IdLocalizationNavigation.Id,
+                                    Name = purchase.IdSessionNavigation.IdShowNavigation.IdTheaterNavigation.IdLocalizationNavigation.Loc,
+                                    Lat = purchase.IdSessionNavigation.IdShowNavigation.IdTheaterNavigation.IdLocalizationNavigation.Lat,
+                                    Longi = purchase.IdSessionNavigation.IdShowNavigation.IdTheaterNavigation.IdLocalizationNavigation.Longi,
+                                },
+                            }
+                        }
+                    }
+                };
+
+                await responseStream.WriteAsync(p);
+            }
+        }
+
         public override async Task HistoryUser(UserConnected request, IServerStreamWriter<PurchaseInfo> responseStream, ServerCallContext context)
         {
 
@@ -83,6 +137,7 @@ namespace Server.Models
                     Reference = purchase.Reference,
                     DatePurchase = purchase.DatePurchase.Ticks,
                     CompraLugares = purchase.CompraLugares,
+                    Estado = purchase.Estado,
                     Session = new SessionInfo()
                     {
                         Id = purchase.IdSessionNavigation.Id,

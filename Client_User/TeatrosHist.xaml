@@ -6,6 +6,17 @@
         xmlns:local="clr-namespace:Client_User"
         mc:Ignorable="d"
         Title="TeatrosHist" MinHeight="500" MinWidth="600"  WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"   Background="Transparent">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <ContentPresenter/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Border Grid.RowSpan="5" Grid.ColumnSpan="3" >
             <Border.Background>
@@ -29,6 +40,7 @@
                             <ColumnDefinition Width="100" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="100" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <TextBlock HorizontalAlignment="Center" Text="{Binding ShowName}" />
                         <TextBlock HorizontalAlignment="Center" Grid.Column="1" Text="{Binding TheaterName}" />
@@ -38,7 +50,10 @@
                         <TextBlock HorizontalAlignment="Center" Grid.Column="5" Text="{Binding NumberPlaces}" />
                         <TextBlock HorizontalAlignment="Center" Grid.Column="6" Text="{Binding TheaterAdress}" />
                         <TextBlock HorizontalAlignment="Center" Grid.Column="7" Text="{Binding LocalizationName}" />
-                        
+                        <!-- Por o codigo abaixo em c# -->
+                        <Button x:Name="DeleteItem" Grid.Column="8" Style="{StaticResource ImageButtonStyle}" Tag="{Binding idCompra}" Click="DeleteItem_Click" Width="25" Height="25">
+                            <Image Source="/img/bin2.png"/>
+                        </Button>
                     </Grid>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

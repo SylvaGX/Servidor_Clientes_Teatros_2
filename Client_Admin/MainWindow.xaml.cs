@@ -60,5 +60,14 @@ namespace Client_Admin
 
             Close();
         }
+
+        private void ListPurchases_Click(object sender, RoutedEventArgs e)
+        {
+            ComprasList comprasList = new ComprasList(userConnected);
+
+            comprasList.Show();
+
+            Close();
+        }
     }
 }

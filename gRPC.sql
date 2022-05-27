@@ -58,7 +58,8 @@ create table Purchase(
 	id_users int FOREIGN KEY REFERENCES Users(id) NOT NULL,
 	reference nvarchar(20) NOT NULL,
 	date_purchase datetime default getdate() not null,
-	compra_lugares int NOT NULL
+	compra_lugares int NOT NULL,
+	estado int NOT NULL
 );
 
 insert into Localization (loc, lat, longi)

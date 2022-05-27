@@ -89,9 +89,7 @@
 
         <Button x:Name="AddSessoes" Content="Adicionar Sessões"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" VerticalAlignment="Top" Height="28" Width="121" Margin="671,57,0,0" Click="AddSessoes_Click"/>
         <Button Content="Remover Sessão"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Left" Margin="801,57,0,0" VerticalAlignment="Top" Height="28" Width="121"/>
-        <!--PopupAnimation="Slide"-->
-        <!--AllowsTransparency="True"-->
-        <!--Placement="Center"-->
+        <!--Popup-->
         <Grid x:Name="PopGrid" Visibility="{Binding PopUpCompra}"
               HorizontalAlignment="Center"
               VerticalAlignment="Center"
