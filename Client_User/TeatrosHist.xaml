@@ -51,7 +51,7 @@
                         <TextBlock HorizontalAlignment="Center" Grid.Column="6" Text="{Binding TheaterAdress}" />
                         <TextBlock HorizontalAlignment="Center" Grid.Column="7" Text="{Binding LocalizationName}" />
                         <!-- Por o codigo abaixo em c# -->
-                        <Button x:Name="DeleteItem" Grid.Column="8" Style="{StaticResource ImageButtonStyle}" Tag="{Binding idCompra}" Click="DeleteItem_Click" Width="25" Height="25">
+                        <Button x:Name="DeleteItem" Grid.Column="8" Style="{StaticResource ImageButtonStyle}" Tag="{Binding idCompra}" Width="25" Height="25">
                             <Image Source="/img/bin2.png"/>
                         </Button>
                     </Grid>

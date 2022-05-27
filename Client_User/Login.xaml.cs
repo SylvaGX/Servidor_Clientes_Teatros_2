@@ -69,7 +69,7 @@ namespace Client_User
                 channel.ShutdownAsync().Wait();
             }
             else {
-                //view para dar erro
+                MessageBox.Show("Utilizador ou Password Incorretos.", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 

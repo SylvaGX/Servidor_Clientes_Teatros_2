@@ -46,7 +46,7 @@
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </PasswordBox.Background>
         </PasswordBox>
-        <Button Content="Connect" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="144" Height="40" Margin="0,0,194,44" Click="Connect_Click"  Grid.Column="1" Grid.Row="3">
+        <Button Content="Connect" IsDefault="True" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" FontSize="14" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="144" Height="40" Margin="0,0,194,44" Click="Connect_Click"  Grid.Column="1" Grid.Row="3">
             <Button.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="25">
