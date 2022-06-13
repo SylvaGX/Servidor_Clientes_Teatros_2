@@ -17,6 +17,54 @@ namespace Client_User.Models
             _client = client;
         }
 
+        public async Task<IEnumerable<UserInfo>> GetUsers(UserConnected userConnected)
+        {
+            try
+            {
+                List<UserInfo> users = new();
+                using (var call = _client.GetUsers(userConnected))
+                {
+                    var responseStream = call.ResponseStream;
+                    while (responseStream.MoveNext().Result)
+                    {
+                        users.Add(call.ResponseStream.Current);
+                    }
+                }
+
+                return await Task.FromResult(users.AsEnumerable());
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new List<UserInfo>().AsEnumerable());
+            }
+        }
+
+        public async Task<IEnumerable<UserInfo>> GetManagers(UserConnected userConnected)
+        {
+            try
+            {
+                List<UserInfo> users = new();
+                using (var call = _client.GetManagers(userConnected))
+                {
+                    var responseStream = call.ResponseStream;
+                    while (responseStream.MoveNext().Result)
+                    {
+                        users.Add(call.ResponseStream.Current);
+                    }
+                }
+
+                return await Task.FromResult(users.AsEnumerable());
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e);
+                return await Task.FromResult(new List<UserInfo>().AsEnumerable());
+            }
+        }
+
         public async Task<UserInfo> GetUser(UserConnected userConnected)
         {
             try

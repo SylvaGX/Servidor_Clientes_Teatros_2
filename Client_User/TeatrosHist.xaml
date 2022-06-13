@@ -53,7 +53,7 @@
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="7" Text="{Binding LocalizationName}" />
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="8" Text="{Binding Reference}" />
                         <!-- Por o codigo abaixo em c# -->
-                        <Button x:Name="DeleteItem" Grid.Column="9" Style="{StaticResource ImageButtonStyle}" Tag="{Binding Id}" Width="25" Height="25">
+                        <Button x:Name="CancelarBilhete" Grid.Column="9" Style="{StaticResource ImageButtonStyle}" Tag="{Binding Id}" Width="25" Height="25" Click="CancelarBilhete_Click">
                             <Image Source="/img/bin2.png"/>
                         </Button>
                     </Grid>

@@ -35,6 +35,11 @@ service UserService {
 	*/
 	rpc GetUser(UserConnected) returns (UserInfo) {}
 
+	//Returns all users
+	rpc GetUsers(UserConnected) returns (stream UserInfo) {}
+
+	rpc GetManagers(UserConnected) returns (stream UserInfo) {}
+
 	/*
 	Add money to the account of the user
 	*/
@@ -138,6 +143,12 @@ service CompraService {
 	Returns the history of purchases of a user 
 	*/
 	rpc HistoryUser(UserConnected) returns (stream PurchaseInfo) {}
+
+	// Return the info of the purchase send to the function
+	rpc GetPurchase(PurchaseInfo) returns (PurchaseInfo) {}
+
+	//Cancel a purchase if possible
+	rpc CancelPurchase(PurchaseInfo) returns (Confirmation) {}
 
 	/*
 	Returns all purchases

@@ -83,6 +83,19 @@ namespace Client_User
 
             Close();
         }
+
+        private void CancelarBilhete_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender;
+            if(button != null)
+            {
+                string? id = button.Tag as string;
+                if(!string.IsNullOrEmpty(id))
+                {
+                    
+                }
+            }
+        }
     }
 
     public class PurchaseInfoForm

@@ -69,5 +69,24 @@ namespace Client_Admin
 
             Close();
         }
+
+        private void AddManager_Click(object sender, RoutedEventArgs e)
+        {
+            ManagerList managerList = new (userConnected);
+
+            managerList.Show();
+
+            Close();
+        }
+
+        private void AddUser_Click(object sender, RoutedEventArgs e)
+        {
+
+            UserList userList = new (userConnected);
+
+            userList.Show();
+
+            Close();
+        }
     }
 }

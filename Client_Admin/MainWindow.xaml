@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client_Admin"
         mc:Ignorable="d"
-        Title="MainWindow"  MinHeight="500" MinWidth="605"  WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen"   Background="Transparent" Height="658" Width="973">
+        Title="MainWindow"  MinHeight="500" MinWidth="605"  WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen" Background="Transparent" Height="658" Width="973">
     <Window.Resources>
         <Style TargetType="{x:Type Button}" x:Key="ImageButtonStyle">
             <Setter Property="Template">
@@ -29,11 +29,12 @@
         </Border>
         <Label x:Name="menu" Content="Menu Administrador" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="36" HorizontalContentAlignment="Center" FontWeight="Bold" FontFamily="Arial" Width="370" Foreground="#FFECE4E4" Margin="158,30,0,0"/>
         <Button x:Name="ListTheaters" Content="Lista de Teatros" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" Margin="0,231,17,0" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Click="ListTheaters_Click" />
-        <Button x:Name="ListShows" Content="Lista de Espetaculos"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,276,17,0" Click="ListShows_Click"/>
-        <Button x:Name="ListSessions" Content="Lista de Sessões"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,321,17,0" Click="ListSessions_Click"/>
-        <Button x:Name="ListPurchases" Content="Bilhetes Comprados"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,366,17,0" Click="ListPurchases_Click"/>
-        <Button x:Name="AddManager" Content="Adicionar Manager"  Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,411,17,0"/>
-        <Button Name="Sair" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Sair" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="214" Margin="0,456,33,0" FontSize="18" FontWeight="Bold" Click="Sair_Click"/>
+        <Button x:Name="ListShows" Content="Lista de Espetaculos" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,276,17,0" Click="ListShows_Click"/>
+        <Button x:Name="ListSessions" Content="Lista de Sessões" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,321,17,0" Click="ListSessions_Click"/>
+        <Button x:Name="ListPurchases" Content="Bilhetes Comprados" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,366,17,0" Click="ListPurchases_Click"/>
+        <Button x:Name="AddManager" Content="Adicionar Manager" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,411,17,0" Click="AddManager_Click"/>
+        <Button x:Name="AddUser" Content="Adicionar User" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,456,17,0" Click="AddUser_Click"/>
+        <Button Name="Sair" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Sair" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="214" Margin="0,501,33,0" FontSize="18" FontWeight="Bold" Click="Sair_Click"/>
         <ItemsControl  BorderThickness="0,1,1,0" Foreground="White" BorderBrush="#995E5E5E" Background="{x:Null}" Margin="0,105,287,10">
         </ItemsControl>
     </Grid>

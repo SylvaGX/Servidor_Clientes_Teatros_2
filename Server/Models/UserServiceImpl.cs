@@ -16,6 +16,55 @@ namespace Server.Models
             this.DBcontext = context;
         }
 
+        public override async Task GetUsers(UserConnected request, IServerStreamWriter<UserInfo> responseStream, ServerCallContext context)
+        {
+            var users = DBcontext.Users.Include(u => u.IdLocalizationNavigation).Where(u => u.Type.Equals("1"));
+            UserInfo u;
+
+            foreach (var user in users)
+            {
+                u = new UserInfo()
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    Email = user.Mail,
+                    Localization = new LocalizationInfo()
+                    {
+                        Id = user.IdLocalizationNavigation.Id,
+                        Name = user.IdLocalizationNavigation.Loc,
+                        Lat = user.IdLocalizationNavigation.Lat,
+                        Longi = user.IdLocalizationNavigation.Longi,
+                    },
+                };
+
+                await responseStream.WriteAsync(u);
+            }
+        }
+        public override async Task GetManagers(UserConnected request, IServerStreamWriter<UserInfo> responseStream, ServerCallContext context)
+        {
+            var users = DBcontext.Users.Include(u => u.IdLocalizationNavigation).Where(u => u.Type.Equals("2"));
+            UserInfo u;
+
+            foreach (var user in users)
+            {
+                u = new UserInfo()
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    Email = user.Mail,
+                    Localization = new LocalizationInfo()
+                    {
+                        Id = user.IdLocalizationNavigation.Id,
+                        Name = user.IdLocalizationNavigation.Loc,
+                        Lat = user.IdLocalizationNavigation.Lat,
+                        Longi = user.IdLocalizationNavigation.Longi,
+                    },
+                };
+
+                await responseStream.WriteAsync(u);
+            }
+        }
+
         public override Task<UserInfo> GetUser(UserConnected request, ServerCallContext context)
         {
             var user = DBcontext.Users.Include(user => user.IdLocalizationNavigation).FirstOrDefault(user => user.Id.Equals(request.Id));

@@ -17,6 +17,31 @@ namespace Client_User.Models
             _client = client;
         }
 
+        public async Task<UserConnected> RegisterManager(ManagerRegister userRegister)
+        {
+            try
+            {
+                //log inicio funcao 
+                UserConnected user = _client.RegisterManager(userRegister);
+                if (user.Exists())
+                {
+                    //log a dizer que funcionou
+                }
+                else
+                {
+                    //log erro
+                }
+
+                return await Task.FromResult(user);
+            }
+            catch (RpcException e)
+            {
+                //logs error
+                Console.Error.WriteLine(e.Message);
+                return await Task.FromResult(new UserConnected() { Id = -1 });
+            }
+        }
+
         public async Task<UserConnected> RegisterUser(UserRegister userRegister)
         {
             try

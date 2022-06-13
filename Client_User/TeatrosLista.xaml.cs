@@ -24,6 +24,7 @@ namespace Client_User
     {
         UserConnected userConnected { get; } = null!;
         List<ShowInfoForm> showsForms { get; } = new List<ShowInfoForm>();
+        List<ShowInfoForm> showsFormsFilter { get; } = new List<ShowInfoForm>();
         IEnumerable<ShowInfo> shows { get; set; } = null!;
 
         public TeatrosLista(UserConnected userConnected)
@@ -106,9 +107,39 @@ namespace Client_User
             }
         }
 
-        private void PesquisaBtn_Click(object sender, RoutedEventArgs e)
+        private void Pesquisa_PreviewKeyUp(object sender, KeyEventArgs e)
         {
             // Fazer a ação de pesquisa para filtrar os dados
+            TextBox? textBox = sender as TextBox;
+            if (textBox != null)
+            {   
+                if (!string.IsNullOrEmpty(textBox.Text))
+                {
+                    showsFormsFilter.Clear();
+                    ListTeatros.ItemsSource = null;
+
+                    foreach (ShowInfoForm show in showsForms)
+                    {
+                        if (show.Name.IndexOf(textBox.Text, StringComparison.OrdinalIgnoreCase) >= 0 || show.TheaterName.IndexOf(textBox.Text, StringComparison.OrdinalIgnoreCase) >= 0)
+                            showsFormsFilter.Add(show);
+                    }
+
+                    ListTeatros.ItemsSource = showsFormsFilter;
+
+                    e.Handled = false;
+                }
+                else
+                {
+                    showsFormsFilter.Clear();
+                    ListTeatros.ItemsSource = null;
+                    ListTeatros.ItemsSource = showsForms;
+                    e.Handled = false;
+                }
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 
