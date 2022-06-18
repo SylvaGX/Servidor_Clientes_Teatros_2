@@ -50,7 +50,7 @@ namespace Client_Admin
                         purchasesForm.Add(new PurchaseForm()
                         {
                             Id = purchase.Id,
-                            Reference = purchase.Reference,
+                            Reference = purchase.Reference.Ref,
                             DatePurchase = new DateTime(purchase.DatePurchase),
                             NumberPlaces = purchase.CompraLugares,
                             IdSession = purchase.Session.Id,
@@ -181,7 +181,7 @@ namespace Client_Admin
                         purchasesForm.Add(new PurchaseForm()
                         {
                             Id = purchase.Id,
-                            Reference = purchase.Reference,
+                            Reference = purchase.Reference.Ref,
                             DatePurchase = new DateTime(purchase.DatePurchase),
                             NumberPlaces = purchase.CompraLugares,
                             IdSession = purchase.Session.Id,
