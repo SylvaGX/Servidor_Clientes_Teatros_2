@@ -1,4 +1,6 @@
-﻿using gRPCProto;
+﻿using Client_User.Models;
+using Grpc.Core;
+using gRPCProto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,59 +36,148 @@ namespace Client_Admin
             Application.Current.Shutdown();
         }
 
-        private void ListTheaters_Click(object sender, RoutedEventArgs e)
+        private async void ListTheaters_Click(object sender, RoutedEventArgs e)
         {
-            TeatrosList teatrosList = new TeatrosList(userConnected);
+            try
+            {
+                TeatrosList teatrosList = new(userConnected);
 
-            teatrosList.Show();
+                teatrosList.Show();
 
-            Close();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+
+                MessageBox.Show($"Ocorreu um erro ao redirecionar para a lista de teatros.", "MainWindow", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void ListShows_Click(object sender, RoutedEventArgs e)
+        private async void ListShows_Click(object sender, RoutedEventArgs e)
         {
-            EspetaculoList espetaculoList = new EspetaculoList(userConnected);
+            try
+            {
+                EspetaculoList espetaculoList = new(userConnected);
 
-            espetaculoList.Show();
+                espetaculoList.Show();
 
-            Close();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+
+                MessageBox.Show($"Ocorreu um erro ao redirecionar para a lista de espetáculos.", "MainWindow", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void ListSessions_Click(object sender, RoutedEventArgs e)
+        private async void ListSessions_Click(object sender, RoutedEventArgs e)
         {
-            SessoesList sessoesList = new SessoesList(userConnected);
+            try
+            {
+                SessoesList sessoesList = new(userConnected);
 
-            sessoesList.Show();
+                sessoesList.Show();
 
-            Close();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+
+                MessageBox.Show($"Ocorreu um erro ao redirecionar para a lista de sessões.", "MainWindow", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void ListPurchases_Click(object sender, RoutedEventArgs e)
+        private async void ListPurchases_Click(object sender, RoutedEventArgs e)
         {
-            ComprasList comprasList = new ComprasList(userConnected);
+            try
+            {
+                ComprasList comprasList = new(userConnected);
 
-            comprasList.Show();
+                comprasList.Show();
 
-            Close();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+
+                MessageBox.Show($"Ocorreu um erro ao redirecionar para a lista de compras.", "MainWindow", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void AddManager_Click(object sender, RoutedEventArgs e)
+        private async void ListManager_Click(object sender, RoutedEventArgs e)
         {
-            ManagerList managerList = new (userConnected);
+            try
+            {
+                ManagerList managerList = new(userConnected);
 
-            managerList.Show();
+                managerList.Show();
 
-            Close();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+
+                MessageBox.Show($"Ocorreu um erro ao redirecionar para a lista de managers.", "MainWindow", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void AddUser_Click(object sender, RoutedEventArgs e)
+        private async void ListUser_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                UserList userList = new(userConnected);
 
-            UserList userList = new (userConnected);
+                userList.Show();
 
-            userList.Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
 
-            Close();
+                MessageBox.Show($"Ocorreu um erro ao redirecionar para a lista de users.", "MainWindow", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

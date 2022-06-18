@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="img\bin.png" />
     <None Remove="img\bin2.png" />
+    <None Remove="img\coin2.png" />
     <None Remove="img\shopping_cart.png" />
     <None Remove="img\shopping_cart2.png" />
     <None Remove="img\teatro.png" />
@@ -37,6 +38,9 @@
 
   <ItemGroup>
     <Resource Include="img\bin2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="img\coin2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="img\shopping_cart.png">

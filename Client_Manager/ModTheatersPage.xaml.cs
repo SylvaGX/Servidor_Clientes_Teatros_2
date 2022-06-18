@@ -35,7 +35,7 @@ namespace Client_Manager
             Close = close;
 
             var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-            var clientL = new LocalizationServiceClient(new LocalizationService.LocalizationServiceClient(channel));
+            var clientL = new LocalizationServiceClient(channel, new LocalizationService.LocalizationServiceClient(channel));
 
             IEnumerable<LocalizationInfo> localizations = clientL.GetLocalizations(userConnected).Result;
 
@@ -111,7 +111,7 @@ namespace Client_Manager
                     if (r)
                     {
                         var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                        var client = new TheaterServiceClient(new TheaterService.TheaterServiceClient(channel));
+                        var client = new TheaterServiceClient(channel, new TheaterService.TheaterServiceClient(channel));
 
                         TheaterInfo theaterInfo = new TheaterInfo()
                         {

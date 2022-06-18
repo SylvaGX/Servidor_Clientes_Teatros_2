@@ -23,7 +23,7 @@ namespace Client_User
             if (carrinho.Count > 0)
             {
                 var channel = new Channel(IPAdd, ChannelCredentials.Insecure);
-                var client = new CarServiceClient(new CartService.CartServiceClient(channel));
+                var client = new CarServiceClient(channel, new CartService.CartServiceClient(channel));
 
                 Confirmation confirmation;
 

@@ -49,9 +49,9 @@ namespace Client_Manager
             this.userConnected = userConnected;
 
             var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-            var clientTheater = new TheaterServiceClient(new TheaterService.TheaterServiceClient(channel));
-            var clientShow = new ShowServiceClient(new ShowService.ShowServiceClient(channel));
-            var clientSessions = new SessionServiceClient(new SessionService.SessionServiceClient(channel));
+            var clientTheater = new TheaterServiceClient(channel, new TheaterService.TheaterServiceClient(channel));
+            var clientShow = new ShowServiceClient(channel, new ShowService.ShowServiceClient(channel));
+            var clientSessions = new SessionServiceClient(channel, new SessionService.SessionServiceClient(channel));
 
             theaters = clientTheater.GetTheaters(userConnected).Result;
 
@@ -159,7 +159,7 @@ namespace Client_Manager
         public void UpdateTeatrosList()
         {
             var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-            var client = new TheaterServiceClient(new TheaterService.TheaterServiceClient(channel));
+            var client = new TheaterServiceClient(channel, new TheaterService.TheaterServiceClient(channel));
 
             theaters = client.GetTheaters(userConnected).Result;
 
@@ -185,7 +185,7 @@ namespace Client_Manager
         public void UpdateShowsList()
         {
             var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-            var client = new ShowServiceClient(new ShowService.ShowServiceClient(channel));
+            var client = new ShowServiceClient(channel, new ShowService.ShowServiceClient(channel));
 
             shows = client.GetShows(userConnected).Result;
 
@@ -213,7 +213,7 @@ namespace Client_Manager
         public void UpdateSessionsList()
         {
             var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-            var client = new SessionServiceClient(new SessionService.SessionServiceClient(channel));
+            var client = new SessionServiceClient(channel, new SessionService.SessionServiceClient(channel));
 
             sessions = client.GetAllSessions(userConnected).Result;
 
@@ -294,7 +294,7 @@ namespace Client_Manager
                     if (r1)
                     {
                         var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                        var client = new TheaterServiceClient(new TheaterService.TheaterServiceClient(channel));
+                        var client = new TheaterServiceClient(channel, new TheaterService.TheaterServiceClient(channel));
 
                         Confirmation confirmation = client.ChangeState(new TheaterInfoState()
                         {
@@ -352,7 +352,7 @@ namespace Client_Manager
                     if (r1)
                     {
                         var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                        var client = new ShowServiceClient(new ShowService.ShowServiceClient(channel));
+                        var client = new ShowServiceClient(channel, new ShowService.ShowServiceClient(channel));
 
                         Confirmation confirmation = client.ChangeState(new ShowInfoState()
                         {
@@ -410,7 +410,7 @@ namespace Client_Manager
                     if (r1)
                     {
                         var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                        var client = new SessionServiceClient(new SessionService.SessionServiceClient(channel));
+                        var client = new SessionServiceClient(channel, new SessionService.SessionServiceClient(channel));
 
                         Confirmation confirmation = client.ChangeState(new SessionInfoState()
                         {
@@ -475,7 +475,7 @@ namespace Client_Manager
                 {
 
                     var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                    var clientT = new TheaterServiceClient(new TheaterService.TheaterServiceClient(channel));
+                    var clientT = new TheaterServiceClient(channel, new TheaterService.TheaterServiceClient(channel));
 
                     TheaterInfo theaterInfo = clientT.GetTheater(new TheaterInfo()
                     {
@@ -531,8 +531,8 @@ namespace Client_Manager
                 {
 
                     var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                    var clientT = new ShowServiceClient(new ShowService.ShowServiceClient(channel));
-                    var clientL = new TheaterServiceClient(new TheaterService.TheaterServiceClient(channel));
+                    var clientT = new ShowServiceClient(channel, new ShowService.ShowServiceClient(channel));
+                    var clientL = new TheaterServiceClient(channel, new TheaterService.TheaterServiceClient(channel));
 
                     ShowInfo showInfo = clientT.GetShow(new ShowInfo()
                     {

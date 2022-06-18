@@ -33,7 +33,7 @@ namespace Client_Manager
             Close = close;
 
             var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-            var client = new TheaterServiceClient(new TheaterService.TheaterServiceClient(channel));
+            var client = new TheaterServiceClient(channel, new TheaterService.TheaterServiceClient(channel));
 
             IEnumerable<TheaterInfo> theaters = client.GetTheaters(userConnected).Result;
 
@@ -78,7 +78,7 @@ namespace Client_Manager
                         {
                             if (startDateParsed < endDateParsed) {
                                 var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                                var client = new ShowServiceClient(new ShowService.ShowServiceClient(channel));
+                                var client = new ShowServiceClient(channel, new ShowService.ShowServiceClient(channel));
 
                                 ShowInfo showInfo = new ShowInfo()
                                 {

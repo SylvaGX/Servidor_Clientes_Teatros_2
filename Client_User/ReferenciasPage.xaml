@@ -1,0 +1,28 @@
+﻿<Page x:Class="Client_User.ReferenciasPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Client_User"
+      mc:Ignorable="d" 
+      d:DesignHeight="200" d:DesignWidth="300"
+      Title="ReferenciasPage">
+    <Border BorderThickness="1" CornerRadius="10">
+        <Border.BorderBrush>
+            <SolidColorBrush Color="#383838" Opacity="0.9"/>
+        </Border.BorderBrush>
+        <Border.Background>
+            <SolidColorBrush Color="#404040" Opacity="0.9"/>
+        </Border.Background>
+        <Grid>
+
+            <TextBlock Text="Referência:" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0"/>
+            <TextBlock x:Name="RefText" Text="" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0"/>
+            <TextBlock Text="Preço:" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,80,0,0"/>
+            <TextBlock x:Name="TotalPreco" Text="" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,110,0,0"/>
+            <Button x:Name="Pagar" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Pagar" HorizontalAlignment="Center" Height="25" Width="80" Margin="0,0,90,15" VerticalAlignment="Bottom" Click="Pagar_Click"/>
+            <Button x:Name="OK" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Ok" HorizontalAlignment="Center" Height="25" Width="80" Margin="90,0,0,15" VerticalAlignment="Bottom" Click="OK_Click"/>
+
+        </Grid>
+    </Border>
+</Page>

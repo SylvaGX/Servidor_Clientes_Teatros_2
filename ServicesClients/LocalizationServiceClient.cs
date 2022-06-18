@@ -10,11 +10,13 @@ namespace Client_User.Models
 {
     public class LocalizationServiceClient
     {
+        readonly Channel _channel;
         readonly LocalizationService.LocalizationServiceClient _client;
 
-        public LocalizationServiceClient(LocalizationService.LocalizationServiceClient client)
+        public LocalizationServiceClient(Channel channel, LocalizationService.LocalizationServiceClient client)
         {
             _client = client;
+            _channel = channel;
         }
 
         public async Task<Confirmation> AddLocalization(LocalizationInfo localizationInfo)
@@ -52,10 +54,26 @@ namespace Client_User.Models
 
                 return await Task.FromResult(localizations.AsEnumerable());
             }
-            catch (RpcException e)
+            catch (RpcException ex)
             {
                 //logs error
-                Console.Error.WriteLine(e);
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao receber as localizações. RpcException.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new List<LocalizationInfo>().AsEnumerable());
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao receber as localizações.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
                 return await Task.FromResult(new List<LocalizationInfo>().AsEnumerable());
             }
         }

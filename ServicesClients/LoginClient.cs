@@ -10,11 +10,13 @@ namespace Client_User.Models
 {
     public class LoginClient
     {
-        readonly gRPCProto.Login.LoginClient _client;
+        readonly Channel _channel;
+        readonly Login.LoginClient _client;
 
-        public LoginClient(gRPCProto.Login.LoginClient client)
+        public LoginClient(Channel channel, Login.LoginClient client)
         {
             _client = client;
+            _channel = channel;
         }
 
         public async Task<UserConnected> CheckLogin(UserLogin userLogin)
@@ -34,10 +36,26 @@ namespace Client_User.Models
 
                 return await Task.FromResult(user);
             }
-            catch (RpcException e)
+            catch (RpcException ex)
             {
                 //logs error
-                Console.Error.WriteLine(e.Message);
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao fazer login. RpcException.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new UserConnected() { Id = -1 });
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao fazer login.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
                 return await Task.FromResult(new UserConnected() { Id = -1 });
             }
         }

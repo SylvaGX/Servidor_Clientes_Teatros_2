@@ -10,11 +10,13 @@ namespace Client_User.Models
 {
     public class SessionServiceClient
     {
+        readonly Channel _channel;
         readonly SessionService.SessionServiceClient _client;
 
-        public SessionServiceClient(SessionService.SessionServiceClient client)
+        public SessionServiceClient(Channel channel, SessionService.SessionServiceClient client)
         {
             _client = client;
+            _channel = channel;
         }
 
         public async Task<Confirmation> AddSession(SessionInfo sessionInfo)
@@ -25,13 +27,32 @@ namespace Client_User.Models
 
                 return await Task.FromResult(confirmation);
             }
-            catch (RpcException e)
+            catch (RpcException ex)
             {
                 //logs error
-                Console.Error.WriteLine(e);
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao adicionar a sessão. RpcException.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
                 return await Task.FromResult(new Confirmation()
                 {
                     Id = -1,
+                });
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao adicionar a sessão.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new Confirmation()
+                {
+                    Id = -1
                 });
             }
         }
@@ -44,13 +65,32 @@ namespace Client_User.Models
 
                 return await Task.FromResult(confirmation);
             }
-            catch (RpcException e)
+            catch (RpcException ex)
             {
                 //logs error
-                Console.Error.WriteLine(e);
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao atualizar a sessão. RpcException.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
                 return await Task.FromResult(new Confirmation()
                 {
                     Id = -1,
+                });
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao atualizar a sessão.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new Confirmation()
+                {
+                    Id = -1
                 });
             }
         }
@@ -62,13 +102,32 @@ namespace Client_User.Models
 
                 return await Task.FromResult(confirmation);
             }
-            catch (RpcException e)
+            catch (RpcException ex)
             {
                 //logs error
-                Console.Error.WriteLine(e);
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao mudar o estado da sessão. RpcException.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
                 return await Task.FromResult(new Confirmation()
                 {
                     Id = -1,
+                });
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao mudar o estado da sessão.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new Confirmation()
+                {
+                    Id = -1
                 });
             }
         }
@@ -89,10 +148,26 @@ namespace Client_User.Models
 
                 return await Task.FromResult(shows.AsEnumerable());
             }
-            catch (RpcException e)
+            catch (RpcException ex)
             {
                 //logs error
-                Console.Error.WriteLine(e);
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao receber todas as sessões. RpcException.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new List<SessionInfo>().AsEnumerable());
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao receber todas as sessões.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
                 return await Task.FromResult(new List<SessionInfo>().AsEnumerable());
             }
         }
@@ -113,10 +188,26 @@ namespace Client_User.Models
 
                 return await Task.FromResult(shows.AsEnumerable());
             }
-            catch (RpcException e)
+            catch (RpcException ex)
             {
                 //logs error
-                Console.Error.WriteLine(e);
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao receber as sessões do show. RpcException.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new List<SessionInfo>().AsEnumerable());
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao receber as sessões do show..\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
                 return await Task.FromResult(new List<SessionInfo>().AsEnumerable());
             }
         }

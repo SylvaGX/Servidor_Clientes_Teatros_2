@@ -3,7 +3,9 @@ using Grpc.Core;
 using gRPCProto;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,9 +22,23 @@ namespace Client_User
     /// <summary>
     /// Interaction logic for Carrinho.xaml
     /// </summary>
-    public partial class Carrinho : Window
+    public partial class Carrinho : Window, INotifyPropertyChanged
     {
         public UserConnected userConnected;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        Visibility popUpCompra = Visibility.Hidden;
+        public Visibility PopUpCompra
+        {
+            get { return popUpCompra; }
+            set
+            {
+                popUpCompra = value;
+                // Call OnPropertyChanged whenever the property is updated
+                OnPropertyChanged();
+            }
+        }
         public Carrinho(UserConnected userConnected)
         {
             InitializeComponent();
@@ -60,7 +76,7 @@ namespace Client_User
         {
 
             var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-            var client = new CarServiceClient(new CartService.CartServiceClient(channel));
+            var client = new CarServiceClient(channel, new CartService.CartServiceClient(channel));
 
             Confirmation confirmation;
 
@@ -110,7 +126,7 @@ namespace Client_User
                             if (sessionInfoForm != null)
                             {
                                 var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                                var client = new CarServiceClient(new CartService.CartServiceClient(channel));
+                                var client = new CarServiceClient(channel, new CartService.CartServiceClient(channel));
 
                                 Confirmation confirmation = client.CancelReservationPlaces(new SessionInfoReserve()
                                 {
@@ -146,12 +162,24 @@ namespace Client_User
             }
         }
 
+        public void ClosePopup()
+        {
+            PopUpCompra = Visibility.Hidden;
+            PopGrid.Children.Clear();
+
+            MainWindow mainWindow = new(userConnected);
+
+            mainWindow.Show();
+
+            Close();
+        }
+
         private void Comprar_Click(object sender, RoutedEventArgs e)
         {
             if(App.carrinho.Count > 0)
             {
                 var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                var client = new CompraServiceClient(new CompraService.CompraServiceClient(channel));
+                var client = new CompraServiceClient(channel, new CompraService.CompraServiceClient(channel));
 
                 RefCompra refCompra;
 
@@ -172,17 +200,21 @@ namespace Client_User
 
                 if (refCompra.Exists())
                 {
-                    if(refCompra.Id == 1)
+                    if(refCompra.Id > 0)
                     {
                         App.carrinho.Clear();
 
                         ShoppingCarList.ItemsSource = null;
 
-                        MainWindow mainWindow = new MainWindow(userConnected);
+                        PopUpCompra = Visibility.Visible;
 
-                        mainWindow.Show();
+                        ReferenciasPage referenciasPage = new ReferenciasPage(refCompra, userConnected, ClosePopup);
 
-                        Close();
+                        PopGrid.Children.Add(new Frame()
+                        {
+                            Content = referenciasPage,
+                        });
+
                     }
                     else
                     {
@@ -193,11 +225,17 @@ namespace Client_User
                 else
                 {
                     // Erro ao encontrar a sessao na BD
+                    MessageBox.Show("Ocorreu um erro. Iremos resolver o problema.", "TeatroLand", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
 
                 channel.ShutdownAsync().Wait();
 
             }
+        }
+
+        protected void OnPropertyChanged([CallerMemberName] string? name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }
 }

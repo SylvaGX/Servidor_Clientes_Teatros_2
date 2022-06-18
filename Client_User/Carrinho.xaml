@@ -58,5 +58,12 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <!--Popup-->
+        <Grid x:Name="PopGrid" Visibility="{Binding PopUpCompra}"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+               Width="600" Height="400">
+        </Grid>
     </Grid>
 </Window>

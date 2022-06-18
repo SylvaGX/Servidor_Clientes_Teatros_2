@@ -32,7 +32,7 @@ namespace Client_User
 
             if(App.IPAdd != null) { 
                 var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                var client = new UserServiceClient(new UserService.UserServiceClient(channel));
+                var client = new UserServiceClient(channel, new UserService.UserServiceClient(channel));
 
                 UserInfo userInfo = client.GetUser(userConnected).Result;
                 if (userInfo.Exists())
@@ -95,7 +95,7 @@ namespace Client_User
             if (r)
             {
                 var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                var client = new UserServiceClient(new UserService.UserServiceClient(channel));
+                var client = new UserServiceClient(channel, new UserService.UserServiceClient(channel));
 
                 Confirmation confirmation = client.AddMoney(new UserAddMoney()
                 {

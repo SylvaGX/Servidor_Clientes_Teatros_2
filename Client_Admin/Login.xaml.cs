@@ -62,44 +62,86 @@ namespace Client_Admin
             }
         }
 
-        private void LoginBtn_Click(object sender, RoutedEventArgs e)
+        private async void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            string email = Email.Text;
-            string pass = Password.Password;
-
-            if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(pass))
+            try
             {
-                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                var client = new LoginClient(new gRPCProto.Login.LoginClient(channel));
-                UserLogin userLogin = new()
-                {
-                    Email = email,
-                    Password = pass,
-                    Type = "3",
-                };
+                string email = Email.Text;
+                string pass = Password.Password;
 
-                // Send and receive some notes.
-                UserConnected userConnected = client.CheckLogin(userLogin).Result;
-
-                if (userConnected.Exists())
+                if (!string.IsNullOrEmpty(email) && !string.IsNullOrEmpty(pass))
                 {
-                    if (userConnected.Id == -2)
+                    var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                    var client = new LoginClient(channel, new gRPCProto.Login.LoginClient(channel));
+                    UserLogin userLogin = new()
                     {
-                        MessageBox.Show("Erro ao Iniciar sessão. Utilizador ou Password Incorretos.", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        Email = email,
+                        Password = pass,
+                        Type = "3",
+                    };
+
+                    // Send and receive some notes.
+                    UserConnected userConnected = client.CheckLogin(userLogin).Result;
+
+                    if (userConnected.Exists())
+                    {
+                        if (userConnected.Id == -2)
+                        {
+                            MessageBox.Show("Erro ao Iniciar sessão. Utilizador ou Password Incorretos.", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+                        else
+                        {
+                            MainWindow mainWindow = new MainWindow(userConnected);
+                            mainWindow.Show();
+                            Close();
+                        }
                     }
                     else
                     {
-                        MainWindow mainWindow = new MainWindow(userConnected);
-                        mainWindow.Show();
-                        Close();
+                        MessageBox.Show("Erro ao Iniciar sessão. Por favor contactar a entidade", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Erro ao Iniciar sessão. Por favor contactar a entidade", "TeatrosLand", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
 
-                channel.ShutdownAsync().Wait();
+                    channel.ShutdownAsync().Wait();
+                }
+            }
+            catch (AggregateException ex)
+            {
+                //logs error
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'AggregateException': [{DateTime.Now}] - Error - Erro ao esperar pelo canal fechar.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+
+                MessageBox.Show("Ocorreu um erro ao fazer login", "Login", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (ObjectDisposedException ex)
+            {
+                //logs error
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'ObjectDisposedException': [{DateTime.Now}] - Error - Erro ao esperar pelo canal fechar.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+
+                MessageBox.Show("Ocorreu um erro ao fazer login", "Login", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+
+                MessageBox.Show("Ocorreu um erro ao fazer login", "Login", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
     }

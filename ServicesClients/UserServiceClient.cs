@@ -10,11 +10,13 @@ namespace Client_User.Models
 {
     public class UserServiceClient
     {
+        readonly Channel _channel;
         readonly UserService.UserServiceClient _client;
 
-        public UserServiceClient(UserService.UserServiceClient client)
+        public UserServiceClient(Channel channel, UserService.UserServiceClient client)
         {
             _client = client;
+            _channel = channel;
         }
 
         public async Task<IEnumerable<UserInfo>> GetUsers(UserConnected userConnected)
@@ -33,10 +35,26 @@ namespace Client_User.Models
 
                 return await Task.FromResult(users.AsEnumerable());
             }
-            catch (RpcException e)
+            catch (RpcException ex)
             {
                 //logs error
-                Console.Error.WriteLine(e);
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao receber os users. RpcException.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new List<UserInfo>().AsEnumerable());
+            }
+            catch(Exception ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao receber os users.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
                 return await Task.FromResult(new List<UserInfo>().AsEnumerable());
             }
         }
@@ -57,10 +75,26 @@ namespace Client_User.Models
 
                 return await Task.FromResult(users.AsEnumerable());
             }
-            catch (RpcException e)
+            catch (RpcException ex)
             {
                 //logs error
-                Console.Error.WriteLine(e);
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao receber os managers. RpcException.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new List<UserInfo>().AsEnumerable());
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao receber os managers.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
                 return await Task.FromResult(new List<UserInfo>().AsEnumerable());
             }
         }
@@ -82,10 +116,26 @@ namespace Client_User.Models
 
                 return await Task.FromResult(user);
             }
-            catch (RpcException e)
+            catch (RpcException ex)
             {
                 //logs error
-                Console.Error.WriteLine(e);
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao receber o user. RpcException.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new UserInfo() { Id = -1 });
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao receber o user.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
                 return await Task.FromResult(new UserInfo() { Id = -1 });
             }
         }
@@ -101,7 +151,6 @@ namespace Client_User.Models
                 {
                     if (confirmation.Id == 1)
                     {
-
                         //log a dizer que funcionou
                     }
                     else
@@ -116,10 +165,26 @@ namespace Client_User.Models
 
                 return await Task.FromResult(confirmation);
             }
-            catch (RpcException e)
+            catch (RpcException ex)
             {
                 //logs error
-                Console.Error.WriteLine(e);
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao adicionar o dinheiro. RpcException.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new Confirmation() { Id = -1 });
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao adicionar o dinheiro.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
                 return await Task.FromResult(new Confirmation() { Id = -1 });
             }
         }

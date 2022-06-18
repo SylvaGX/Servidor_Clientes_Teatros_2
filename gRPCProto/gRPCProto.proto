@@ -150,10 +150,24 @@ service CompraService {
 	//Cancel a purchase if possible
 	rpc CancelPurchase(PurchaseInfo) returns (Confirmation) {}
 
+	//Pay the purchase
+	rpc PayPurchases(RefCompra) returns (Confirmation) {}
+
 	/*
 	Returns all purchases
 	*/
 	rpc GetPurchases(UserConnected) returns (stream PurchaseInfo) {}
+}
+
+// service for comunicate the logs
+service LogService{
+	rpc LogInformation(LogInfo) returns (Confirmation){}
+	rpc LogWarning(LogInfo) returns (Confirmation){}
+	rpc LogError(LogInfo) returns (Confirmation){}
+	rpc LogCritical(LogInfo) returns (Confirmation){}
+
+	//Returns all the logs
+	rpc getAllLogs(UserConnected) returns (stream LogInfo) {}
 }
 
 message UserLogin {
@@ -233,7 +247,7 @@ message SessionInfo {
 
 message PurchaseInfo {
 	int32 id = 1;
-	string reference = 2;
+	ReferenceInfo reference = 2;
 	int64 datePurchase = 3;
 	int32 CompraLugares = 4;
 	int32 Estado = 5;
@@ -259,8 +273,14 @@ message Confirmation {
 message RefCompra {
 	// if 0 error
 	// if 1 success
-	int32 id = 1; 
-	string reference = 2; 
+	int32 id = 1;
+	double precoTotal = 2;
+	string reference = 3;
+}
+
+message ReferenceInfo{
+	int32 id = 1;
+	string ref = 2;
 }
 
 message SessionInfoReserve {
@@ -293,4 +313,11 @@ message ShowInfoState{
 message SessionInfoState{
 	int32 id = 1;
 	int32 estado = 2;
+}
+
+message LogInfo{
+	int32 id = 1;
+	int32 levelLog = 2;
+	string msg = 3;
+	int64 dataTime = 4;
 }

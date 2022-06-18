@@ -33,7 +33,7 @@ namespace Client_Manager
             Close = close;
 
             var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-            var client = new ShowServiceClient(new ShowService.ShowServiceClient(channel));
+            var client = new ShowServiceClient(channel, new ShowService.ShowServiceClient(channel));
 
             IEnumerable<ShowInfo> shows = client.GetShows(userConnected).Result;
 
@@ -71,7 +71,7 @@ namespace Client_Manager
                     if(sessionDateParsed > DateTime.Now || (sessionDateParsed == DateTime.Now && startHourParsed >= DateTime.Now.AddHours(8).TimeOfDay))
                     {
                         var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                        var client = new SessionServiceClient(new SessionService.SessionServiceClient(channel));
+                        var client = new SessionServiceClient(channel, new SessionService.SessionServiceClient(channel));
 
                         SessionInfo sessionInfo = new SessionInfo()
                         {

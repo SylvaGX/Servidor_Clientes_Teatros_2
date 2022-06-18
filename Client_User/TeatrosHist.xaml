@@ -27,38 +27,53 @@
         </Border>
         <Label Content="Histórico Compras" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" FontFamily="Arial" Foreground="White"/>
         <Button x:Name="Voltar" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Voltar" HorizontalAlignment="Center" Height="25" Width="150" Margin="0,53,0,0" VerticalAlignment="Top" Click="Voltar_Click" />
-        <ItemsControl x:Name="HistoricoCompras" BorderThickness="0,1,0,0" Foreground="White" BorderBrush="#99616161" Margin="0,83,0,0" Background="{x:Null}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="115" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="100" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ShowName}" />
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Text="{Binding TheaterName}" />
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Text="{Binding SessionSessionDate, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}" />
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Text="{Binding SessionStartHour}"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Text="{Binding SessionEndHour}"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="5" Text="{Binding NumberPlaces}" />
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="6" Text="{Binding TheaterAdress}" />
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="7" Text="{Binding LocalizationName}" />
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="8" Text="{Binding Reference}" />
-                        <!-- Por o codigo abaixo em c# -->
-                        <Button x:Name="CancelarBilhete" Grid.Column="9" Style="{StaticResource ImageButtonStyle}" Tag="{Binding Id}" Width="25" Height="25" Click="CancelarBilhete_Click">
-                            <Image Source="/img/bin2.png"/>
-                        </Button>
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,83,0,0">
+            <ItemsControl x:Name="HistoricoCompras" BorderThickness="0,1,0,0" Foreground="White" BorderBrush="#99616161" Margin="0,0,0,0" Background="{x:Null}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="115" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="100" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding ShowName}" />
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Text="{Binding TheaterName}" />
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Text="{Binding SessionSessionDate, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}" />
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Text="{Binding SessionStartHour}"/>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Text="{Binding SessionEndHour}"/>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="5" Text="{Binding NumberPlaces}" />
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="6" Text="{Binding TheaterAdress}" />
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="7" Text="{Binding LocalizationName}" />
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="8" Text="{Binding Reference}" />
+                            <Button x:Name="PagarBilhete" Grid.Column="9" Style="{StaticResource ImageButtonStyle}" Tag="{Binding IdArr}" Visibility="{Binding EstadoPag}" Width="25" Height="25" Click="HistoricoCompras_Click">
+                                <Image Source="/img/coin2.png"/>
+                            </Button>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="9" Text="{Binding EstadoLabel}" Tag="{Binding IdArr}" Visibility="{Binding EstadoOK}" Foreground="{Binding EstadoColor}" />
+                            <!-- Por o codigo abaixo em c# -->
+                            <Button x:Name="CancelarBilhete" Grid.Column="10" Style="{StaticResource ImageButtonStyle}" Tag="{Binding Id}" Visibility="{Binding TrashVis}" Width="25" Height="25" Click="CancelarBilhete_Click">
+                                <Image Source="/img/bin2.png"/>
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <!--Popup-->
+        <Grid x:Name="PopGrid" Visibility="{Binding PopUpCompra}"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+               Width="600" Height="400">
+        </Grid>
+
     </Grid>
 </Window>

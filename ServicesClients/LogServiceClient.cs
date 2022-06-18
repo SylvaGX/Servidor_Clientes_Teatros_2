@@ -8,22 +8,31 @@ using System.Threading.Tasks;
 
 namespace Client_User.Models
 {
-    public class TheaterServiceClient
+    public class LogServiceClient
     {
         readonly Channel _channel;
-        readonly TheaterService.TheaterServiceClient _client;
+        readonly LogService.LogServiceClient _client;
 
-        public TheaterServiceClient(Channel channel, TheaterService.TheaterServiceClient client)
+        public LogServiceClient(Channel channel, LogService.LogServiceClient client)
         {
             _client = client;
             _channel = channel;
         }
 
-        public async Task<Confirmation> AddTheater(TheaterInfo theaterInfo)
+        public async Task<Confirmation> LogInformation(LogInfo logInfo)
         {
             try
             {
-                Confirmation confirmation = _client.AddTheater(theaterInfo);
+                //log inicio funcao 
+                Confirmation confirmation = _client.LogInformation(logInfo);
+                if (confirmation.Exists())
+                {
+                    //log a dizer que funcionou
+                }
+                else
+                {
+                    //log erro
+                }
 
                 return await Task.FromResult(confirmation);
             }
@@ -33,12 +42,12 @@ namespace Client_User.Models
                 var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
                 await logClient.LogError(new LogInfo()
                 {
-                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao adicionar o teatro. RpcException.\nCode Msg: {ex.Message}",
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao enviar o Information Log. RpcException.\nCode Msg: {ex.Message}",
                     LevelLog = 3
                 });
                 return await Task.FromResult(new Confirmation()
                 {
-                    Id = -1,
+                    Id = -1
                 });
             }
             catch (Exception ex)
@@ -47,21 +56,29 @@ namespace Client_User.Models
                 var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
                 await logClient.LogError(new LogInfo()
                 {
-                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao adicionar o teatro.\nCode Msg: {ex.Message}",
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao enviar o Information Log.\nCode Msg: {ex.Message}",
                     LevelLog = 3
                 });
                 return await Task.FromResult(new Confirmation()
                 {
-                    Id = -1,
+                    Id = -1
                 });
             }
         }
-
-        public async Task<Confirmation> UpdateTheater(TheaterInfo theaterInfo)
+        public async Task<Confirmation> LogWarning(LogInfo logInfo)
         {
             try
             {
-                Confirmation confirmation = _client.UpdateTheater(theaterInfo);
+                //log inicio funcao 
+                Confirmation confirmation = _client.LogWarning(logInfo);
+                if (confirmation.Exists())
+                {
+                    //log a dizer que funcionou
+                }
+                else
+                {
+                    //log erro
+                }
 
                 return await Task.FromResult(confirmation);
             }
@@ -71,12 +88,12 @@ namespace Client_User.Models
                 var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
                 await logClient.LogError(new LogInfo()
                 {
-                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao atualizar o teatro. RpcException.\nCode Msg: {ex.Message}",
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao enviar o Warning Log. RpcException.\nCode Msg: {ex.Message}",
                     LevelLog = 3
                 });
                 return await Task.FromResult(new Confirmation()
                 {
-                    Id = -1,
+                    Id = -1
                 });
             }
             catch (Exception ex)
@@ -85,59 +102,30 @@ namespace Client_User.Models
                 var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
                 await logClient.LogError(new LogInfo()
                 {
-                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao atualizar o teatro.\nCode Msg: {ex.Message}",
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao enviar o Warning Log.\nCode Msg: {ex.Message}",
                     LevelLog = 3
                 });
                 return await Task.FromResult(new Confirmation()
                 {
-                    Id = -1,
+                    Id = -1
                 });
             }
         }
 
-        public async Task<TheaterInfo> GetTheater(TheaterInfo theaterInfo)
+        public async Task<Confirmation> LogError(LogInfo logInfo)
         {
             try
             {
-                TheaterInfo theater = _client.GetTheater(theaterInfo);
-
-                return await Task.FromResult(theater);
-            }
-            catch (RpcException ex)
-            {
-                //logs error
-                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
-                await logClient.LogError(new LogInfo()
+                //log inicio funcao 
+                Confirmation confirmation = _client.LogError(logInfo);
+                if (confirmation.Exists())
                 {
-                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao receber o teatro. RpcException.\nCode Msg: {ex.Message}",
-                    LevelLog = 3
-                });
-                return await Task.FromResult(new TheaterInfo()
+                    //log a dizer que funcionou
+                }
+                else
                 {
-                    Id = -1,
-                });
-            }
-            catch (Exception ex)
-            {
-                //logs error
-                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
-                await logClient.LogError(new LogInfo()
-                {
-                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao receber o teatro.\nCode Msg: {ex.Message}",
-                    LevelLog = 3
-                });
-                return await Task.FromResult(new TheaterInfo()
-                {
-                    Id = -1,
-                });
-            }
-        }
-
-        public async Task<Confirmation> ChangeState(TheaterInfoState theaterInfoState)
-        {
-            try
-            {
-                Confirmation confirmation = _client.ChangeState(theaterInfoState);
+                    //log erro
+                }
 
                 return await Task.FromResult(confirmation);
             }
@@ -147,12 +135,12 @@ namespace Client_User.Models
                 var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
                 await logClient.LogError(new LogInfo()
                 {
-                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao mudar o estado do teatro. RpcException.\nCode Msg: {ex.Message}",
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao enviar o Error Log. RpcException.\nCode Msg: {ex.Message}",
                     LevelLog = 3
                 });
                 return await Task.FromResult(new Confirmation()
                 {
-                    Id = -1,
+                    Id = -1
                 });
             }
             catch (Exception ex)
@@ -161,31 +149,78 @@ namespace Client_User.Models
                 var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
                 await logClient.LogError(new LogInfo()
                 {
-                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao mudar o estado do teatro.\nCode Msg: {ex.Message}",
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao enviar o Error Log.\nCode Msg: {ex.Message}",
                     LevelLog = 3
                 });
                 return await Task.FromResult(new Confirmation()
                 {
-                    Id = -1,
+                    Id = -1
                 });
             }
         }
 
-        public async Task<IEnumerable<TheaterInfo>> GetTheaters(UserConnected userConnected)
+        public async Task<Confirmation> LogCritical(LogInfo logInfo)
         {
             try
             {
-                List<TheaterInfo> theaters = new();
-                using (var call = _client.GetTheaters(userConnected))
+                //log inicio funcao 
+                Confirmation confirmation = _client.LogCritical(logInfo);
+                if (confirmation.Exists())
+                {
+                    //log a dizer que funcionou
+                }
+                else
+                {
+                    //log erro
+                }
+
+                return await Task.FromResult(confirmation);
+            }
+            catch (RpcException ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao enviar o Critical Log. RpcException.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new Confirmation()
+                {
+                    Id = -1
+                });
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao enviar o Critical Log.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+                return await Task.FromResult(new Confirmation()
+                {
+                    Id = -1
+                });
+            }
+        }
+
+        public async Task<IEnumerable<LogInfo>> GetAllLogs(UserConnected userConnected)
+        {
+            try
+            {
+                List<LogInfo> logs = new();
+                using (var call = _client.getAllLogs(userConnected))
                 {
                     var responseStream = call.ResponseStream;
                     while (responseStream.MoveNext().Result)
                     {
-                        theaters.Add(call.ResponseStream.Current);
+                        logs.Add(call.ResponseStream.Current);
                     }
                 }
 
-                return await Task.FromResult(theaters.AsEnumerable());
+                return await Task.FromResult(logs.AsEnumerable());
             }
             catch (RpcException ex)
             {
@@ -193,10 +228,10 @@ namespace Client_User.Models
                 var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
                 await logClient.LogError(new LogInfo()
                 {
-                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao receber os teatros. RpcException.\nCode Msg: {ex.Message}",
+                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao receber os logs. RpcException.\nCode Msg: {ex.Message}",
                     LevelLog = 3
                 });
-                return await Task.FromResult(new List<TheaterInfo>().AsEnumerable());
+                return await Task.FromResult(new List<LogInfo>().AsEnumerable());
             }
             catch (Exception ex)
             {
@@ -204,10 +239,10 @@ namespace Client_User.Models
                 var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
                 await logClient.LogError(new LogInfo()
                 {
-                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao receber os teatros.\nCode Msg: {ex.Message}",
+                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao receber os logs.\nCode Msg: {ex.Message}",
                     LevelLog = 3
                 });
-                return await Task.FromResult(new List<TheaterInfo>().AsEnumerable());
+                return await Task.FromResult(new List<LogInfo>().AsEnumerable());
             }
         }
     }

@@ -17,8 +17,7 @@ namespace Server.Models
         [Column("id_users")]
         public int IdUsers { get; set; }
         [Column("reference")]
-        [StringLength(20)]
-        public string Reference { get; set; } = null!;
+        public int Reference { get; set; }
         [Column("date_purchase", TypeName = "datetime")]
         public DateTime DatePurchase { get; set; }
         [Column("compra_lugares")]
@@ -32,5 +31,8 @@ namespace Server.Models
         [ForeignKey("IdUsers")]
         [InverseProperty("Purchases")]
         public virtual User IdUsersNavigation { get; set; } = null!;
+        [ForeignKey("Reference")]
+        [InverseProperty("Purchases")]
+        public virtual Reference ReferenceNavigation { get; set; } = null!;
     }
 }

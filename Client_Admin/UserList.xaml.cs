@@ -15,41 +15,114 @@ namespace Client_Admin
     public partial class UserList : Window
     {
         UserConnected userConnected { get; }
+        int VoltarTries = 5;
         List<UsersForm> usersForms { get; set; } = new List<UsersForm>();
         IEnumerable<UserInfo> users;
 
         Timer tickerSessions = new Timer();
         public UserList(UserConnected userConnected)
         {
-            InitializeComponent();
-
             this.userConnected = userConnected;
+            users = new List<UserInfo>();
 
-            var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-            var clientSessions = new UserServiceClient(new UserService.UserServiceClient(channel));
-
-            users = clientSessions.GetUsers(userConnected).Result;
-
-            if (users.Any())
+            try
             {
-                foreach (UserInfo user in users)
+                InitializeComponent();
+
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var clientSessions = new UserServiceClient(channel, new UserService.UserServiceClient(channel));
+
+                users = clientSessions.GetUsers(userConnected).Result;
+
+                if (users.Any())
                 {
-                    usersForms.Add(new UsersForm()
+                    foreach (UserInfo user in users)
                     {
-                        Id = user.Id,
-                        Name = user.Name,
-                        Email = user.Email,
-                        Local = user.Localization.Name
-                    });
+                        usersForms.Add(new UsersForm()
+                        {
+                            Id = user.Id,
+                            Name = user.Name,
+                            Email = user.Email,
+                            Local = user.Localization.Name
+                        });
+                    }
+                    UsersList.ItemsSource = usersForms;
                 }
-                UsersList.ItemsSource = usersForms;
+
+                channel.ShutdownAsync().Wait();
+
+                tickerSessions.Elapsed += new ElapsedEventHandler(TickerSessions);
+                tickerSessions.Interval = 5000; // 1000 ms is one second
+                tickerSessions.Start();
             }
+            catch (AggregateException ex)
+            {
+                //logs error
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'AggregateException': [{DateTime.Now}] - Error - Erro ao esperar pelo canal fechar.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                }).Wait();
 
-            channel.ShutdownAsync().Wait();
+                MessageBox.Show("Ocorreu um erro", "Lista de Users", MessageBoxButton.OK, MessageBoxImage.Error);
 
-            tickerSessions.Elapsed += new ElapsedEventHandler(TickerSessions);
-            tickerSessions.Interval = 5000; // 1000 ms is one second
-            tickerSessions.Start();
+                MainWindow mainWindow = new(userConnected);
+                mainWindow.Show();
+                Close();
+            }
+            catch (ObjectDisposedException ex)
+            {
+                //logs error
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'ObjectDisposedException': [{DateTime.Now}] - Error - Erro ao esperar pelo canal fechar.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                }).Wait();
+
+                MessageBox.Show("Ocorreu um erro", "Lista de Users", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                MainWindow mainWindow = new(userConnected);
+                mainWindow.Show();
+                Close();
+            }
+            catch (ArgumentOutOfRangeException ex)
+            {
+                //logs error
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'ArgumentOutOfRangeException': [{DateTime.Now}] - Error - Erro ao começar a thread.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                }).Wait();
+
+                MessageBox.Show("Ocorreu um erro", "Lista de Users", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                MainWindow mainWindow = new(userConnected);
+                mainWindow.Show();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                }).Wait();
+
+                MessageBox.Show("Ocorreu um erro", "Lista de Users", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                MainWindow mainWindow = new(userConnected);
+                mainWindow.Show();
+                Close();
+            }
         }
 
         public void TickerSessions(object? source, ElapsedEventArgs e)
@@ -57,56 +130,143 @@ namespace Client_Admin
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
                 // - Change your UI information here
-                UpdateManagerList();
+                UpdateUserList();
             }), null);
         }
 
-        public void UpdateManagerList()
+        public async void UpdateUserList()
         {
-            var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-            var client = new UserServiceClient(new UserService.UserServiceClient(channel));
-
-            users = client.GetUsers(userConnected).Result;
-
-            if (users.Any())
+            try
             {
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var client = new UserServiceClient(channel, new UserService.UserServiceClient(channel));
 
-                UsersList.ItemsSource = null;
-                usersForms.Clear();
-                foreach (UserInfo user in users)
+                users = client.GetUsers(userConnected).Result;
+
+                if (users.Any())
                 {
-                    usersForms.Add(new UsersForm()
+                    UsersList.ItemsSource = null;
+                    usersForms.Clear();
+                    foreach (UserInfo user in users)
                     {
-                        Id = user.Id,
-                        Name = user.Name,
-                        Email = user.Email,
-                        Local = user.Localization.Name
-                    });
+                        usersForms.Add(new UsersForm()
+                        {
+                            Id = user.Id,
+                            Name = user.Name,
+                            Email = user.Email,
+                            Local = user.Localization.Name
+                        });
+                    }
+                    UsersList.ItemsSource = usersForms;
                 }
-                UsersList.ItemsSource = usersForms;
+
+                channel.ShutdownAsync().Wait();
             }
+            catch (AggregateException ex)
+            {
+                //logs error
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'AggregateException': [{DateTime.Now}] - Error - Erro ao esperar pelo canal fechar.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
 
-            channel.ShutdownAsync().Wait();
+                MessageBox.Show("Ocorreu um erro ao atualizar a lista de users", "Lista de Users", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (ObjectDisposedException ex)
+            {
+                //logs error
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'ObjectDisposedException': [{DateTime.Now}] - Error - Erro ao esperar pelo canal fechar.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+
+                MessageBox.Show("Ocorreu um erro ao atualizar a lista de users", "Lista de Users", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+
+                MessageBox.Show("Ocorreu um erro ao atualizar a lista de users", "Lista de Users", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
-        private void Adicionar_Click(object sender, RoutedEventArgs e)
+        private async void Adicionar_Click(object sender, RoutedEventArgs e)
         {
-            AddUser addUser = new(userConnected);
+            try
+            {
+                AddUser addUser = new(userConnected);
 
-            addUser.Show();
+                addUser.Show();
 
-            Close();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+
+                MessageBox.Show($"Ocorreu um erro ao redirecionar para a página adicionar users.", "Lista de Users", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void Voltar_Click(object sender, RoutedEventArgs e)
+        private async void Voltar_Click(object sender, RoutedEventArgs e)
         {
-            tickerSessions.Stop();
-            tickerSessions.Close();
+            try
+            {
+                tickerSessions.Stop();
+                tickerSessions.Close();
 
-            MainWindow mainWindow = new(userConnected);
+                MainWindow mainWindow = new(userConnected);
 
-            mainWindow.Show();
+                mainWindow.Show();
 
-            Close();
+                Close();
+            }
+            catch (Exception ex)
+            {
+                //logs error
+                var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
+                var logClient = new LogServiceClient(channel, new LogService.LogServiceClient(channel));
+                await logClient.LogError(new LogInfo()
+                {
+                    Msg = $"'Exception': [{DateTime.Now}] - Error.\nCode Msg: {ex.Message}",
+                    LevelLog = 3
+                });
+
+                if (VoltarTries > 0)
+                {
+                    MessageBox.Show($"Ocorreu um erro ao voltar para o Inicio. \nTentativa: {VoltarTries}", "Lista de Users", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    Voltar_Click(sender, e);
+                }
+                else
+                {
+                    MessageBox.Show($"Ocorreu um erro ao voltar para o Inicio. Poderá não ter ligação à internet. Com isto foi redirecionado para a página de Login", "Lista de Users", MessageBoxButton.OK, MessageBoxImage.Error);
+
+                    Login login = new();
+
+                    login.Show();
+
+                    Close();
+                }
+                VoltarTries--;
+            }
         }
     }
 

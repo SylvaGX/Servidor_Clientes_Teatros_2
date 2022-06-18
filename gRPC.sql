@@ -52,14 +52,26 @@ create table Users(
 	CHECK(type like '[1-3]')
 );
 
+create table Reference(
+	id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	ref nvarchar(10) NOT NULL,
+);
+
 create table Purchase(
 	id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
 	id_session int FOREIGN KEY REFERENCES Session(id) NOT NULL,
 	id_users int FOREIGN KEY REFERENCES Users(id) NOT NULL,
-	reference nvarchar(20) NOT NULL,
+	reference int FOREIGN KEY REFERENCES Reference(id) NOT NULL,
 	date_purchase datetime default getdate() not null,
 	compra_lugares int NOT NULL,
 	estado int NOT NULL
+);
+
+create table Logger(
+	id int IDENTITY(1,1) PRIMARY KEY NOT NULL,
+	level_log int NOT NULL,
+	msg TEXT NOT NULL,
+	dataTime datetime default getdate() NOT NULL
 );
 
 insert into Localization (loc, lat, longi)
@@ -78,13 +90,13 @@ insert into Theater (name, address, contact, id_localization, estado)
 values ('Rivoli', 'Rua da Capela', '934920498', 1, 1);
 
 insert into Show(name, sinopse, startDate, endDate, price, id_theater, estado)
-values ('Harry Potter', 'Kali Linux', '2022-05-23', '2022-05-29', 5, 1, 1);
+values ('Harry Potter', 'Kali Linux', '2022-06-1', '2022-07-29', 5, 1, 1);
 
 insert into Show(name, sinopse, startDate, endDate, price, id_theater, estado)
 values ('Madagascar', 'OSX', '2022-06-5', '2022-06-16', 8, 1, 1);
 
 insert into Session(sessionDate, startHour, endHour, avaiable_places, total_places, id_show, estado)
-values ('2022-05-23', '11:00:00', '12:00:00', 30, 60, 1, 1);
+values ('2022-06-26', '11:00:00', '12:00:00', 30, 60, 1, 1);
 
 Select * from Theater;
 Select * from Session;

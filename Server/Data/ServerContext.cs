@@ -18,7 +18,9 @@ namespace Server.Data
         }
 
         public virtual DbSet<Localization> Localizations { get; set; } = null!;
+        public virtual DbSet<Logger> Loggers { get; set; } = null!;
         public virtual DbSet<Purchase> Purchases { get; set; } = null!;
+        public virtual DbSet<Reference> References { get; set; } = null!;
         public virtual DbSet<Session> Sessions { get; set; } = null!;
         public virtual DbSet<Show> Shows { get; set; } = null!;
         public virtual DbSet<Theater> Theaters { get; set; } = null!;
@@ -35,6 +37,11 @@ namespace Server.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Logger>(entity =>
+            {
+                entity.Property(e => e.DataTime).HasDefaultValueSql("(getdate())");
+            });
+
             modelBuilder.Entity<Purchase>(entity =>
             {
                 entity.Property(e => e.DatePurchase).HasDefaultValueSql("(getdate())");
@@ -43,13 +50,19 @@ namespace Server.Data
                     .WithMany(p => p.Purchases)
                     .HasForeignKey(d => d.IdSession)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Purchase__id_ses__34C8D9D1");
+                    .HasConstraintName("FK__Purchase__id_ses__36B12243");
 
                 entity.HasOne(d => d.IdUsersNavigation)
                     .WithMany(p => p.Purchases)
                     .HasForeignKey(d => d.IdUsers)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Purchase__id_use__35BCFE0A");
+                    .HasConstraintName("FK__Purchase__id_use__37A5467C");
+
+                entity.HasOne(d => d.ReferenceNavigation)
+                    .WithMany(p => p.Purchases)
+                    .HasForeignKey(d => d.Reference)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Purchase__refere__38996AB5");
             });
 
             modelBuilder.Entity<Session>(entity =>

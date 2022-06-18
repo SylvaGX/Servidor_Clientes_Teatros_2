@@ -41,7 +41,7 @@ namespace Client_User
             if (!String.IsNullOrEmpty(email) && !String.IsNullOrEmpty(password))
             {
                 var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-                var client = new LoginClient(new gRPCProto.Login.LoginClient(channel));
+                var client = new LoginClient(channel, new gRPCProto.Login.LoginClient(channel));
                 UserLogin userLogin = new()
                 {
                     Email = email,

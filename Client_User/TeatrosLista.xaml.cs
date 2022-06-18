@@ -36,12 +36,13 @@ namespace Client_User
             this.userConnected = userConnected;
 
             var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
-            var client = new ShowServiceClient(new ShowService.ShowServiceClient(channel));
+            var client = new ShowServiceClient(channel, new ShowService.ShowServiceClient(channel));
 
             shows = client.GetShows(userConnected).Result;
 
             if (shows.Any())
             {
+                shows = shows.Where(s => s.EndDate >= DateTime.Now.AddDays(3).Ticks);
                 foreach(ShowInfo show in shows)
                 {
                     showsForms.Add(new ShowInfoForm()
