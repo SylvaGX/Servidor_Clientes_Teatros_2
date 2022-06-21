@@ -35,7 +35,25 @@
         <Button x:Name="ListManager" Content="Lista de Managers" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,411,17,0" Click="ListManager_Click"/>
         <Button x:Name="ListUser" Content="Lista de Users" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="246" FontSize="18" FontWeight="Bold" Margin="0,456,17,0" Click="ListUser_Click"/>
         <Button Name="Sair" Background="Transparent" Foreground="White" BorderThickness="1.5" BorderBrush="White" Content="Sair" HorizontalAlignment="Right" VerticalAlignment="Top" Height="40" Width="214" Margin="0,501,33,0" FontSize="18" FontWeight="Bold" Click="Sair_Click"/>
-        <ItemsControl  BorderThickness="0,1,1,0" Foreground="White" BorderBrush="#995E5E5E" Background="{x:Null}" Margin="0,105,287,10">
-        </ItemsControl>
+        <ScrollViewer Margin="0,105,287,10" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="LogList" BorderThickness="0,1,1,0" Foreground="White" BorderBrush="#995E5E5E" Background="{x:Null}" >
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="10" />
+                                <ColumnDefinition Width="400" />
+                                <ColumnDefinition Width="120" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Id}" />
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Text="{Binding Level}" />
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" Grid.Column="2" Text="{Binding Msg}"/>
+                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Text="{Binding DataLog, StringFormat={}{0:dd/MM/yyyy HH:mm:ss}}" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </Window>

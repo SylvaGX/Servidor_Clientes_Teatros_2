@@ -30,6 +30,7 @@ namespace Server
                     SessionService.BindService(new SessionServiceImpl(context)),
                     CartService.BindService(new CartServiceImpl(context)),
                     CompraService.BindService(new CompraServiceImpl(context)),
+                    LogService.BindService(new LogServiceImpl(context)),
                 },
                     Ports = { new ServerPort("10.144.10.2", Port, ServerCredentials.Insecure) }
                 };

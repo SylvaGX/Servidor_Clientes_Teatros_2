@@ -189,7 +189,6 @@ namespace Server.Models
                         LevelLog = log.LevelLog
                     };
 
-
                     await responseStream.WriteAsync(logInfo);
                 }
             }

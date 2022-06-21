@@ -39,12 +39,11 @@ namespace Client_User.Models
             catch (RpcException ex)
             {
                 //logs error
-                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
-                await logClient.LogError(new LogInfo()
+                using (StreamWriter writer = File.AppendText("LogOfLog.txt"))
                 {
-                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao enviar o Information Log. RpcException.\nCode Msg: {ex.Message}",
-                    LevelLog = 3
-                });
+                    Console.WriteLine("Error Exception, please check file LogOfLog.txt");
+                    writer.WriteLine($"'RpcException': [{DateTime.Now}] - Error - Erro ao conectar à base de dados.\n");
+                }
                 return await Task.FromResult(new Confirmation()
                 {
                     Id = -1
@@ -53,12 +52,11 @@ namespace Client_User.Models
             catch (Exception ex)
             {
                 //logs error
-                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
-                await logClient.LogError(new LogInfo()
+                using (StreamWriter writer = File.AppendText("LogOfLog.txt"))
                 {
-                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao enviar o Information Log.\nCode Msg: {ex.Message}",
-                    LevelLog = 3
-                });
+                    Console.WriteLine("Error Exception, please check file LogOfLog.txt");
+                    writer.WriteLine($"'Exception': [{DateTime.Now}] - Error - Erro ao conectar à base de dados.\n");
+                }
                 return await Task.FromResult(new Confirmation()
                 {
                     Id = -1
@@ -85,12 +83,11 @@ namespace Client_User.Models
             catch (RpcException ex)
             {
                 //logs error
-                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
-                await logClient.LogError(new LogInfo()
+                using (StreamWriter writer = File.AppendText("LogOfLog.txt"))
                 {
-                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao enviar o Warning Log. RpcException.\nCode Msg: {ex.Message}",
-                    LevelLog = 3
-                });
+                    Console.WriteLine("Error Exception, please check file LogOfLog.txt");
+                    writer.WriteLine($"'RpcException': [{DateTime.Now}] - Error - Erro ao conectar à base de dados.\n");
+                }
                 return await Task.FromResult(new Confirmation()
                 {
                     Id = -1
@@ -99,12 +96,11 @@ namespace Client_User.Models
             catch (Exception ex)
             {
                 //logs error
-                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
-                await logClient.LogError(new LogInfo()
+                using (StreamWriter writer = File.AppendText("LogOfLog.txt"))
                 {
-                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao enviar o Warning Log.\nCode Msg: {ex.Message}",
-                    LevelLog = 3
-                });
+                    Console.WriteLine("Error Exception, please check file LogOfLog.txt");
+                    writer.WriteLine($"'Exception': [{DateTime.Now}] - Error - Erro ao conectar à base de dados.\n");
+                }
                 return await Task.FromResult(new Confirmation()
                 {
                     Id = -1
@@ -132,12 +128,11 @@ namespace Client_User.Models
             catch (RpcException ex)
             {
                 //logs error
-                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
-                await logClient.LogError(new LogInfo()
+                using (StreamWriter writer = File.AppendText("LogOfLog.txt"))
                 {
-                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao enviar o Error Log. RpcException.\nCode Msg: {ex.Message}",
-                    LevelLog = 3
-                });
+                    Console.WriteLine("Error Exception, please check file LogOfLog.txt");
+                    writer.WriteLine($"'RpcException': [{DateTime.Now}] - Error - Erro ao conectar à base de dados.\n");
+                }
                 return await Task.FromResult(new Confirmation()
                 {
                     Id = -1
@@ -146,12 +141,11 @@ namespace Client_User.Models
             catch (Exception ex)
             {
                 //logs error
-                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
-                await logClient.LogError(new LogInfo()
+                using (StreamWriter writer = File.AppendText("LogOfLog.txt"))
                 {
-                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao enviar o Error Log.\nCode Msg: {ex.Message}",
-                    LevelLog = 3
-                });
+                    Console.WriteLine("Error Exception, please check file LogOfLog.txt");
+                    writer.WriteLine($"'Exception': [{DateTime.Now}] - Error - Erro ao conectar à base de dados.\n");
+                }
                 return await Task.FromResult(new Confirmation()
                 {
                     Id = -1
@@ -179,12 +173,11 @@ namespace Client_User.Models
             catch (RpcException ex)
             {
                 //logs error
-                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
-                await logClient.LogError(new LogInfo()
+                using (StreamWriter writer = File.AppendText("LogOfLog.txt"))
                 {
-                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao enviar o Critical Log. RpcException.\nCode Msg: {ex.Message}",
-                    LevelLog = 3
-                });
+                    Console.WriteLine("Error Exception, please check file LogOfLog.txt");
+                    writer.WriteLine($"'RpcException': [{DateTime.Now}] - Error - Erro ao conectar à base de dados.\n");
+                }
                 return await Task.FromResult(new Confirmation()
                 {
                     Id = -1
@@ -193,12 +186,11 @@ namespace Client_User.Models
             catch (Exception ex)
             {
                 //logs error
-                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
-                await logClient.LogError(new LogInfo()
+                using (StreamWriter writer = File.AppendText("LogOfLog.txt"))
                 {
-                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao enviar o Critical Log.\nCode Msg: {ex.Message}",
-                    LevelLog = 3
-                });
+                    Console.WriteLine("Error Exception, please check file LogOfLog.txt");
+                    writer.WriteLine($"'Exception': [{DateTime.Now}] - Error - Erro ao conectar à base de dados.\n");
+                }
                 return await Task.FromResult(new Confirmation()
                 {
                     Id = -1
@@ -225,23 +217,21 @@ namespace Client_User.Models
             catch (RpcException ex)
             {
                 //logs error
-                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
-                await logClient.LogError(new LogInfo()
+                using (StreamWriter writer = File.AppendText("LogOfLog.txt"))
                 {
-                    Msg = $"'RpcException': [{DateTime.Now}] - Error - Erro ao receber os logs. RpcException.\nCode Msg: {ex.Message}",
-                    LevelLog = 3
-                });
+                    Console.WriteLine("Error Exception, please check file LogOfLog.txt");
+                    writer.WriteLine($"'RpcException': [{DateTime.Now}] - Error - Erro ao conectar à base de dados.\n");
+                }
                 return await Task.FromResult(new List<LogInfo>().AsEnumerable());
             }
             catch (Exception ex)
             {
                 //logs error
-                var logClient = new LogServiceClient(_channel, new LogService.LogServiceClient(_channel));
-                await logClient.LogError(new LogInfo()
+                using (StreamWriter writer = File.AppendText("LogOfLog.txt"))
                 {
-                    Msg = $"'Exception': [{DateTime.Now}] - Error - Erro ao receber os logs.\nCode Msg: {ex.Message}",
-                    LevelLog = 3
-                });
+                    Console.WriteLine("Error Exception, please check file LogOfLog.txt");
+                    writer.WriteLine($"'Exception': [{DateTime.Now}] - Error - Erro ao conectar à base de dados.\n");
+                }
                 return await Task.FromResult(new List<LogInfo>().AsEnumerable());
             }
         }
