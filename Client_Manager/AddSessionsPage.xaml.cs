@@ -35,7 +35,7 @@ namespace Client_Manager
             var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
             var client = new ShowServiceClient(channel, new ShowService.ShowServiceClient(channel));
 
-            IEnumerable<ShowInfo> shows = client.GetShows(userConnected).Result;
+            IEnumerable<ShowInfo> shows = client.GetShows(userConnected).Result.Where(s => s.Estado.Equals(1));
 
             if (shows.Any())
             {

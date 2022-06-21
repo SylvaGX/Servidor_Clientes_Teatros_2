@@ -42,7 +42,7 @@ namespace Client_User
 
             if (shows.Any())
             {
-                shows = shows.Where(s => s.EndDate >= DateTime.Now.AddDays(3).Ticks);
+                shows = shows.Where(s => s.EndDate >= DateTime.Now.AddDays(3).Ticks && s.Estado.Equals(1));
                 foreach(ShowInfo show in shows)
                 {
                     showsForms.Add(new ShowInfoForm()

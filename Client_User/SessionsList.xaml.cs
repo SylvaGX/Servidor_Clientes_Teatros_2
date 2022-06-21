@@ -36,6 +36,7 @@ namespace Client_User
 
             if (sessions.Any())
             {
+                sessions = sessions.Where(s => s.Estado.Equals(1));
                 foreach (SessionInfo session in sessions)
                 {
                     sessionsForms.Add(new SessionInfoForm()

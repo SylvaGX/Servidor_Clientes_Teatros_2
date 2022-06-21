@@ -246,6 +246,7 @@ namespace Server.Models
                         EndHour = session.EndHour.Ticks,
                         AvaiablePlaces = session.AvaiablePlaces,
                         TotalPlaces = session.TotalPlaces,
+                        Estado = session.Estado,
                     };
 
                     await responseStream.WriteAsync(s);

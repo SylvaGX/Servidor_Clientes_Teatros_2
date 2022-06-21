@@ -39,7 +39,7 @@ namespace Client_Manager
             var channel = new Channel(App.IPAdd, ChannelCredentials.Insecure);
             var clientL = new TheaterServiceClient(channel, new TheaterService.TheaterServiceClient(channel));
 
-            IEnumerable<TheaterInfo> theaters = clientL.GetTheaters(userConnected).Result;
+            IEnumerable<TheaterInfo> theaters = clientL.GetTheaters(userConnected).Result.Where(t => t.Estado.Equals(1));
 
             ID.Text = showInfo.Id.ToString();
             Nome.Text = showInfo.Name;
