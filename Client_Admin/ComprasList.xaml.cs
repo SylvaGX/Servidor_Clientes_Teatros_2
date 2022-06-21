@@ -73,6 +73,8 @@ namespace Client_Admin
                             LocalizationName = purchase.Session.Show.Theater.Localization.Name,
                             LocalizationLat = Convert.ToDecimal(purchase.Session.Show.Theater.Localization.Lat),
                             LocalizationLongi = Convert.ToDecimal(purchase.Session.Show.Theater.Localization.Longi),
+                            Estado = (purchase.Estado == 1) ? "Pago" : (purchase.Estado == 2) ? "A espera do pagamento" : "Cancelado",
+                            EstadoColor = (purchase.Estado == 1) ? "Green" : (purchase.Estado == 2) ? "Yellow" : "Red",
                         });
                     }
                     ListCompras.ItemsSource = purchasesForm;
